@@ -6,9 +6,9 @@
     <title>OKB-1 Creative Design Bureau | X-Plane Assets & Scenery</title>
     <style>
         :root {
-            --bg-color: #0b0f19;         /* Deep Aerospace Night */
-            --card-bg: #111827;        /* Avionics Dark Slate */
-            --accent-color: #0ea5e9;    /* HUD/Avionics Blue */
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-color: #0ea5e9;
             --accent-glow: rgba(14, 165, 233, 0.15);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
@@ -32,6 +32,29 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .admin-bar {
+            background-color: #1e293b;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .admin-bar button {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         header {
@@ -90,6 +113,49 @@
 
         .product-card:hover {
             border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        /* Drag & Drop Sneak Peek Container */
+        .preview-dropzone {
+            width: 100%;
+            height: 260px;
+            background-color: #080c14;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .preview-dropzone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .dropzone-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 1rem;
+            pointer-events: none;
+            border: 2px dashed rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            width: 85%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dropzone-text span {
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         .product-header {
@@ -152,7 +218,6 @@
             opacity: 0.9;
         }
 
-        /* Vision Section Pushed Down */
         .vision-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -182,6 +247,12 @@
 <body>
 
 <div class="container">
+    <!-- Quick authoring toolbar reminder -->
+    <div class="admin-bar">
+        <span>💡 <strong>Tip:</strong> Drag and drop your scenery screenshots directly into any product frame below.</span>
+        <button onclick="saveLayout()">Export HTML</button>
+    </div>
+
     <header>
         <p class="subtitle">Independent Digital Design Bureau</p>
         <h1>OKB-1 Creative Design Bureau</h1>
@@ -189,12 +260,18 @@
     </header>
 
     <main>
-        <!-- Showcase Section (First) -->
         <h2 class="section-heading">Featured Scenery & Products</h2>
         
         <div class="product-grid">
             <!-- Tier 1: Primorsky Krai DLC -->
             <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop a PNG/JPG screenshot from your desktop
+                    </div>
+                    <img src="" alt="Preview">
+                </div>
                 <div class="product-header">
                     <span class="badge">X-Plane 12 DLC</span>
                     <h2>1. Primorsky Krai DLC</h2>
@@ -212,6 +289,13 @@
 
             <!-- Tier 2: Germany Lost Airport -->
             <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop a PNG/JPG screenshot from your desktop
+                    </div>
+                    <img src="" alt="Preview">
+                </div>
                 <div class="product-header">
                     <span class="badge">X-Plane 12 Scenery</span>
                     <h2>2. Germany Lost Airport</h2>
@@ -229,6 +313,13 @@
 
             <!-- Tier 3: Indonesia DLC -->
             <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop a PNG/JPG screenshot from your desktop
+                    </div>
+                    <img src="" alt="Preview">
+                </div>
                 <div class="product-header">
                     <span class="badge">X-Plane 12 DLC</span>
                     <h2>3. Indonesia DLC</h2>
@@ -246,6 +337,13 @@
 
             <!-- Tier 4: Free Orthophotos -->
             <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop a PNG/JPG screenshot from your desktop
+                    </div>
+                    <img src="" alt="Preview">
+                </div>
                 <div class="product-header">
                     <span class="badge" style="background-color: rgba(34, 197, 94, 0.15); color: #22c55e; border-color: rgba(34, 197, 94, 0.3);">Open-Source</span>
                     <h2>4. Free Orthophotos</h2>
@@ -262,7 +360,6 @@
             </div>
         </div>
 
-        <!-- Vision & Identity Section (Moved Down) -->
         <section class="vision-box">
             <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
             <p>
@@ -278,6 +375,44 @@
         <p>&copy; 2026 OKB-1 Creative Design Bureau. All rights reserved.</p>
     </footer>
 </div>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function handleDrop(ev, dropzone) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items && ev.dataTransfer.items.length > 0) {
+            const item = ev.dataTransfer.items[0];
+            if (item.kind === 'file') {
+                const file = item.getAsFile();
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = dropzone.querySelector('img');
+                    const text = dropzone.querySelector('.dropzone-text');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    text.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    function saveLayout() {
+        // Removes instructional UI banner before export
+        const bar = document.querySelector('.admin-bar');
+        if(bar) bar.remove();
+        
+        const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'index.html';
+        a.click();
+    }
+</script>
 
 </body>
 </html>
