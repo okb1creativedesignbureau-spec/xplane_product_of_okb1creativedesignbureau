@@ -1,0 +1,39 @@
+<!-- Editor Container -->
+<div id="editorjs" style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 2rem; color: #f0f6fc; min-height: 400px;"></div>
+
+<!-- Include Editor.js and Image Tool via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+
+<script>
+  const editor = new EditorJS({
+    holder: 'editorjs',
+    placeholder: 'Tell your story or describe your X-Plane asset... Drag images or type to begin.',
+    tools: {
+      header: Header,
+      image: {
+        class: ImageTool,
+        config: {
+          // You can hook this up to your own endpoint or convert dropped images to Base64 for static testing
+          uploader: {
+            uploadByFile(file) {
+              return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                  resolve({
+                    success: 1,
+                    file: {
+                      url: reader.result // Embeds the image directly as base64 into your draft
+                    }
+                  });
+                };
+              });
+            }
+          }
+        }
+      }
+    },
+  });
+</script>
