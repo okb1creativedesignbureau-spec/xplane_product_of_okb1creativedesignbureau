@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OKB-1 Product Showcase & Editor</title>
-    <!-- Include Editor.js & Plugins via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-
+    <title>OKB-1 Creative Design Bureau | X-Plane Assets & Engineering Scenery</title>
     <style>
         :root {
             --bg-color: #0f1115;
             --card-bg: #161b22;
-            --accent-color: #d97706;
+            --accent-color: #d97706; /* Aviation amber */
             --text-primary: #f0f6fc;
             --text-secondary: #8b949e;
             --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
@@ -25,8 +25,7 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            padding: 2rem 1rem;
-            margin: 0;
+            padding: 3rem 1rem;
         }
 
         .container {
@@ -36,50 +35,135 @@
 
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.5rem;
+            padding-bottom: 2.5rem;
         }
 
-        .controls {
-            display: flex;
-            justify-content: flex-end;
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p.subtitle {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
         }
 
+        header p.bio {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
+        .vision-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .vision-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .product-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(217, 119, 6, 0.15);
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+
+        .product-header h2 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-body {
+            padding: 2rem;
+        }
+
+        .product-body p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .btn {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1.2rem;
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
             border-radius: 6px;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
             transition: opacity 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #21262d;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
         }
 
         .btn:hover {
             opacity: 0.9;
         }
 
-        #editorjs {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            min-height: 500px;
-        }
-
-        /* Medium-style drag & drop block fixes */
-        .ce-block__content {
-            max-width: 800px;
-        }
-        .ce-toolbar__content {
-            max-width: 800px;
-        }
-        .image-tool__image-picture {
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
         }
     </style>
 </head>
@@ -87,81 +171,59 @@
 
 <div class="container">
     <header>
+        <p class="subtitle">Independent Digital Design Bureau</p>
         <h1>OKB-1 Creative Design Bureau</h1>
-        <p>WELCOME TO MY PERSONAL HANGAR</p>
+        <p class="bio">
+            WELCOME TO MY PERSONAL HANGAR
+        </p>
     </header>
 
-    <div class="controls">
-        <button class="btn" onclick="exportContent()">Download Draft JSON</button>
-    </div>
+    <main>
+        <!-- Vision & Identity Section -->
+        <section class="vision-box">
+            <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
+            <p>
+                OKB-1 operates on an uncompromising commitment to first-principles engineering and structural integrity. Rather than relying on decorative visual meshes or bloated plugin wrappers, every asset is designed around authentic architectural layouts, historical blueprints, and real-world performance parameters.
+            </p>
+            <p>
+                By hosting independently, we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
+            </p>
+        </section>
 
-    <!-- Live Medium-Style Canvas -->
-    <div id="editorjs"></div>
+        <!-- Showcase Section -->
+        <h2 class="section-heading">Featured Scenery & Products</h2>
+        
+        <div class="product-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">X-Plane 12 Scenery</span>
+                    <h2>Berlin Tempelhof / Historical Air Corridor Package</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        High-fidelity historical aviation scenery engineered to 1:500 scale specifications using archival WMS aerial photography and authentic layout data.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>
+                        Reconstructs pre-unification aviation nodes with meticulous tile alignment, custom orthophoto layers, and period-accurate lighting specifications.
+                    </p>
+                    <div class="btn-group">
+                        <!-- Replace with your payment/download link (Saweria, Ko-fi, Gumroad) -->
+                        <a href="YOUR_CHECKOUT_OR_DOWNLOAD_LINK" class="btn btn-primary" target="_blank">Acquire Package</a>
+                        <!-- Replace with your GitHub repo link -->
+                        <a href="https://github.com/okb1creativedesignbureau-spec/xplane_product_of_okb1creativedesignbureau" class="btn btn-secondary" target="_blank">Repository Source</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- You can easily copy and paste another product-card block here for future add-ons -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
 </div>
-
-<script>
-  const editor = new EditorJS({
-    holder: 'editorjs',
-    placeholder: 'Click here or drag images directly onto the editor to build your page...',
-    tools: {
-      header: {
-        class: Header,
-        inlineToolbar: true,
-        config: { placeholder: 'Header text...' }
-      },
-      list: {
-        class: List,
-        inlineToolbar: true
-      },
-      image: {
-        class: ImageTool,
-        config: {
-          uploader: {
-            uploadByFile(file) {
-              return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => {
-                  resolve({
-                    success: 1,
-                    file: {
-                      url: reader.result // Encodes dragged desktop screenshots automatically
-                    }
-                  });
-                };
-              });
-            }
-          }
-        }
-      }
-    },
-    data: {
-      blocks: [
-        {
-          type: "header",
-          data: { text: "Berlin Tempelhof / Historical Air Corridor Package", level: 2 }
-        },
-        {
-          type: "paragraph",
-          data: { text: "Drag and drop product screenshots directly into this block, or select text to format." }
-        }
-      ]
-    }
-  });
-
-  function exportContent() {
-    editor.save().then((outputData) => {
-      console.log('Page Data:', outputData);
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(outputData, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", "product-draft.json");
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-    });
-  }
-</script>
 
 </body>
 </html>
