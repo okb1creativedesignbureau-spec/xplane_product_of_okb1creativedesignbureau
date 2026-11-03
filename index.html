@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKB-1 Product Showcase & Editor</title>
+    <!-- Include Editor.js & Plugins via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #161b22;
+            --accent-color: #d97706;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        #editorjs {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            min-height: 500px;
+        }
+
+        /* Medium-style drag & drop block fixes */
+        .ce-block__content {
+            max-width: 800px;
+        }
+        .ce-toolbar__content {
+            max-width: 800px;
+        }
+        .image-tool__image-picture {
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>OKB-1 Creative Design Bureau</h1>
+        <p>Live Medium-Style Product Page Editor</p>
+    </header>
+
+    <div class="controls">
+        <button class="btn" onclick="exportContent()">Download Draft JSON</button>
+    </div>
+
+    <!-- Live Medium-Style Canvas -->
+    <div id="editorjs"></div>
+</div>
+
+<script>
+  const editor = new EditorJS({
+    holder: 'editorjs',
+    placeholder: 'Click here or drag images directly onto the editor to build your page...',
+    tools: {
+      header: {
+        class: Header,
+        inlineToolbar: true,
+        config: { placeholder: 'Header text...' }
+      },
+      list: {
+        class: List,
+        inlineToolbar: true
+      },
+      image: {
+        class: ImageTool,
+        config: {
+          uploader: {
+            uploadByFile(file) {
+              return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                  resolve({
+                    success: 1,
+                    file: {
+                      url: reader.result // Encodes dragged desktop screenshots automatically
+                    }
+                  });
+                };
+              });
+            }
+          }
+        }
+      }
+    },
+    data: {
+      blocks: [
+        {
+          type: "header",
+          data: { text: "Berlin Tempelhof / Historical Air Corridor Package", level: 2 }
+        },
+        {
+          type: "paragraph",
+          data: { text: "Drag and drop product screenshots directly into this block, or select text to format." }
+        }
+      ]
+    }
+  });
+
+  function exportContent() {
+    editor.save().then((outputData) => {
+      console.log('Page Data:', outputData);
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(outputData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "product-draft.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    });
+  }
+</script>
+
+</body>
+</html>
