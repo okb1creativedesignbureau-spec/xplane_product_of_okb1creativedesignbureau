@@ -6,12 +6,13 @@
     <title>OKB-1 Creative Design Bureau | X-Plane Assets & Scenery</title>
     <style>
         :root {
-            --bg-color: #0f1115;
-            --card-bg: #161b22;
-            --accent-color: #d97706; /* Aviation amber */
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --border-color: #30363d;
+            --bg-color: #0b0f19;         /* Deep Aerospace Night */
+            --card-bg: #111827;        /* Avionics Dark Slate */
+            --accent-color: #0ea5e9;    /* HUD/Avionics Blue */
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
         }
 
         * {
@@ -35,64 +36,60 @@
 
         header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2.5rem;
+            padding-bottom: 2rem;
         }
 
         header h1 {
             font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+            font-weight: 700;
         }
 
         header p.subtitle {
             color: var(--accent-color);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
         }
 
         header p.bio {
             color: var(--text-secondary);
-            font-size: 1.05rem;
+            font-size: 1rem;
             max-width: 700px;
             margin: 0 auto;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
 
         .section-heading {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 1.5rem;
             border-left: 3px solid var(--accent-color);
             padding-left: 0.75rem;
-        }
-
-        .vision-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .vision-box p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
         }
 
         .product-grid {
             display: grid;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
         }
 
         .product-header {
@@ -102,18 +99,20 @@
 
         .badge {
             display: inline-block;
-            background-color: rgba(217, 119, 6, 0.15);
+            background-color: var(--accent-glow);
             color: var(--accent-color);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            border: 1px solid rgba(217, 119, 6, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .product-header h2 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
@@ -140,22 +139,41 @@
             text-decoration: none;
             text-align: center;
             flex: 1;
-            transition: opacity 0.2s ease;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
         }
 
         .btn-primary {
             background-color: var(--accent-color);
-            color: #fff;
+            color: #0b0f19;
+            font-weight: 700;
         }
 
-        .btn:hover {
+        .btn-primary:hover {
             opacity: 0.9;
+        }
+
+        /* Vision Section Pushed Down */
+        .vision-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .vision-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .vision-box p:last-child {
+            margin-bottom: 0;
         }
 
         footer {
             text-align: center;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
         }
@@ -171,18 +189,7 @@
     </header>
 
     <main>
-        <!-- Vision & Identity Section -->
-        <section class="vision-box">
-            <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
-            <p>
-                OKB-1 specializes in high-fidelity X-Plane mod products, focusing specifically on custom sceneries and precision orthophotos projects. Every asset is engineered from first-principles based on authentic architectural layouts, historical blueprints, and real-world performance parameter.
-            </p>
-            <p>
-                By hosting independently, we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
-            </p>
-        </section>
-
-        <!-- Showcase Section -->
+        <!-- Showcase Section (First) -->
         <h2 class="section-heading">Featured Scenery & Products</h2>
         
         <div class="product-grid">
@@ -254,6 +261,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- Vision & Identity Section (Moved Down) -->
+        <section class="vision-box">
+            <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
+            <p>
+                OKB-1 specializes in high-fidelity X-Plane mod products, focusing specifically on custom sceneries and precision orthophotos projects. Every asset is engineered from first-principles based on authentic architectural layouts, historical blueprints, and real-world performance parameters rather than decorative visual meshes.
+            </p>
+            <p>
+                By hosting independently, we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
+            </p>
+        </section>
     </main>
 
     <footer>
