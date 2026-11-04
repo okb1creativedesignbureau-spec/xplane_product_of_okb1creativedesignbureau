@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO & Metadata -->
     <meta name="description" content="OKB-1 Creative Design Bureau - High-fidelity X-Plane 12 custom sceneries, historical airport reconstructions, and precision orthophotos engineered from first-principles.">
     <meta name="keywords" content="X-Plane 12, X-Plane scenery, custom orthophotos, Flight Simulator mods, Primorsky Krai scenery, Berlin Tempelhof, OKB-1">
     <meta name="author" content="OKB-1 Creative Design Bureau">
-
     <!-- Open Graph / Social Media Preview Tags -->
     <meta property="og:title" content="OKB-1 Creative Design Bureau | X-Plane Assets & Scenery">
     <meta property="og:description" content="High-fidelity X-Plane 12 sceneries and precision orthophotos built from authentic blueprints by an independent developer.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/">
-
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OKB-1 Creative Design Bureau | X-Plane Assets & Scenery</title>
     <style>
         :root {
@@ -44,6 +41,40 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* Top Action Bar for Export */
+        .action-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .action-bar p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-export {
+            background-color: #22c55e;
+            color: #0b0f19;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-export:hover {
+            opacity: 0.9;
         }
 
         header {
@@ -122,6 +153,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: none;
         }
 
         .dropzone-text {
@@ -241,6 +273,12 @@
 <body>
 
 <div class="container">
+    <!-- Export Tool Bar -->
+    <div class="action-bar">
+        <p>💡 Drag & drop your screenshots onto any card below, then click export to save a ready-to-deploy HTML file.</p>
+        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
+    </div>
+
     <header>
         <p class="subtitle">Independent Digital Design Bureau</p>
         <h1>OKB-1 Creative Design Bureau</h1>
@@ -254,11 +292,10 @@
             <!-- Tier 1: Primorsky Krai DLC -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <!-- Add image file path here: e.g., src="images/primorsky.jpg" -->
-                    <img src="" alt="Primorsky Krai Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="" alt="Primorsky Krai Preview">
                     <div class="dropzone-text">
                         <span>Drop Scenery Preview Here</span>
-                        Drag & drop screenshot or set src="images/file.jpg"
+                        Drag & drop screenshot directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -279,10 +316,10 @@
             <!-- Tier 2: Germany Lost Airport -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Germany Lost Airport Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="" alt="Germany Lost Airport Preview">
                     <div class="dropzone-text">
                         <span>Drop Scenery Preview Here</span>
-                        Drag & drop screenshot or set src="images/file.jpg"
+                        Drag & drop screenshot directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -303,10 +340,10 @@
             <!-- Tier 3: Indonesia DLC -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Indonesia DLC Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="" alt="Indonesia DLC Preview">
                     <div class="dropzone-text">
                         <span>Drop Scenery Preview Here</span>
-                        Drag & drop screenshot or set src="images/file.jpg"
+                        Drag & drop screenshot directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -327,10 +364,10 @@
             <!-- Tier 4: WED Developer Plugin -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="WED Developer Plugin Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="" alt="WED Developer Plugin Preview">
                     <div class="dropzone-text">
                         <span>Drop Plugin Preview Here</span>
-                        Drag & drop screenshot or set src="images/file.jpg"
+                        Drag & drop screenshot directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -351,10 +388,10 @@
             <!-- Tier 5: Free Orthophotos -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Free Orthophotos Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="" alt="Free Orthophotos Preview">
                     <div class="dropzone-text">
                         <span>Drop Orthophoto Preview Here</span>
-                        Drag & drop screenshot or set src="images/file.jpg"
+                        Drag & drop screenshot directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -379,7 +416,7 @@
                 OKB-1 is an independent solo-developer design bureau specializing in high-fidelity X-Plane mod products, focusing specifically on custom sceneries and precision orthophotos projects. Every asset is engineered from first-principles based on authentic architectural layouts, historical blueprints, and real-world performance parameters rather than decorative visual meshes.
             </p>
             <p>
-                By developing and hosting independently, we (or me as indie dev working solo... lol...) maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
+                By developing and hosting independently (or me as indie dev working solo... lol...), we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
             </p>
         </section>
     </main>
@@ -411,6 +448,27 @@
                 reader.readAsDataURL(file);
             }
         }
+    }
+
+    function exportHTML() {
+        // Temporarily hide the top action bar so it doesn't get exported into the live site
+        const actionBar = document.querySelector('.action-bar');
+        actionBar.style.display = 'none';
+
+        const htmlContent = document.documentElement.outerHTML;
+        
+        // Restore action bar on local view
+        actionBar.style.display = 'flex';
+
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
 </script>
 
