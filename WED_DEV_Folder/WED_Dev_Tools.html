@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO & Metadata -->
-    <meta name="description" content="OKB-1 Creative Design Bureau - World Editor (WED) Developer Plugin Suite and custom PBR polygon material tool sets for X-Plane scenery creators.">
-    <meta name="keywords" content="X-Plane WED, World Editor plugin, X-Plane scenery tools, PBR Poly, OKB-1 developer tools">
+    <meta name="description" content="OKB-1 Creative Design Bureau - World Editor (WED) Developer Tools engineered for creating custom X-Plane 12 sceneries, PBR ground materials, and static 3D objects.">
+    <meta name="keywords" content="X-Plane 12, World Editor, WED tools, PBR Polygons, ground materials, 3D static objects, OKB-1 developer tools">
     <meta name="author" content="OKB-1 Creative Design Bureau">
-    <title>WED Developer Plugin Suite | OKB-1 Creative Design Bureau</title>
+    <title>WED Developer Tool Series | OKB-1 Creative Design Bureau</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -36,6 +36,40 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* Top Action Bar for Export */
+        .action-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .action-bar p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-export {
+            background-color: #22c55e;
+            color: #0b0f19;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-export:hover {
+            opacity: 0.9;
         }
 
         .nav-back {
@@ -82,8 +116,17 @@
         header p.bio {
             color: var(--text-secondary);
             font-size: 0.95rem;
-            max-width: 650px;
+            max-width: 720px;
             margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .section-heading {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 0.75rem;
+            letter-spacing: 0.5px;
         }
 
         .product-grid {
@@ -107,8 +150,17 @@
         /* Drag & Drop Preview Zone */
         .preview-dropzone {
             width: 100%;
-            height: 240px;
+            height: 260px;
             background-color: #080c14;
             border-bottom: 1px solid var(--border-color);
             display: flex;
-            align-items:
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .preview-dropzone img {
+            width: 100%;
+            height: 100%;
