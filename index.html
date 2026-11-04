@@ -19,7 +19,6 @@
             --card-bg: #111827;
             --accent-color: #0ea5e9;
             --accent-glow: rgba(14, 165, 233, 0.15);
-            --orange-color: #f97316;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: #1e293b;
@@ -36,12 +35,46 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            padding: 3rem 1rem 2rem 1rem;
+            padding: 3rem 1rem;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* Top Action Bar for Export */
+        .action-bar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .action-bar p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .btn-export {
+            background-color: #22c55e;
+            color: #0b0f19;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-export:hover {
+            opacity: 0.9;
         }
 
         header {
@@ -95,32 +128,59 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            transition: border-color 0.2s ease;
         }
 
         .product-card:hover {
             border-color: rgba(14, 165, 233, 0.4);
-            transform: translateY(-2px);
         }
 
-        .product-image-container {
+        /* Drag & Drop Preview Zone */
+        .preview-dropzone {
             width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background-color: #1e293b;
+            height: 260px;
+            background-color: #080c14;
             border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .product-image-container img {
+        .preview-dropzone img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: opacity 0.2s ease;
+            display: none;
+        }
+
+        .dropzone-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 1rem;
+            pointer-events: none;
+            border: 2px dashed rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            width: 85%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dropzone-text span {
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         .product-header {
-            padding: 1.5rem 2rem 0.75rem 2rem;
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .badge {
@@ -131,16 +191,16 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             border: 1px solid rgba(14, 165, 233, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .badge-orange {
-            background-color: rgba(249, 115, 22, 0.15);
-            color: var(--orange-color);
-            border-color: rgba(249, 115, 22, 0.3);
+        .badge-open {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
         }
 
         .product-header h2 {
@@ -149,7 +209,7 @@
         }
 
         .product-body {
-            padding: 0 2rem 2rem 2rem;
+            padding: 2rem;
         }
 
         .product-body p {
@@ -184,60 +244,32 @@
             opacity: 0.9;
         }
 
-        /* Personal Space & Footer Links Section */
-        .personal-space-section {
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .vision-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-bottom: 3rem;
         }
 
-        .personal-space-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .personal-card {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.25rem;
-            transition: border-color 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify: space-between;
-        }
-
-        .personal-card:hover {
-            border-color: var(--accent-color);
-        }
-
-        .personal-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .personal-card p {
-            font-size: 0.875rem;
+        .vision-box p {
             color: var(--text-secondary);
             margin-bottom: 1rem;
-            flex-grow: 1;
         }
 
-        .personal-card a {
-            display: inline-block;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .personal-card a:hover {
-            text-decoration: underline;
+        .vision-box p:last-child {
+            margin-bottom: 0;
         }
 
         footer {
@@ -247,21 +279,16 @@
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
         }
-
-        footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin: 0 0.5rem;
-        }
-
-        footer a:hover {
-            color: var(--accent-color);
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Export Tool Bar -->
+    <div class="action-bar">
+        <p>💡 Drag & drop your screenshots onto any card below, then click export to save a ready-to-deploy HTML file.</p>
+        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
+    </div>
 
     <header>
         <p class="subtitle">Independent Digital Design Bureau</p>
@@ -273,100 +300,245 @@
         <h2 class="section-heading">Featured Scenery & Products</h2>
         
         <div class="product-grid">
-
-            <!-- Card 1: Ex-USSR Airport DLC -->
+            <!-- Tier 1: Post-USSR DLC -->
             <div class="product-card">
-                <div class="product-image-container">
-                    <img src="post_ussr_dlc/preview.jpg" alt="Ex-USSR Airport DLC Preview" onerror="this.src='https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=80'">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <img src="" alt="Post USSR airstrips preview">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
                 </div>
                 <div class="product-header">
-                    <span class="badge">Historical Reconstruction</span>
-                    <h2>Ex-USSR Airport DLC Series</h2>
+                    <span class="badge">X-Plane 12 DLC</span>
+                    <h2>1. Post-USSR DLC</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Regional aviation infrastructure and remote airfield packages tailored for precision bush and regional operations for post USSR countries.
+                    </p>
                 </div>
                 <div class="product-body">
-                    <p>High-fidelity historical airport reconstructions, military airbases, and precision orthophoto rasters covering regional hubs and Cold War flight corridors across former Soviet territories.</p>
+                    <p>Features detailed terrain integration, custom layout structures, and localized environmental detailing.</p>
                     <div class="btn-group">
-                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/post_ussr_dlc/post_ussr_dlc.html" class="btn btn-primary">Explore Ex-USSR DLC</a>
+                        <a href="./post_ussr_dlc/post_ussr_dlc.html" class="btn btn-primary">Explore Hangar</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2: Indonesia DLC -->
+            <!-- Tier 2: Germany Lost Airport -->
             <div class="product-card">
-                <div class="product-image-container">
-                    <img src="indonesia_dlc/preview.jpg" alt="Indonesia Airport DLC Preview" onerror="this.src='https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&fit=crop&w=900&q=80'">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <img src="" alt="Germany Lost Airport Preview">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
                 </div>
                 <div class="product-header">
-                    <span class="badge">Regional Scenery</span>
-                    <h2>Indonesia Airport DLC Series</h2>
+                    <span class="badge">X-Plane 12 Scenery</span>
+                    <h2>2. Germany Lost Airport</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Historical and retired German aviation nodes reconstructed from archival layouts and period-accurate specifications.
+                    </p>
                 </div>
                 <div class="product-body">
-                    <p>Custom X-Plane 12 regional airport sceneries across Indonesia featuring customized PBR ground polygons, custom static objects, localized terrain meshes, and accurate airfield layouts.</p>
+                    <p>Includes meticulous tile alignments, custom orthophoto layers, and legacy lighting layouts (such as Tempelhof/corridor expansions).</p>
                     <div class="btn-group">
-                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/indonesia_dlc/indonesia_dlc.html" class="btn btn-primary">Explore Indonesia DLC</a>
+                        <a href="./german_lost_dlc/german_lost_dlc.html" class="btn btn-primary">Explore Hangar</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 3: WED DEV Tools -->
+            <!-- Tier 3: Indonesia DLC -->
             <div class="product-card">
-                <div class="product-image-container">
-                    <img src="WED_DEV_Folder/preview.jpg" alt="WED Developer Tools Preview" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80'">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <img src="" alt="Indonesia DLC Preview">
+                    <div class="dropzone-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
                 </div>
                 <div class="product-header">
-                    <span class="badge badge-orange">Developer Utilities</span>
-                    <h2>WED Developer Tool Series</h2>
+                    <span class="badge">X-Plane 12 DLC</span>
+                    <h2>3. Indonesia DLC</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Challenging tropical aerodromes and regional historical hubs across the archipelago.
+                    </p>
                 </div>
                 <div class="product-body">
-                    <p>World Editor (WED) developer toolkits, PBR polygon libraries, custom ground materials, and CAD lofting utilities engineered for custom X-Plane 12 scenery creation.</p>
+                    <p>Engineered for complex visual flight rules, local topography constraints, and authentic terminal layouts.</p>
                     <div class="btn-group">
-                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/WED_DEV_Folder/WED_Dev_Tools.html" class="btn btn-primary">Access WED Tools</a>
+                        <a href="./indonesia_dlc/indonesia_dlc.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 4: WED Developer Plugin -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <img src="" alt="WED Developer Plugin Preview">
+                    <div class="dropzone-text">
+                        <span>Drop Plugin Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">X-Plane WED Developer Plugin</span>
+                    <h2>4. World Editor (WED) Developer Plugin</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Developer plugin for custom material and add-on objects for your creative world (Powered by WED Engine).
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Engineered for complex visuals, local topography constraints, and authentic PBR materials.</p>
+                    <div class="btn-group">
+                        <a href="./WED_DEV_Folder/WED_Dev_Tools.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 5: Free Orthophotos -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <img src="" alt="Free Orthophotos Preview">
+                    <div class="dropzone-text">
+                        <span>Drop Orthophoto Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-open">Open-Source</span>
+                    <h2>5. Free Orthophotos</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        High-resolution uncompressed GeoTIFF layers and custom orthophoto mirrors provided freely to the community.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Carefully processed geospatial imagery optimized for seamless WorldEditor assembly and realistic simulator rendering.</p>
+                    <div class="btn-group">
+                        <a href="./free_ortho/free_ortho.html" class="btn btn-primary">Download Free Assets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="vision-box">
+            <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
+            <p>
+                OKB-1 is an independent solo-developer design bureau specializing in high-fidelity X-Plane mod products, focusing specifically on custom sceneries and precision orthophotos projects. Every asset is engineered from first-principles based on authentic architectural layouts, historical blueprints, and real-world performance parameters rather than decorative visual meshes.
+            </p>
+            <p>
+                By developing and hosting independently (or me as indie dev working solo... lol...), we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
+            </p>
+        </section>
+
+        <!-- Personal Space & Outposts Section -->
+        <h2 class="section-heading">Personal Space & Outposts</h2>
+        <div class="product-grid" style="margin-bottom: 2rem;">
+
+            <!-- About Me Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Personal Space</span>
+                    <h2>About Me</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Engineering background, CAD modeling philosophy, aerospace research, and digital craftsmanship history.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/about_me.html" class="btn btn-secondary">Visit About Me &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Store Page Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Marketplace</span>
+                    <h2>Other Store Pages</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Distribution channels for 3D printing assets, SolidWorks STEP solid bodies, and digital storefronts.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/see-also.html" class="btn btn-secondary">Visit Marketplace &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Blog Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Dev Log</span>
+                    <h2>Product Blog Page</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Technical breakdowns, NURBS surface lofting updates, and historical GIS raster reconstruction dev logs.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog.html" class="btn btn-secondary">Read Blog &rarr;</a>
                     </div>
                 </div>
             </div>
 
         </div>
-
-        <!-- Personal Space & External Portals Section -->
-        <h2 class="section-heading">Personal Space & Outposts</h2>
-        <section class="personal-space-section">
-            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Explore personal updates, external asset storefronts, and deep-dive technical engineering blogs.</p>
-            
-            <div class="personal-space-grid">
-                <!-- About Me / Personal Space -->
-                <div class="personal-card">
-                    <h3>About Me & Personal Space</h3>
-                    <p>Engineering background, CAD modeling philosophy, aerospace research history, and independent designer logs.</p>
-                    <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/#about">View Space &rarr;</a>
-                </div>
-
-                <!-- Other Store Page -->
-                <div class="personal-card">
-                    <h3>Other Store Pages</h3>
-                    <p>External marketplaces and digital distribution channels for 3D printing assets, SolidWorks STEP models, and add-ons.</p>
-                    <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/#store">Visit Stores &rarr;</a>
-                </div>
-
-                <!-- Product Blog Page -->
-                <div class="personal-card">
-                    <h3>Product Blog Page</h3>
-                    <p>Technical breakdowns, NURBS surface lofting notes, and historical GIS raster reconstruction dev logs.</p>
-                    <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/#blog">Read Blog &rarr;</a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
-        <p>&copy; OKB-1 Creative Design Bureau. All assets engineered for X-Plane 12.</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/post_ussr_dlc/post_ussr_dlc.html">Ex-USSR DLC</a> | 
-            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/indonesia_dlc/indonesia_dlc.html">Indonesia DLC</a> | 
-            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/WED_DEV_Folder/WED_Dev_Tools.html">WED Dev Tools</a>
-        </p>
+        <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
     </footer>
-
 </div>
+
+<script>
+    // Automatically keeps the year current
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function handleDrop(ev, dropzone) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items && ev.dataTransfer.items.length > 0) {
+            const item = ev.dataTransfer.items[0];
+            if (item.kind === 'file') {
+                const file = item.getAsFile();
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = dropzone.querySelector('img');
+                    const text = dropzone.querySelector('.dropzone-text');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    text.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    function exportHTML() {
+        // Temporarily hide the top action bar so it doesn't get exported into the live site
+        const actionBar = document.querySelector('.action-bar');
+        actionBar.style.display = 'none';
+
+        const htmlContent = document.documentElement.outerHTML;
+        
+        // Restore action bar on local view
+        actionBar.style.display = 'flex';
+
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>
 
 </body>
 </html>
