@@ -289,10 +289,10 @@
         <h2 class="section-heading">Featured Scenery & Products</h2>
         
         <div class="product-grid">
-            <!-- Tier 1: Primorsky Krai DLC -->
+            <!-- Tier 1: Post-USSR DLC -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Primorsky Krai Preview">
+                    <img src="" alt="Post USSR airstrips preview">
                     <div class="dropzone-text">
                         <span>Drop Scenery Preview Here</span>
                         Drag & drop screenshot directly onto this box
@@ -300,9 +300,9 @@
                 </div>
                 <div class="product-header">
                     <span class="badge">X-Plane 12 DLC</span>
-                    <h2>1. Primorsky Krai DLC</h2>
+                    <h2>1. Ex-USSR airstrips</h2>
                     <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                        Regional aviation infrastructure and remote airfield packages tailored for precision bush and regional operations.
+                        Regional aviation infrastructure and remote airfield packages tailored for precision bush and regional operations for post USSR countries.
                     </p>
                 </div>
                 <div class="product-body">
