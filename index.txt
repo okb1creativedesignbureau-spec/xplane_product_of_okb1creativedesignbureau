@@ -300,7 +300,7 @@
                 </div>
                 <div class="product-header">
                     <span class="badge">X-Plane 12 DLC</span>
-                    <h2>1. Ex-USSR airstrips</h2>
+                    <h2>1. Post-USSR DLC</h2>
                     <p style="color: var(--text-secondary); margin-top: 0.5rem;">
                         Regional aviation infrastructure and remote airfield packages tailored for precision bush and regional operations for post USSR countries.
                     </p>
