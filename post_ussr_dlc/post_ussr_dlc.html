@@ -358,7 +358,7 @@
     </main>
 
     <footer>
-        <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+        <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
     </footer>
 </div>
 
@@ -404,6 +404,8 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
+    // Automatically keeps the year current
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
 </script>
 
 </body>
