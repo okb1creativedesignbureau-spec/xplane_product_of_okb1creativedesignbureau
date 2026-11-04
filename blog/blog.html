@@ -45,6 +45,7 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
         }
 
         .back-link:hover {
@@ -126,7 +127,7 @@
 
         textarea.form-control {
             resize: vertical;
-            min-height: 120px;
+            min-height: 140px;
         }
 
         .form-actions {
@@ -155,39 +156,94 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Blog Feed Styles (Medium Alike) */
+        /* Medium-Style Newsletter Feed Cards */
         .blog-list {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .blog-post {
+        .blog-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.75rem 2rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .blog-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-2px);
         }
 
         .post-meta {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .post-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
         }
 
-        .post-body {
+        .post-snippet {
             color: var(--text-secondary);
-            font-size: 1.025rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
         }
 
-        .post-body p {
+        .read-more-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+        }
+
+        /* Full Post Reader View */
+        #readerView {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 3rem 2.5rem;
+        }
+
+        #readerTitle {
+            font-size: 2.2rem;
             margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        #readerMeta {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        #readerBody {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        #readerBody p {
+            margin-bottom: 1.25rem;
         }
 
         footer {
@@ -204,7 +260,7 @@
 
 <div class="container">
     <div class="top-nav">
-        <a href="../index.html" class="back-link">&larr; Back to Hangar</a>
+        <a href="../index.html" class="back-link" id="navBack">&larr; Back to Hangar</a>
         <!-- Yellow Unmarked Admin Trigger Button -->
         <button class="btn-admin" onclick="toggleEditor()">+ New Blog Post</button>
     </div>
@@ -221,8 +277,8 @@
             <input type="text" id="postCategory" class="form-control" placeholder="e.g., GIS & Scenery">
         </div>
         <div class="form-group">
-            <label>Content (HTML supported)</label>
-            <textarea id="postContent" class="form-control" placeholder="Write your post content here... use <p> tags for paragraphs."></textarea>
+            <label>Full Content (HTML supported for paragraphs, images, etc.)</label>
+            <textarea id="postContent" class="form-control" placeholder="Write your full article content here... use <p> tags for paragraphs."></textarea>
         </div>
         <div class="form-actions">
             <button class="btn btn-primary" onclick="publishPost()">Publish Live</button>
@@ -230,14 +286,26 @@
         </div>
     </div>
 
-    <header>
+    <header id="pageHeader">
         <p class="subtitle">OKB-1 Creative Design Bureau</p>
         <h1>Engineering & Research Log</h1>
     </header>
 
     <main>
-        <div id="blog-container" class="blog-list">
-            <p style="color: var(--text-secondary); text-align: center;">Loading log entries...</p>
+        <!-- Feed List View -->
+        <div id="feedView">
+            <div id="blog-container" class="blog-list">
+                <p style="color: var(--text-secondary); text-align: center;">Loading log entries...</p>
+            </div>
+        </div>
+
+        <!-- Full Article Reader View -->
+        <div id="readerView">
+            <div id="readerMeta"></div>
+            <h1 id="readerTitle"></h1>
+            <div id="readerBody"></div>
+            <br>
+            <button class="btn btn-secondary" onclick="closeReader()">&larr; Back to all posts</button>
         </div>
     </main>
 
@@ -249,13 +317,12 @@
 <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-    // Default sample posts if none stored yet
     const defaultPosts = [
         {
             title: "Reconstructing Berlin Tempelhof in 1:500 Scale",
             date: "November 4, 2026",
             category: "GIS & Scenery",
-            content: "<p>Using survey layers from GeoBasis Brandenburg (2019–2021), we mapped historical orthophoto rasters to match precise architectural blueprints...</p><p>Every NURBS surface loft was optimized for X-Plane 12 rendering pipelines without sacrificing geometric fidelity.</p>"
+            content: "<p>Using survey layers from GeoBasis Brandenburg (2019–2021), we mapped historical orthophoto rasters to match precise architectural blueprints...</p><p>Every NURBS surface loft was optimized for X-Plane 12 rendering pipelines without sacrificing geometric fidelity, ensuring seamless runway integration and authentic lighting layouts.</p><p>Further updates will detail the exact matrix transformations used to convert legacy 1953 aerial datasets into compressed LZW GeoTIFF formats.</p>"
         }
     ];
 
@@ -278,16 +345,42 @@
             return;
         }
 
-        posts.forEach(post => {
-            const article = document.createElement('article');
-            article.className = 'blog-post';
-            article.innerHTML = `
+        posts.forEach((post, index) => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = post.content;
+            const snippetText = tempDiv.textContent.slice(0, 140) + '...';
+
+            const card = document.createElement('div');
+            card.className = 'blog-card';
+            card.innerHTML = `
                 <div class="post-meta">📅 ${post.date} &bull; <span style="color: var(--accent-color);">${post.category || 'Engineering'}</span></div>
                 <h2 class="post-title">${post.title}</h2>
-                <div class="post-body">${post.content}</div>
+                <div class="post-snippet">${snippetText}</div>
+                <button class="read-more-btn" onclick="openPost(${index})">Read More &rarr;</button>
             `;
-            container.appendChild(article);
+            container.appendChild(card);
         });
+    }
+
+    function openPost(index) {
+        const posts = getStoredPosts();
+        const post = posts[index];
+
+        document.getElementById('readerTitle').textContent = post.title;
+        document.getElementById('readerMeta').innerHTML = `📅 ${post.date} &bull; <span>${post.category || 'Engineering'}</span>`;
+        document.getElementById('readerBody').innerHTML = post.content;
+
+        document.getElementById('feedView').style.display = 'none';
+        document.getElementById('pageHeader').style.display = 'none';
+        document.getElementById('readerView').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+
+    function closeReader() {
+        document.getElementById('readerView').style.display = 'none';
+        document.getElementById('feedView').style.display = 'block';
+        document.getElementById('pageHeader').style.display = 'block';
+        window.scrollTo(0, 0);
     }
 
     function toggleEditor() {
@@ -313,20 +406,16 @@
         };
 
         const posts = getStoredPosts();
-        posts.unshift(newPost); // Add to beginning of array (newest first)
+        posts.unshift(newPost);
         localStorage.setItem('okb1_blog_posts', JSON.stringify(posts));
 
-        // Clear fields and close modal
         document.getElementById('postTitle').value = '';
         document.getElementById('postCategory').value = '';
         document.getElementById('postContent').value = '';
         toggleEditor();
-
-        // Refresh feed
         renderPosts();
     }
 
-    // Load feed on page start
     renderPosts();
 </script>
 
