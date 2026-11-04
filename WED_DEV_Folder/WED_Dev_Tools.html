@@ -259,13 +259,14 @@
         }
 
         .btn-secondary {
-            background-color: #1e293b;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background-color: #38bdf8; /* High-contrast lighter sky blue fill */
+            color: #0b0f19;            /* Dark text for optimal readability */
+            font-weight: 600;
         }
 
         .btn-secondary:hover {
-            background-color: #334155;
+            background-color: #7dd3fc; /* Brighter highlight on hover */
+            opacity: 1;
         }
 
         footer {
@@ -357,4 +358,74 @@
                     <img src="" alt="3D Static Objects Preview">
                     <div class="dropzone-text">
                         <span>Drop 3D Static Objects Preview Here</span>
-                        Drag &
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">WED Object Library</span>
+                    <h2>3. 3D Static Objects</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Scale-accurate static ground equipment, regional airfield structures, and environment assets optimized for WED placement.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Built with low-poly LOD optimizations, custom collision hulls, and PBR texture sheets tailored for real-time simulator performance.</p>
+                    <div class="btn-group">
+                        <a href="YOUR_CHECKOUT_OR_DOWNLOAD_LINK" class="btn btn-primary" target="_blank">Explore Product</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function handleDrop(ev, dropzone) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items && ev.dataTransfer.items.length > 0) {
+            const item = ev.dataTransfer.items[0];
+            if (item.kind === 'file') {
+                const file = item.getAsFile();
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = dropzone.querySelector('img');
+                    const text = dropzone.querySelector('.dropzone-text');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    text.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+    function exportHTML() {
+        const actionBar = document.querySelector('.action-bar');
+        actionBar.style.display = 'none';
+
+        const htmlContent = document.documentElement.outerHTML;
+        
+        actionBar.style.display = 'flex';
+
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'PBR_Poly.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+</body>
+</html>
