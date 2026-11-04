@@ -8,9 +8,9 @@
         :root {
             --bg-color: #0b0f19;
             --card-bg: #111827;
-            --accent-color: #0ea5e9; /* Laminar Blue */
+            --accent-color: #0ea5e9;
             --accent-glow: rgba(14, 165, 233, 0.15);
-            --orange-color: #f97316; /* Aerospace Orange for Support / Pay-as-you-want */
+            --orange-color: #f97316;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: #1e293b;
@@ -67,23 +67,28 @@
             color: var(--text-primary);
         }
 
-        .modal-card ul {
-            list-style: none;
-            margin: 1.25rem 0;
+        .modal-card p.intro {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-card .terms-list {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
-        .modal-card ul li {
+        .modal-card .term-item {
             display: flex;
             gap: 0.75rem;
             align-items: flex-start;
         }
 
-        .modal-card ul li span {
+        .modal-card .term-item span {
             color: var(--accent-color);
             font-weight: 700;
         }
@@ -98,7 +103,6 @@
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
-            margin-top: 1rem;
             transition: opacity 0.2s ease;
         }
 
@@ -362,12 +366,67 @@
     <div id="welcomeModal" class="modal-overlay">
         <div class="modal-card">
             <h2>Welcome to OKB-1 Free Ortho Archive</h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
-                Please review the terms of this open-source release before proceeding:
-            </p>
-            <ul>
-                <li><span>1.</span> All packages are derived entirely from open-source survey and spatial data material.</li>
-                <li><span>2.</span> Distributed under a <strong>non-commercial</strong> use model. Coffee money tips and "Pay as You Want" support are deeply appreciated.</li>
-                <li><span>3.</span> Your contributions and tips directly help keep OKB-1 Creative Design Bureau's research and asset pipelines alive.</li>
-            </ul>
-            <button class="btn-modal" onclick="closeModal()">I Understand & Accept &
+            <p class="intro">Please review the terms of this open-source release before proceeding:</p>
+            <div class="terms-list">
+                <div class="term-item">
+                    <span>1.</span>
+                    <div>All packages are derived entirely from open-source survey and spatial data material.</div>
+                </div>
+                <div class="term-item">
+                    <span>2.</span>
+                    <div>Distributed under a non-commercial use model. Coffee money tips and "Pay as You Want" support are deeply appreciated.</div>
+                </div>
+                <div class="term-item">
+                    <span>3.</span>
+                    <div>Your contributions and tips directly help keep OKB-1 Creative Design Bureau's research and asset pipelines alive.</div>
+                </div>
+            </div>
+            <button class="btn-modal" onclick="closeModal()">I Understand & Accept</button>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="action-bar">
+        <p>💡 Drag & drop screenshots onto any card below, then click export.</p>
+        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
+    </div>
+
+    <div class="nav-back">
+        <a href="../index.html">&larr; Back to Main Hangar</a>
+    </div>
+
+    <header>
+        <p class="subtitle">OKB-1 Open-Source Series</p>
+        <h1>Free & Open-Source Orthophoto Packs</h1>
+        <p class="bio">
+            Archival orthophotography and aerodrome packages curated for non-commercial flight simulation use. Pay as you want or drop a tip for coffee!
+        </p>
+    </header>
+
+    <main>
+        <h2 class="section-heading">Orthophoto Packages</h2>
+        <div class="product-grid">
+
+            <!-- Pack 1 -->
+            <div class="product-card" id="card-1">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-1', -1)">&lt;</button>
+                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-1', 1)">&gt;</button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="images/eddt_preview1.jpg" alt="EDDT Preview" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+                    <div class="dropzone-text">
+                        <span>Drop Asset Screenshots Here</span>
+                        Drag & drop multiple screenshots directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
+                    <h2>1. EDDT 2019 Orthophoto Version (3D Airport)</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Detailed 3D airport reconstruction utilizing 2019 survey orthophotography.
+                    </p>
+                </div>
+                <div class
