@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Blog | OKB-1 Creative Design Bureau</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-color: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Yellow Unmarked Admin Trigger Button */
+        .btn-admin {
+            background-color: #f59e0b;
+            color: #0b0f19;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-admin:hover {
+            opacity: 0.9;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p.subtitle {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hidden Editor Modal */
+        .editor-modal {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .editor-modal h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            font-weight: 700;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Blog Feed Styles (Medium Alike) */
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .post-body {
+            color: var(--text-secondary);
+            font-size: 1.025rem;
+        }
+
+        .post-body p {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-nav">
+        <a href="../index.html" class="back-link">&larr; Back to Hangar</a>
+        <!-- Yellow Unmarked Admin Trigger Button -->
+        <button class="btn-admin" onclick="toggleEditor()">+ New Blog Post</button>
+    </div>
+
+    <!-- Admin Publisher Box -->
+    <div id="editorModal" class="editor-modal">
+        <h3>Publish New Blog Entry</h3>
+        <div class="form-group">
+            <label>Post Title</label>
+            <input type="text" id="postTitle" class="form-control" placeholder="e.g., Reconstructing Berlin Tempelhof...">
+        </div>
+        <div class="form-group">
+            <label>Category / Tag</label>
+            <input type="text" id="postCategory" class="form-control" placeholder="e.g., GIS & Scenery">
+        </div>
+        <div class="form-group">
+            <label>Content (HTML supported)</label>
+            <textarea id="postContent" class="form-control" placeholder="Write your post content here... use <p> tags for paragraphs."></textarea>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-primary" onclick="publishPost()">Publish Live</button>
+            <button class="btn btn-secondary" onclick="toggleEditor()">Cancel</button>
+        </div>
+    </div>
+
+    <header>
+        <p class="subtitle">OKB-1 Creative Design Bureau</p>
+        <h1>Engineering & Research Log</h1>
+    </header>
+
+    <main>
+        <div id="blog-container" class="blog-list">
+            <p style="color: var(--text-secondary); text-align: center;">Loading log entries...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Default sample posts if none stored yet
+    const defaultPosts = [
+        {
+            title: "Reconstructing Berlin Tempelhof in 1:500 Scale",
+            date: "November 4, 2026",
+            category: "GIS & Scenery",
+            content: "<p>Using survey layers from GeoBasis Brandenburg (2019–2021), we mapped historical orthophoto rasters to match precise architectural blueprints...</p><p>Every NURBS surface loft was optimized for X-Plane 12 rendering pipelines without sacrificing geometric fidelity.</p>"
+        }
+    ];
+
+    function getStoredPosts() {
+        const stored = localStorage.getItem('okb1_blog_posts');
+        if (!stored) {
+            localStorage.setItem('okb1_blog_posts', JSON.stringify(defaultPosts));
+            return defaultPosts;
+        }
+        return JSON.parse(stored);
+    }
+
+    function renderPosts() {
+        const container = document.getElementById('blog-container');
+        const posts = getStoredPosts();
+        
+        container.innerHTML = '';
+        if (posts.length === 0) {
+            container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No blog posts available.</p>';
+            return;
+        }
+
+        posts.forEach(post => {
+            const article = document.createElement('article');
+            article.className = 'blog-post';
+            article.innerHTML = `
+                <div class="post-meta">📅 ${post.date} &bull; <span style="color: var(--accent-color);">${post.category || 'Engineering'}</span></div>
+                <h2 class="post-title">${post.title}</h2>
+                <div class="post-body">${post.content}</div>
+            `;
+            container.appendChild(article);
+        });
+    }
+
+    function toggleEditor() {
+        const modal = document.getElementById('editorModal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function publishPost() {
+        const title = document.getElementById('postTitle').value.trim();
+        const category = document.getElementById('postCategory').value.trim() || 'Engineering';
+        const content = document.getElementById('postContent').value.trim();
+
+        if (!title || !content) {
+            alert('Please fill out both the title and content fields.');
+            return;
+        }
+
+        const newPost = {
+            title,
+            category,
+            content: content.startsWith('<p>') ? content : `<p>${content}</p>`,
+            date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        };
+
+        const posts = getStoredPosts();
+        posts.unshift(newPost); // Add to beginning of array (newest first)
+        localStorage.setItem('okb1_blog_posts', JSON.stringify(posts));
+
+        // Clear fields and close modal
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postCategory').value = '';
+        document.getElementById('postContent').value = '';
+        toggleEditor();
+
+        // Refresh feed
+        renderPosts();
+    }
+
+    // Load feed on page start
+    renderPosts();
+</script>
+
+</body>
+</html>
