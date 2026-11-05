@@ -35,38 +35,6 @@
             margin: 0 auto;
         }
 
-        .action-bar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .action-bar p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .btn-export {
-            background-color: #22c55e;
-            color: #0b0f19;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-export:hover {
-            opacity: 0.9;
-        }
-
         .nav-back {
             margin-bottom: 2rem;
         }
@@ -76,6 +44,9 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-back a:hover {
@@ -129,6 +100,11 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
         }
 
         .preview-dropzone {
@@ -174,14 +150,31 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
+            user-select: none;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
 
         .carousel-btn:hover {
             background: rgba(14, 165, 233, 0.8);
+            border-color: var(--accent-color);
         }
 
         .carousel-prev { left: 12px; }
         .carousel-next { right: 12px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 10;
+        }
 
         .dropzone-text {
             text-align: center;
@@ -261,6 +254,11 @@
             text-decoration: none;
             text-align: center;
             width: 100%;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
         }
 
         .btn-primary {
@@ -287,11 +285,6 @@
 <body>
 
 <div class="container">
-    <div class="action-bar">
-        <p>💡 Drag & drop multiple screenshots onto any card below, then click export.</p>
-        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
-    </div>
-
     <div class="nav-back">
         <a href="../index.html">&larr; Back to Main Hangar</a>
     </div>
@@ -311,16 +304,15 @@
             <!-- Vol. 1: Early Access / Subscription -->
             <div class="product-card" id="card-1">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-1', -1)">&lt;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-1', 1)">&gt;</button>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="images/tempelhof_preview1.jpg" alt="Tempelhof Preview" onerror="this.parentElement.style.display='none'">
-                        </div>
-                    </div>
-                    <div class="dropzone-text">
-                        <span>loading images</span>
-                        loading images
+                    <button class="carousel-btn carousel-prev" id="germany-prev" style="display: none;">&lt;</button>
+                    <button class="carousel-btn carousel-next" id="germany-next" style="display: none;">&gt;</button>
+                    <div class="carousel-counter" id="germany-counter" style="display: none;">1 / 1</div>
+                    
+                    <div class="carousel-track" id="germany-track"></div>
+
+                    <div class="dropzone-text" id="germany-text">
+                        <span>Drop Asset Screenshots Here</span>
+                        Drag & drop multiple screenshots directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -342,16 +334,9 @@
             <!-- Vol. 2: Incoming -->
             <div class="product-card" id="card-2">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-2', -1)">&lt;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-2', 1)">&gt;</button>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="images/gatow_preview1.jpg" alt="Incoming Preview" onerror="this.parentElement.style.display='none'">
-                        </div>
-                    </div>
                     <div class="dropzone-text">
-                        <span>loading images</span>
-                        loading images
+                        <span>Upcoming Volume</span>
+                        Currently in active development
                     </div>
                 </div>
                 <div class="product-header">
@@ -378,41 +363,17 @@
 </div>
 
 <script>
-    const carouselState = {};
-
-    function moveSlide(cardId, direction) {
-        const card = document.getElementById(cardId);
-        const track = card.querySelector('.carousel-track');
-        const slides = track.querySelectorAll('.carousel-slide');
-        if (slides.length <= 1) return;
-
-        if (!(cardId in carouselState)) {
-            carouselState[cardId] = 0;
-        }
-
-        carouselState[cardId] += direction;
-
-        if (carouselState[cardId] >= slides.length) {
-            carouselState[cardId] = 0;
-        } else if (carouselState[cardId] < 0) {
-            carouselState[cardId] = slides.length - 1;
-        }
-
-        track.style.transform = `translateX(-${carouselState[cardId] * 100}%)`;
-    }
-
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
     function handleDrop(ev, dropzone) {
         ev.preventDefault();
-        const card = dropzone.closest('.product-card');
         const track = dropzone.querySelector('.carousel-track');
         const text = dropzone.querySelector('.dropzone-text');
 
         if (ev.dataTransfer.files && ev.dataTransfer.files.length > 0) {
-            track.innerHTML = '';
+            if (track) track.innerHTML = '';
             if (text) text.style.display = 'none';
 
             Array.from(ev.dataTransfer.files).forEach(file => {
@@ -422,37 +383,71 @@
                         const slide = document.createElement('div');
                         slide.className = 'carousel-slide';
                         slide.innerHTML = `<img src="${e.target.result}" alt="Dropped Preview">`;
-                        track.appendChild(slide);
+                        if (track) track.appendChild(slide);
                     };
                     reader.readAsDataURL(file);
                 }
             });
-
-            carouselState[card.id] = 0;
-            track.style.transform = 'translateX(0)';
         }
     }
 
-    function exportHTML() {
-        const actionBar = document.querySelector('.action-bar');
-        actionBar.style.display = 'none';
-
-        const htmlContent = document.documentElement.outerHTML;
-
-        actionBar.style.display = 'flex';
-
-        const blob = new Blob([htmlContent], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'german_lost_airport.html';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- ES Module Roll Loader for Germany Lost Airport -->
+<script type="module">
+    import { image_container as germanyData } from './germany_lost_airport.js';
+
+    if (germanyData && germanyData.length > 0) {
+        const track = document.getElementById('germany-track');
+        const fallbackText = document.getElementById('germany-text');
+        const prevBtn = document.getElementById('germany-prev');
+        const nextBtn = document.getElementById('germany-next');
+        const counter = document.getElementById('germany-counter');
+
+        if (track) {
+            track.innerHTML = '';
+            if (fallbackText) fallbackText.style.display = 'none';
+
+            germanyData.forEach((item, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = item.url;
+                img.alt = item.name || `Germany Lost Airport Asset #${idx + 1}`;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            let currentIdx = 0;
+            const total = germanyData.length;
+
+            const updateCarousel = () => {
+                track.style.transform = `translateX(-${currentIdx * 100}%)`;
+                if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+            };
+
+            if (total > 1 && prevBtn && nextBtn) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                if (counter) counter.style.display = 'block';
+
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                    updateCarousel();
+                };
+
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                    updateCarousel();
+                };
+            }
+
+            updateCarousel();
+        }
+    }
 </script>
 
 </body>
