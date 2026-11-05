@@ -34,10 +34,48 @@
         .product-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; }
         
         .preview-dropzone { width: 100%; height: 260px; background-color: #080c14; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .carousel-track { width: 100%; height: 100%; display: flex; }
-        .carousel-slide { min-width: 100%; height: 100%; }
+        
+        /* Interactive Carousel Styles */
+        .carousel-track { width: 100%; height: 100%; display: flex; transition: transform 0.3s ease-in-out; }
+        .carousel-slide { min-width: 100%; height: 100%; position: relative; }
         .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
         
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 15, 25, 0.75);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .carousel-nav-btn:hover { background: var(--accent-color); color: #0b0f19; border-color: var(--accent-color); }
+        .carousel-nav-btn.prev { left: 10px; }
+        .carousel-nav-btn.next { right: 10px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 5;
+        }
+
         .dropzone-text { text-align: center; color: var(--text-secondary); font-size: 0.85rem; padding: 1rem; pointer-events: none; border: 2px dashed rgba(148, 163, 184, 0.2); border-radius: 8px; width: 85%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: absolute; top: 10%; left: 7.5%; }
 
         .product-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color); }
@@ -76,13 +114,19 @@
     <main>
         <div class="product-grid">
 
-            <!-- Item 1: EDDT -->
+            <!-- Item 1: EDDT (Dynamic Module Carousel) -->
             <div class="product-card">
-                <div class="preview-dropzone">
-                    <div class="carousel-track">
+                <div class="preview-dropzone" id="eddt-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddt-prev-btn" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddt-next-btn" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddt-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddt-carousel-track">
+                        <!-- Fallback / Static loading placeholder -->
                         <div class="carousel-slide"><img src="images/eddt_preview1.jpg" alt="EDDT Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
-                    <div class="dropzone-text"><span>EDDT Berlin Tegel</span>3D Orthophoto Airport Package</div>
+                    <div class="dropzone-text" id="eddt-fallback-text">
+                        <span>EDDT Berlin Tegel</span>3D Orthophoto Airport Package
+                    </div>
                 </div>
                 <div class="product-header">
                     <span class="badge badge-free">Free / Pay-What-You-Want</span>
@@ -90,7 +134,7 @@
                 </div>
                 <div class="product-body">
                     <div class="btn-group">
-                        <a href="EDDT.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="DE1/EDDT_2019.html" class="btn btn-secondary">Airport Specs</a>
                         <a href="YOUR_PAYHIP_LINK" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
@@ -156,8 +200,6 @@
                 </div>
             </div>
 
-            <!-- Add additional airport cards up to 20-25 per page here -->
-
         </div>
 
         <!-- Pagination Controls Bar -->
@@ -177,6 +219,60 @@
 
 <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- ES Module script to load EDDT images module dynamically -->
+<script type="module">
+    import { image_container } from './DE1/EDDT_2019_images_data.js';
+
+    if (image_container && image_container.length > 0) {
+        const track = document.getElementById('eddt-carousel-track');
+        const fallbackText = document.getElementById('eddt-fallback-text');
+        const prevBtn = document.getElementById('eddt-prev-btn');
+        const nextBtn = document.getElementById('eddt-next-btn');
+        const counter = document.getElementById('eddt-counter');
+
+        track.innerHTML = '';
+        if (fallbackText) fallbackText.style.display = 'none';
+
+        image_container.forEach((item, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.name || `EDDT Preview ${index + 1}`;
+            
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+
+        let currentIndex = 0;
+        const totalSlides = image_container.length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+        }
+
+        if (totalSlides > 1) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            counter.style.display = 'block';
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            });
+        }
+        
+        updateCarousel();
+    }
 </script>
 
 </body>
