@@ -1,1 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDDT 2019 Reactivation Orthophoto | OKB-1 Design Bureau</title>
+    <meta name="description" content="High-resolution 2019 ortho scenery coverage and historical imagery preview for Berlin Tegel Airport (EDDT) Reactivation project in X-Plane.">
+    
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #181b21;
+            --accent-color: #3b82f6;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #262b36;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .meta-item span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 220px;
+            background-color: #050608;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .view-btn {
+            display: inline-block;
+            text-align: center;
+            background-color: #232730;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.2s ease;
+        }
+
+        .view-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        #loading-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../../DE1.html">← Back to Germany Ortho Archive</a>
+            </nav>
+            <h1>EDDT 2019 Reactivation Orthophoto</h1>
+            <p class="subtitle">Berlin Tegel Airport (EDDT) High-Resolution Imagery Dataset</p>
+        </header>
+
+        <section class="meta-grid">
+            <div class="meta-item">
+                <strong>ICAO / Region</strong>
+                <span>EDDT / Berlin, Germany</span>
+            </div>
+            <div class="meta-item">
+                <strong>Dataset Year</strong>
+                <span>2019 Snapshot</span>
+            </div>
+            <div class="meta-item">
+                <strong>Target Simulator</strong>
+                <span>X-Plane Scenery Engine</span>
+            </div>
+            <div class="meta-item">
+                <strong>Publisher</strong>
+                <span>OKB-1 Design Bureau</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Orthophoto Asset Gallery</h2>
+            
+            <div id="gallery" class="gallery-grid">
+                <div id="loading-state">Loading image dataset...</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
+        </footer>
+    </div>
+
+    <!-- Script Import -->
+    <script type="module">
+        import { image_container } from './EDDT_2019_images_data.js';
+
+        const gallery = document.getElementById('gallery');
+
+        if (image_container && image_container.length > 0) {
+            gallery.innerHTML = ''; // Clear loading indicator
+
+            image_container.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+
+                const imageName = item.name || `EDDT Ortho Asset #${index + 1}`;
+                const imageUrl = item.url;
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img src="${imageUrl}" alt="${imageName}" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${imageName}</div>
+                        <a href="${imageUrl}" target="_blank" rel="noopener" class="view-btn">View Full Resolution</a>
+                    </div>
+                `;
+
+                gallery.appendChild(card);
+            });
+        } else {
+            gallery.innerHTML = '<div id="loading-state">No asset images found in container module.</div>';
+        }
+    </script>
+</body>
+</html>
