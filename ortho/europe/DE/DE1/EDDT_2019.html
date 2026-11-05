@@ -11,6 +11,8 @@
             --bg-color: #0f1115;
             --card-bg: #181b21;
             --accent-color: #3b82f6;
+            --orange-color: #f97316;
+            --kofi-color: #ff5e5b;
             --text-main: #e2e8f0;
             --text-muted: #94a3b8;
             --border-color: #262b36;
@@ -31,7 +33,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -102,9 +104,9 @@
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         .gallery-card {
@@ -124,7 +126,7 @@
 
         .img-container {
             width: 100%;
-            height: 220px;
+            height: 200px;
             background-color: #050608;
             display: flex;
             align-items: center;
@@ -147,29 +149,119 @@
         }
 
         .card-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
+        /* Dummy Button Styling */
         .view-btn {
             display: inline-block;
             text-align: center;
             background-color: #232730;
-            color: var(--text-main);
+            color: var(--text-muted);
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             font-size: 0.875rem;
             font-weight: 500;
             margin-top: 0.75rem;
-            border: 1px solid var(--border-color);
-            transition: background-color 0.2s ease;
+            border: 1px dashed var(--border-color);
+            cursor: default;
         }
 
-        .view-btn:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
+        /* Article / Blog Styling */
+        .article-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            font-size: 1.025rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content code, .article-content pre {
+            background-color: #0b0d11;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        .article-content pre {
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        /* CTA Callouts */
+        .cta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .btn-action {
+            flex: 1;
+            min-width: 260px;
+            display: inline-block;
+            text-align: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .btn-kofi {
+            background-color: var(--kofi-color);
+            color: #ffffff;
+        }
+
+        .btn-gumroad {
+            background-color: var(--orange-color);
+            color: #0f1115;
         }
 
         footer {
@@ -197,7 +289,7 @@
                 <a href="../../DE1.html">← Back to Germany Ortho Archive</a>
             </nav>
             <h1>EDDT 2019 Reactivation Orthophoto</h1>
-            <p class="subtitle">Berlin Tegel Airport (EDDT) High-Resolution Imagery Dataset</p>
+            <p class="subtitle">Berlin Tegel Airport (EDDT) High-Resolution Imagery & Restoration Dataset</p>
         </header>
 
         <section class="meta-grid">
@@ -219,6 +311,7 @@
             </div>
         </section>
 
+        <!-- Screenshot Previews Section -->
         <section>
             <h2 class="section-title">Orthophoto Asset Gallery</h2>
             
@@ -226,6 +319,74 @@
                 <div id="loading-state">Loading image dataset...</div>
             </div>
         </section>
+
+        <!-- Developer Blog / Documentation Article -->
+        <article class="article-content">
+            <h2>Berlin Tegel EDDT Re-Imagined (X-Plane 12)</h2>
+            <p>How geospatial raster masking, WED priority layering, and legacy navdata recovery brought Germany's iconic hexagonal terminal back to life.</p>
+            
+            <p>In real-world aviation history, November 8, 2020, marked the end of an era: Berlin Tegel Airport (EDDT/TXL) officially closed its doors to commercial air traffic.</p>
+            
+            <p>In vanilla X-Plane 12, this real-world decommissioning leaves simulator pilots with a ghost airfield. The default Gateway scenery reflects EDDT's deactivated state — replete with crossed-out active runways, missing instrument approaches, stripped frequency listings, and dead taxi routing.</p>
+
+            <p>At OKB-1 Creative Design Bureau, we refuse to let iconic aviation heritage fade into simulator obsolescence. This release fully restores Berlin Tegel to its peak 2019 operational state, reactivating legacy navigation data, instrument approaches, and active ground-routing networks so you can fly into Tegel as if it never closed.</p>
+
+            <h2>The Engineering Problem: The "Ghost Airport" Paradox</h2>
+            <p>When an airfield is decommissioned in real life, default flight simulator databases strip out its active infrastructure:</p>
+
+<pre>
+[ DEFAULT XP12 GHOST STATE ]             [ OKB-1 2019 RESTORATION ]
+  Deactivated Navigation Data              Re-Activated ILS & VOR Approaches
+  ├── X-Marked Runways                     ├── Unmarked Active Tarmac
+  ├── Missing Terminal Routing             ├── Fully Mapped Ground ATC Routes
+  └── Autogen Ghost Town                   └── 2019 GeoBasis-BB Ortho Layering
+</pre>
+
+            <p>To reverse this without breaking X-Plane 12.1.2+ engine physics and lighting, we engineered two distinct package editions tailored to different hardware setups and scenery workflows.</p>
+
+            <h2>Two Paths to Restoration: Choose Your Edition</h2>
+            
+            <h3>1. EDDT 2019 Gateway Modernized Edition</h3>
+            <p><strong>The Concept:</strong> Built on an updated X-Plane 12 gateway layout framework and optimized specifically for XP12's native lighting and wetness engine.</p>
+            <p><strong>Best For:</strong> Pilots who prefer lightweight frame-rate efficiency, native autogen terrain integration, standard procedural airport rendering, and seamless default gateway taxi routing.</p>
+
+            <h3>2. EDDT 2019 Orthophoto Immersive Edition</h3>
+            <p><strong>The Concept:</strong> A complete geospatial reconstruction. The entire ground surface — aprons, runways, high-speed turnoffs, and dispersal zones — was stripped and rebuilt using high-resolution georeferenced raster masks derived from GeoBasis Brandenburg (GeoBasis-BB) survey data.</p>
+            <p><strong>Environment Detail:</strong> Custom polygon layering aligned with historical 2019 aerial imagery, featuring modified 3D Laminar assets to replicate surrounding urban Berlin layouts — including gabled residential housing blocks, dense forest coverage, and localized vehicle parking zones.</p>
+
+            <h2>Technical & Geospatial Specifications</h2>
+            <ul>
+                <li><strong>Custom Ground Layout:</strong> Re-engineered centerline taxi networks for AI traffic, ground services, and automated ATC interaction.</li>
+                <li><strong>PBR & Layering Priority:</strong> Native XP12 surface materials with calibrated priority ordering to prevent terrain-tile bleed through orthophoto underlays.</li>
+                <li><strong>Archival Raster Mirror:</strong> High-resolution raw GeoTIFF assets hosted on the Internet Archive Mirror.</li>
+                <li><strong>Data License & Attribution:</strong> Contains modified aerial imagery from GeoBasis-DE/LGB. Source: © GeoBasis-DE/LGB, dl-de/by-2–0 (Datenlizenz Deutschland — Namensnennung — Version 2.0).</li>
+            </ul>
+
+            <h2>Installation & Setup Guide</h2>
+            <ol>
+                <li>Extract the downloaded <code>EDDT - Berlin Tegel</code> folder.</li>
+                <li>Move the folder directly into your X-Plane 12 directory:
+                    <br><code>X-Plane 12/Custom Scenery/EDDT - Berlin Tegel/</code>
+                </li>
+                <li>Launch X-Plane 12 once to update <code>scenery_packs.ini</code>, then exit.</li>
+                <li>Open <code>Custom Scenery/scenery_packs.ini</code> in any text editor and ensure <code>EDDT - Berlin Tegel</code> sits ABOVE <code>Global Scenery/Global Airports/</code>:
+<pre>
+SCENERY_PACK Custom Scenery/EDDT - Berlin Tegel/
+...
+SCENERY_PACK Global Scenery/Global Airports/
+</pre>
+                </li>
+                <li>Launch the simulator and set your destination to EDDT.</li>
+            </ol>
+
+            <h2>Fly Tegel Like It Never Closed</h2>
+            <p>Whether you're executing an IFR approach in marginal weather using re-activated navdata or flying a low-level visual approach over West Berlin, this restoration captures the raw energy of Tegel's prime operational years.</p>
+
+            <div class="cta-container">
+                <a href="https://ko-fi.com/s/68affec7e2" target="_blank" rel="noopener" class="btn-action btn-kofi">German Early Access Package on Ko-Fi</a>
+                <a href="https://creativedesigns840.gumroad.com/l/nvjrh" target="_blank" rel="noopener" class="btn-action btn-gumroad">Download EDDT 2019 Package on Gumroad</a>
+            </div>
+        </article>
 
         <footer>
             <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
@@ -254,7 +415,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-title">${imageName}</div>
-                        <a href="${imageUrl}" target="_blank" rel="noopener" class="view-btn">View Full Resolution</a>
+                        <a href="#" onclick="return false;" class="view-btn">View Larger Image (Dummy)</a>
                     </div>
                 `;
 
