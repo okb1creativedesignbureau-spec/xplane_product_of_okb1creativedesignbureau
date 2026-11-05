@@ -140,13 +140,19 @@
                 </div>
             </div>
 
-            <!-- Item 2: EDDI -->
+            <!-- Item 2: EDDI (Dynamic Module Carousel) -->
             <div class="product-card">
-                <div class="preview-dropzone">
-                    <div class="carousel-track">
+                <div class="preview-dropzone" id="eddi-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddi-prev-btn" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddi-next-btn" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddi-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddi-carousel-track">
+                        <!-- Fallback / Static loading placeholder -->
                         <div class="carousel-slide"><img src="images/eddi_preview1.jpg" alt="EDDI Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
-                    <div class="dropzone-text"><span>EDDI Tempelhof</span>2D Tarmac Orthophoto Package</div>
+                    <div class="dropzone-text" id="eddi-fallback-text">
+                        <span>EDDI Tempelhof</span>2D Tarmac Orthophoto Package
+                    </div>
                 </div>
                 <div class="product-header">
                     <span class="badge badge-free">Free / Pay-What-You-Want</span>
@@ -154,7 +160,7 @@
                 </div>
                 <div class="product-body">
                     <div class="btn-group">
-                        <a href="EDDI.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="DE1/EDDI_2020.html" class="btn btn-secondary">Airport Specs</a>
                         <a href="YOUR_PAYHIP_LINK" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
