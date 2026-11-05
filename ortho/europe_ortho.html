@@ -18,7 +18,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.6; padding: 3rem 1rem; }
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { max-width: 960px; margin: 0 auto; }
 
         .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
         .back-link { color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
@@ -31,15 +31,15 @@
 
         .selection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
         
-        .selector-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; text-decoration: none; display: block; }
+        .selector-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.75rem 1.5rem; text-align: center; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; text-decoration: none; display: block; }
         .selector-card:hover:not(.disabled) { border-color: var(--accent-color); transform: translateY(-3px); }
         .selector-card.disabled { opacity: 0.45; cursor: not-allowed; }
-        .selector-card .flag { font-size: 3rem; margin-bottom: 0.75rem; display: block; }
-        .selector-card h3 { font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .selector-card .flag { font-size: 3rem; margin-bottom: 0.5rem; display: block; line-height: 1; }
+        .selector-card h3 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.25rem; }
         .selector-card p { font-size: 0.85rem; color: var(--text-secondary); }
 
-        .wip-tag { position: absolute; top: 12px; right: 12px; background: rgba(249, 115, 22, 0.15); color: var(--orange-color); font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(249, 115, 22, 0.3); text-transform: uppercase; }
-        .active-tag { position: absolute; top: 12px; right: 12px; background: rgba(34, 197, 94, 0.15); color: #22c55e; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.3); text-transform: uppercase; }
+        .wip-tag { position: absolute; top: 12px; right: 12px; background: rgba(249, 115, 22, 0.15); color: var(--orange-color); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 12px; border: 1px solid rgba(249, 115, 22, 0.3); text-transform: uppercase; }
+        .active-tag { position: absolute; top: 12px; right: 12px; background: rgba(34, 197, 94, 0.15); color: #22c55e; font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.3); text-transform: uppercase; }
 
         footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
     </style>
@@ -53,59 +53,72 @@
 
     <header>
         <p class="subtitle">OKB-1 European Regional Hub</p>
-        <h1>Select European Nation</h1>
-        <p class="bio">Select a country to browse available open-source orthophoto packages by ICAO aerodrome designation.</p>
+        <h1>European Nations Archive</h1>
+        <p class="bio">Select a European country below to view available open-source orthophoto packages indexed by ICAO aerodrome designations.</p>
     </header>
 
     <main>
         <div class="selection-grid">
-            <!-- Germany (DE) - Active -->
-            <a href="europe/DE/germany_ortho.html" class="selector-card">
+
+            <!-- AVAILABLE NATIONS -->
+            <a href="europe/DE/DE1.html" class="selector-card">
                 <span class="active-tag">Available</span>
                 <span class="flag">🇩🇪</span>
                 <h3>Germany (DE)</h3>
-                <p>EDDT, EDDI, EDDB, EDDM</p>
+                <p> </p>
             </a>
 
-            <!-- Netherlands (NL) - Coming Soon -->
-            <div class="selector-card disabled">
-                <span class="wip-tag">Coming Soon</span>
-                <span class="flag">🇳🇱</span>
-                <h3>Netherlands (NL)</h3>
-                <p>In Pipeline</p>
-            </div>
+            <!-- COMING SOON EUROPEAN NATIONS -->
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇦🇱</span><h3>Albania (AL)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇦🇩</span><h3>Andorra (AD)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇦🇲</span><h3>Armenia (AM)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇦🇹</span><h3>Austria (AT)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇦🇿</span><h3>Azerbaijan (AZ)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇧🇾</span><h3>Belarus (BY)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇧🇪</span><h3>Belgium (BE)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇧🇦</span><h3>Bosnia & Herzegovina (BA)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇧🇬</span><h3>Bulgaria (BG)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇭🇷</span><h3>Croatia (HR)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇨🇾</span><h3>Cyprus (CY)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇨🇿</span><h3>Czech Republic (CZ)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇩🇰</span><h3>Denmark (DK)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇪🇪</span><h3>Estonia (EE)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇫🇮</span><h3>Finland (FI)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇫🇷</span><h3>France (FR)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇬🇪</span><h3>Georgia (GE)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇬🇷</span><h3>Greece (GR)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇭🇺</span><h3>Hungary (HU)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇮🇸</span><h3>Iceland (IS)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇮🇪</span><h3>Ireland (IE)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇮🇹</span><h3>Italy (IT)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇰🇿</span><h3>Kazakhstan (KZ)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇽🇰</span><h3>Kosovo (XK)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇱🇻</span><h3>Latvia (LV)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇱🇮</span><h3>Liechtenstein (LI)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇱🇹</span><h3>Lithuania (LT)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇱🇺</span><h3>Luxembourg (LU)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇲🇹</span><h3>Malta (MT)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇲🇩</span><h3>Moldova (MD)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇲🇨</span><h3>Monaco (MC)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇲🇪</span><h3>Montenegro (ME)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇳🇱</span><h3>Netherlands (NL)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇲🇰</span><h3>North Macedonia (MK)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇳🇴</span><h3>Norway (NO)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇵🇱</span><h3>Poland (PL)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇵🇹</span><h3>Portugal (PT)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇷🇴</span><h3>Romania (RO)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇸🇲</span><h3>San Marino (SM)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇷🇸</span><h3>Serbia (RS)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇸🇰</span><h3>Slovakia (SK)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇸🇮</span><h3>Slovenia (SI)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇪🇸</span><h3>Spain (ES)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇸🇪</span><h3>Sweden (SE)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇨🇭</span><h3>Switzerland (CH)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇹🇷</span><h3>Turkey (TR)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇺🇦</span><h3>Ukraine (UA)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇬🇧</span><h3>United Kingdom (GB)</h3><p>In Pipeline</p></div>
+            <div class="selector-card disabled"><span class="wip-tag">Coming Soon</span><span class="flag">🇻🇦</span><h3>Vatican City (VA)</h3><p>In Pipeline</p></div>
 
-            <!-- United Kingdom (GB) - Coming Soon -->
-            <div class="selector-card disabled">
-                <span class="wip-tag">Coming Soon</span>
-                <span class="flag">🇬🇧</span>
-                <h3>United Kingdom (GB)</h3>
-                <p>In Pipeline</p>
-            </div>
-
-            <!-- Poland (PL) - Coming Soon -->
-            <div class="selector-card disabled">
-                <span class="wip-tag">Coming Soon</span>
-                <span class="flag">🇵🇱</span>
-                <h3>Poland (PL)</h3>
-                <p>In Pipeline</p>
-            </div>
-
-            <!-- France (FR) - Coming Soon -->
-            <div class="selector-card disabled">
-                <span class="wip-tag">Coming Soon</span>
-                <span class="flag">🇫🇷</span>
-                <h3>France (FR)</h3>
-                <p>In Pipeline</p>
-            </div>
-
-            <!-- Austria (AT) - Coming Soon -->
-            <div class="selector-card disabled">
-                <span class="wip-tag">Coming Soon</span>
-                <span class="flag">🇦🇹</span>
-                <h3>Austria (AT)</h3>
-                <p>In Pipeline</p>
-            </div>
         </div>
     </main>
 
