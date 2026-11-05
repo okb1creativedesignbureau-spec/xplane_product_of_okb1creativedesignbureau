@@ -40,40 +40,6 @@
             margin: 0 auto;
         }
 
-        /* Top Action Bar for Export */
-        .action-bar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .action-bar p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .btn-export {
-            background-color: #22c55e;
-            color: #0b0f19;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .btn-export:hover {
-            opacity: 0.9;
-        }
-
         .nav-back {
             margin-bottom: 2rem;
         }
@@ -178,7 +144,7 @@
             object-fit: cover;
         }
 
-        /* Overlay Carousel Controls (Ko-fi style) */
+        /* Overlay Carousel Controls */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -205,6 +171,20 @@
 
         .carousel-prev { left: 12px; }
         .carousel-next { right: 12px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 10;
+        }
 
         .dropzone-text {
             text-align: center;
@@ -323,12 +303,6 @@
 <body>
 
 <div class="container">
-    <!-- Export Tool Bar -->
-    <div class="action-bar">
-        <p>💡 Drag & drop multiple screenshots onto any card below, then click export to save a ready-to-deploy HTML file.</p>
-        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
-    </div>
-
     <div class="nav-back">
         <a href="../index.html">&larr; Back to Main Hangar</a>
     </div>
@@ -345,22 +319,16 @@
         <h2 class="section-heading">Available Airfield Packages</h2>
         
         <div class="product-grid">
-            <!-- Product 1: Indonesia DLC Vol. 1 Early Access with Image Gallery -->
+            <!-- Product 1: Indonesia DLC Vol. 1 Early Access -->
             <div class="product-card" id="card-1">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-1', -1)">&lt;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-1', 1)">&gt;</button>
+                    <button class="carousel-btn carousel-prev" id="indo-prev" style="display: none;">&lt;</button>
+                    <button class="carousel-btn carousel-next" id="indo-next" style="display: none;">&gt;</button>
+                    <div class="carousel-counter" id="indo-counter" style="display: none;">1 / 1</div>
                     
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="images/indonesia_vol1_preview1.jpg" alt="Preview 1" onerror="this.parentElement.style.display='none'">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/indonesia_vol1_preview2.jpg" alt="Preview 2" onerror="this.parentElement.style.display='none'">
-                        </div>
-                    </div>
+                    <div class="carousel-track" id="indo-track"></div>
 
-                    <div class="dropzone-text">
+                    <div class="dropzone-text" id="indo-text">
                         <span>Drop Asset Screenshots Here</span>
                         Drag & drop multiple screenshots directly onto this box
                     </div>
@@ -376,8 +344,8 @@
                 <div class="product-body">
                     <p>Engineered for complex visual flight rules, challenging mountain or coastal approaches, and realistic regional airline operations across the islands.</p>
                     <div class="btn-group">
-                        <a href="YOUR_CHECKOUT_LINK" class="btn btn-primary" target="_blank">I Want This</a>
-                        <a href="YOUR_INFO_LINK" class="btn btn-secondary" target="_blank">More Product Info</a>
+                        <a href="https://ko-fi.com/s/fcea68aeb3" class="btn btn-primary" target="_blank">I Want This</a>
+                        <a href="./indonesia_vol1_info.html" class="btn btn-secondary">More Product Info</a>
                     </div>
                 </div>
             </div>
@@ -385,18 +353,9 @@
             <!-- Product 2: Placeholder for Future Volumes -->
             <div class="product-card" id="card-2">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-2', -1)">&lt;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-2', 1)">&gt;</button>
-
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="images/indonesia_vol2_preview1.jpg" alt="Preview Vol 2" onerror="this.parentElement.style.display='none'">
-                        </div>
-                    </div>
-
                     <div class="dropzone-text">
-                        <span>Drop Preview Here</span>
-                        Drag & drop screenshot directly onto this box
+                        <span>Upcoming Volume</span>
+                        Currently in active development
                     </div>
                 </div>
                 <div class="product-header">
@@ -422,31 +381,6 @@
 </div>
 
 <script>
-    // Carousel Slide Tracker
-    const carouselState = {};
-
-    function moveSlide(cardId, direction) {
-        const card = document.getElementById(cardId);
-        const track = card.querySelector('.carousel-track');
-        const slides = track.querySelectorAll('.carousel-slide');
-        
-        if (slides.length <= 1) return;
-
-        if (!(cardId in carouselState)) {
-            carouselState[cardId] = 0;
-        }
-
-        carouselState[cardId] += direction;
-
-        if (carouselState[cardId] >= slides.length) {
-            carouselState[cardId] = 0;
-        } else if (carouselState[cardId] < 0) {
-            carouselState[cardId] = slides.length - 1;
-        }
-
-        track.style.transform = `translateX(-${carouselState[cardId] * 100}%)`;
-    }
-
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -458,7 +392,7 @@
         const text = dropzone.querySelector('.dropzone-text');
 
         if (ev.dataTransfer.files && ev.dataTransfer.files.length > 0) {
-            track.innerHTML = '';
+            if (track) track.innerHTML = '';
             if (text) text.style.display = 'none';
 
             Array.from(ev.dataTransfer.files).forEach(file => {
@@ -468,37 +402,72 @@
                         const slide = document.createElement('div');
                         slide.className = 'carousel-slide';
                         slide.innerHTML = `<img src="${e.target.result}" alt="Dropped Preview">`;
-                        track.appendChild(slide);
+                        if (track) track.appendChild(slide);
                     };
                     reader.readAsDataURL(file);
                 }
             });
-            carouselState[card.id] = 0;
-            track.style.transform = 'translateX(0)';
         }
-    }
-
-    function exportHTML() {
-        const actionBar = document.querySelector('.action-bar');
-        actionBar.style.display = 'none';
-
-        const htmlContent = document.documentElement.outerHTML;
-        
-        actionBar.style.display = 'flex';
-
-        const blob = new Blob([htmlContent], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'indonesia_dlc.html';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
     }
 
     // Dynamic Copyright Year
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- ES Module Roll Loader for Indonesia DLC -->
+<script type="module">
+    import { image_container as indoData } from './indonesia_dlc_roll.js';
+
+    if (indoData && indoData.length > 0) {
+        const track = document.getElementById('indo-track');
+        const fallbackText = document.getElementById('indo-text');
+        const prevBtn = document.getElementById('indo-prev');
+        const nextBtn = document.getElementById('indo-next');
+        const counter = document.getElementById('indo-counter');
+
+        if (track) {
+            track.innerHTML = '';
+            if (fallbackText) fallbackText.style.display = 'none';
+
+            indoData.forEach((item, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = item.url;
+                img.alt = item.name || `Indonesia DLC Vol. 1 Asset #${idx + 1}`;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            let currentIdx = 0;
+            const total = indoData.length;
+
+            const updateCarousel = () => {
+                track.style.transform = `translateX(-${currentIdx * 100}%)`;
+                if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+            };
+
+            if (total > 1 && prevBtn && nextBtn) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                if (counter) counter.style.display = 'block';
+
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                    updateCarousel();
+                };
+
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                    updateCarousel();
+                };
+            }
+
+            updateCarousel();
+        }
+    }
 </script>
 
 </body>
