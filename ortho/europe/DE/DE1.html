@@ -108,23 +108,22 @@
     <header>
         <p class="subtitle">Germany Open-Source Hub 🇩🇪</p>
         <h1>German Aerodrome Orthophotos</h1>
-        <p class="bio">Page 1 of 20–25 curated aerodrome orthophoto packages for X-Plane 12.</p>
+        <p class="bio">Page 1 of 25 curated aerodrome orthophoto packages for X-Plane 12.</p>
     </header>
 
     <main>
         <div class="product-grid">
 
-            <!-- Item 1: EDDT (Dynamic Module Carousel) -->
+            <!-- Item 1: EDDT -->
             <div class="product-card">
-                <div class="preview-dropzone" id="eddt-dropzone">
-                    <button class="carousel-nav-btn prev" id="eddt-prev-btn" style="display: none;">&#10094;</button>
-                    <button class="carousel-nav-btn next" id="eddt-next-btn" style="display: none;">&#10095;</button>
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddt-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddt-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="eddt-counter" style="display: none;">1 / 1</div>
-                    <div class="carousel-track" id="eddt-carousel-track">
-                        <!-- Fallback / Static loading placeholder -->
+                    <div class="carousel-track" id="eddt-track">
                         <div class="carousel-slide"><img src="images/eddt_preview1.jpg" alt="EDDT Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
-                    <div class="dropzone-text" id="eddt-fallback-text">
+                    <div class="dropzone-text" id="eddt-text">
                         <span>EDDT Berlin Tegel</span>3D Orthophoto Airport Package
                     </div>
                 </div>
@@ -140,17 +139,16 @@
                 </div>
             </div>
 
-            <!-- Item 2: EDDI (Dynamic Module Carousel) -->
+            <!-- Item 2: EDDI -->
             <div class="product-card">
-                <div class="preview-dropzone" id="eddi-dropzone">
-                    <button class="carousel-nav-btn prev" id="eddi-prev-btn" style="display: none;">&#10094;</button>
-                    <button class="carousel-nav-btn next" id="eddi-next-btn" style="display: none;">&#10095;</button>
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddi-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddi-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="eddi-counter" style="display: none;">1 / 1</div>
-                    <div class="carousel-track" id="eddi-carousel-track">
-                        <!-- Fallback / Static loading placeholder -->
+                    <div class="carousel-track" id="eddi-track">
                         <div class="carousel-slide"><img src="images/eddi_preview1.jpg" alt="EDDI Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
-                    <div class="dropzone-text" id="eddi-fallback-text">
+                    <div class="dropzone-text" id="eddi-text">
                         <span>EDDI Tempelhof</span>2D Tarmac Orthophoto Package
                     </div>
                 </div>
@@ -227,58 +225,68 @@
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 </script>
 
-<!-- ES Module script to load EDDT images module dynamically -->
+<!-- Clean Reusable Module Architecture -->
 <script type="module">
-    import { image_container } from './DE1/EDDT_2019_images_data.js';
+    import { image_container as eddtData } from './DE1/EDDT_2019_images_data.js';
+    import { image_container as eddiData } from './DE1/EDDI_2020_images_data.js';
 
-    if (image_container && image_container.length > 0) {
-        const track = document.getElementById('eddt-carousel-track');
-        const fallbackText = document.getElementById('eddt-fallback-text');
-        const prevBtn = document.getElementById('eddt-prev-btn');
-        const nextBtn = document.getElementById('eddt-next-btn');
-        const counter = document.getElementById('eddt-counter');
+    // Universal Carousel Factory Function
+    function buildCarousel(prefix, imageData) {
+        if (!imageData || imageData.length === 0) return;
 
+        const track = document.getElementById(`${prefix}-track`);
+        const fallbackText = document.getElementById(`${prefix}-text`);
+        const prevBtn = document.getElementById(`${prefix}-prev`);
+        const nextBtn = document.getElementById(`${prefix}-next`);
+        const counter = document.getElementById(`${prefix}-counter`);
+
+        if (!track) return;
+
+        // Reset track & hide overlay text
         track.innerHTML = '';
         if (fallbackText) fallbackText.style.display = 'none';
 
-        image_container.forEach((item, index) => {
+        // Render slides
+        imageData.forEach((item, idx) => {
             const slide = document.createElement('div');
             slide.className = 'carousel-slide';
-            
             const img = document.createElement('img');
             img.src = item.url;
-            img.alt = item.name || `EDDT Preview ${index + 1}`;
-            
+            img.alt = item.name || `${prefix.toUpperCase()} Asset ${idx + 1}`;
             slide.appendChild(img);
             track.appendChild(slide);
         });
 
-        let currentIndex = 0;
-        const totalSlides = image_container.length;
+        let currentIdx = 0;
+        const total = imageData.length;
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
-        }
+        const update = () => {
+            track.style.transform = `translateX(-${currentIdx * 100}%)`;
+            if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+        };
 
-        if (totalSlides > 1) {
+        if (total > 1 && prevBtn && nextBtn) {
             prevBtn.style.display = 'flex';
             nextBtn.style.display = 'flex';
-            counter.style.display = 'block';
+            if (counter) counter.style.display = 'block';
 
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-                updateCarousel();
-            });
+            prevBtn.onclick = () => {
+                currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                update();
+            };
 
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-                updateCarousel();
-            });
+            nextBtn.onclick = () => {
+                currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                update();
+            };
         }
-        
-        updateCarousel();
+
+        update();
     }
+
+    // Initialize all aerodrome carousels seamlessly
+    buildCarousel('eddt', eddtData);
+    buildCarousel('eddi', eddiData);
 </script>
 
 </body>
