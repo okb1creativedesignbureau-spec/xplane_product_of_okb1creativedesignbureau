@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Europe Orthophoto Hub | OKB-1 Creative Design Bureau</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-color: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --orange-color: #f97316;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .back-link { color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+
+        header { text-align: center; margin-bottom: 3.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p.subtitle { color: var(--accent-color); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem; }
+        header p.bio { color: var(--text-secondary); font-size: 0.95rem; max-width: 720px; margin: 0 auto; }
+
+        .selection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        
+        .selector-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; text-decoration: none; display: block; }
+        .selector-card:hover:not(.disabled) { border-color: var(--accent-color); transform: translateY(-3px); }
+        .selector-card.disabled { opacity: 0.45; cursor: not-allowed; }
+        .selector-card .flag { font-size: 3rem; margin-bottom: 0.75rem; display: block; }
+        .selector-card h3 { font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .selector-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .wip-tag { position: absolute; top: 12px; right: 12px; background: rgba(249, 115, 22, 0.15); color: var(--orange-color); font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(249, 115, 22, 0.3); text-transform: uppercase; }
+        .active-tag { position: absolute; top: 12px; right: 12px; background: rgba(34, 197, 94, 0.15); color: #22c55e; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.3); text-transform: uppercase; }
+
+        footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-header">
+        <a href="free_ortho.html" class="back-link">&larr; Back to Continents</a>
+    </div>
+
+    <header>
+        <p class="subtitle">OKB-1 European Regional Hub</p>
+        <h1>Select European Nation</h1>
+        <p class="bio">Select a country to browse available open-source orthophoto packages by ICAO aerodrome designation.</p>
+    </header>
+
+    <main>
+        <div class="selection-grid">
+            <!-- Germany (DE) - Active -->
+            <a href="europe/DE/germany_ortho.html" class="selector-card">
+                <span class="active-tag">Available</span>
+                <span class="flag">🇩🇪</span>
+                <h3>Germany (DE)</h3>
+                <p>EDDT, EDDI, EDDB, EDDM</p>
+            </a>
+
+            <!-- Netherlands (NL) - Coming Soon -->
+            <div class="selector-card disabled">
+                <span class="wip-tag">Coming Soon</span>
+                <span class="flag">🇳🇱</span>
+                <h3>Netherlands (NL)</h3>
+                <p>In Pipeline</p>
+            </div>
+
+            <!-- United Kingdom (GB) - Coming Soon -->
+            <div class="selector-card disabled">
+                <span class="wip-tag">Coming Soon</span>
+                <span class="flag">🇬🇧</span>
+                <h3>United Kingdom (GB)</h3>
+                <p>In Pipeline</p>
+            </div>
+
+            <!-- Poland (PL) - Coming Soon -->
+            <div class="selector-card disabled">
+                <span class="wip-tag">Coming Soon</span>
+                <span class="flag">🇵🇱</span>
+                <h3>Poland (PL)</h3>
+                <p>In Pipeline</p>
+            </div>
+
+            <!-- France (FR) - Coming Soon -->
+            <div class="selector-card disabled">
+                <span class="wip-tag">Coming Soon</span>
+                <span class="flag">🇫🇷</span>
+                <h3>France (FR)</h3>
+                <p>In Pipeline</p>
+            </div>
+
+            <!-- Austria (AT) - Coming Soon -->
+            <div class="selector-card disabled">
+                <span class="wip-tag">Coming Soon</span>
+                <span class="flag">🇦🇹</span>
+                <h3>Austria (AT)</h3>
+                <p>In Pipeline</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
