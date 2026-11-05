@@ -135,25 +135,76 @@
             border-color: rgba(14, 165, 233, 0.4);
         }
 
-        /* Drag & Drop Preview Zone */
+        /* Drag & Drop / Carousel Preview Zone */
         .preview-dropzone {
             width: 100%;
             height: 260px;
             background-color: #080c14;
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
             cursor: pointer;
         }
 
-        .preview-dropzone img {
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img, .preview-dropzone > img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 15, 25, 0.75);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--accent-color);
+            color: #0b0f19;
+            border-color: var(--accent-color);
+        }
+
+        .carousel-nav-btn.prev { left: 10px; }
+        .carousel-nav-btn.next { right: 10px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 5;
         }
 
         .dropzone-text {
@@ -171,6 +222,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            position: absolute;
+            top: 10%;
+            left: 7.5%;
         }
 
         .dropzone-text span {
@@ -303,8 +357,12 @@
             <!-- Tier 1: Post-USSR DLC -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Post USSR airstrips preview">
-                    <div class="dropzone-text">
+                    <button class="carousel-nav-btn prev" id="ussr-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="ussr-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="ussr-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="ussr-track"></div>
+                    <img src="" alt="Post USSR airstrips preview" style="display: none;">
+                    <div class="dropzone-text" id="ussr-text">
                         <span>Drop Scenery Preview Here</span>
                         Drag & drop screenshot directly onto this box
                     </div>
@@ -327,8 +385,12 @@
             <!-- Tier 2: Germany Lost Airport -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Germany Lost Airport Preview">
-                    <div class="dropzone-text">
+                    <button class="carousel-nav-btn prev" id="germany-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="germany-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="germany-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="germany-track"></div>
+                    <img src="" alt="Germany Lost Airport Preview" style="display: none;">
+                    <div class="dropzone-text" id="germany-text">
                         <span>Drop Scenery Preview Here</span>
                         Drag & drop screenshot directly onto this box
                     </div>
@@ -351,8 +413,12 @@
             <!-- Tier 3: Indonesia DLC -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Indonesia DLC Preview">
-                    <div class="dropzone-text">
+                    <button class="carousel-nav-btn prev" id="indonesia-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="indonesia-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="indonesia-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="indonesia-track"></div>
+                    <img src="" alt="Indonesia DLC Preview" style="display: none;">
+                    <div class="dropzone-text" id="indonesia-text">
                         <span>Drop Scenery Preview Here</span>
                         Drag & drop screenshot directly onto this box
                     </div>
@@ -375,8 +441,12 @@
             <!-- Tier 4: WED Developer Plugin -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="WED Developer Plugin Preview">
-                    <div class="dropzone-text">
+                    <button class="carousel-nav-btn prev" id="pbr-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="pbr-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="pbr-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="pbr-track"></div>
+                    <img src="" alt="WED Developer Plugin Preview" style="display: none;">
+                    <div class="dropzone-text" id="pbr-text">
                         <span>Drop Plugin Preview Here</span>
                         Drag & drop screenshot directly onto this box
                     </div>
@@ -399,8 +469,12 @@
             <!-- Tier 5: Free Orthophotos -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Free Orthophotos Preview">
-                    <div class="dropzone-text">
+                    <button class="carousel-nav-btn prev" id="ortho-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="ortho-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="ortho-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="ortho-track"></div>
+                    <img src="" alt="Free Orthophotos Preview" style="display: none;">
+                    <div class="dropzone-text" id="ortho-text">
                         <span>Drop Orthophoto Preview Here</span>
                         Drag & drop screenshot directly onto this box
                     </div>
@@ -509,9 +583,11 @@
                 reader.onload = function(e) {
                     const img = dropzone.querySelector('img');
                     const text = dropzone.querySelector('.dropzone-text');
+                    const track = dropzone.querySelector('.carousel-track');
+                    if (track) track.style.display = 'none';
                     img.src = e.target.result;
                     img.style.display = 'block';
-                    text.style.display = 'none';
+                    if (text) text.style.display = 'none';
                 };
                 reader.readAsDataURL(file);
             }
@@ -538,6 +614,74 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
+</script>
+
+<!-- Dynamic ES Module Roll Script Loader -->
+<script type="module">
+    import { image_container as ussrData } from './ex-ussr_roll.js';
+    import { image_container as germanyData } from './germany_lost_airport.js';
+    import { image_container as indonesiaData } from './indonesia_dlc_roll.js';
+    import { image_container as pbrData } from './PBR_4K_roll.js';
+    import { image_container as orthoData } from './ortho_roll.js';
+
+    function initCarousel(prefix, data) {
+        if (!data || data.length === 0) return;
+
+        const track = document.getElementById(`${prefix}-track`);
+        const fallbackText = document.getElementById(`${prefix}-text`);
+        const prevBtn = document.getElementById(`${prefix}-prev`);
+        const nextBtn = document.getElementById(`${prefix}-next`);
+        const counter = document.getElementById(`${prefix}-counter`);
+
+        if (!track) return;
+
+        track.innerHTML = '';
+        if (fallbackText) fallbackText.style.display = 'none';
+
+        data.forEach((item, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.name || `${prefix.toUpperCase()} Asset ${idx + 1}`;
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+
+        let currentIdx = 0;
+        const total = data.length;
+
+        const update = () => {
+            track.style.transform = `translateX(-${currentIdx * 100}%)`;
+            if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+        };
+
+        if (total > 1 && prevBtn && nextBtn) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            if (counter) counter.style.display = 'block';
+
+            prevBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                update();
+            };
+
+            nextBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                update();
+            };
+        }
+
+        update();
+    }
+
+    initCarousel('ussr', ussrData);
+    initCarousel('germany', germanyData);
+    initCarousel('indonesia', indonesiaData);
+    initCarousel('pbr', pbrData);
+    initCarousel('ortho', orthoData);
 </script>
 
 </body>
