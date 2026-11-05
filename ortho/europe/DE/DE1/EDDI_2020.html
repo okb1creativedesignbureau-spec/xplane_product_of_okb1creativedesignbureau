@@ -154,6 +154,98 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Inline Carousel Styles for 3D Edition */
+        .preview-dropzone {
+            width: 100%;
+            height: 320px;
+            background-color: #080c14;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 15, 25, 0.75);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--accent-color);
+            color: #0b0f19;
+            border-color: var(--accent-color);
+        }
+
+        .carousel-nav-btn.prev { left: 10px; }
+        .carousel-nav-btn.next { right: 10px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 5;
+        }
+
+        .dropzone-text {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 1rem;
+            pointer-events: none;
+            border: 2px dashed rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            width: 85%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 10%;
+            left: 7.5%;
+        }
+
         /* Dummy Button Styling */
         .view-btn {
             display: inline-block;
@@ -361,10 +453,35 @@
             <h3>1. EDDI 2020 Orthophoto Immersive Edition (Free)</h3>
             <p><strong>The Concept:</strong> A comprehensive geospatial overhaul of the airport surroundings, runways, and apron areas reconstructed using precise custom georeferenced raster masks for your built-in default scenery.</p>
             <p><strong>Get It Free:</strong> Download via the Internet Archive Mirror or grab it directly on our Gumroad Store.</p>
+            
+            <p style="margin-top: 1rem; margin-bottom: 2rem;">
+                <a href="https://creativedesigns840.gumroad.com/l/kgstul" target="_blank" rel="noopener" class="btn-action btn-gumroad" style="display: inline-block; width: auto; padding: 0.75rem 1.5rem;">
+                    Download 2D Orthophoto on Gumroad
+                </a>
+            </p>
 
             <h3>2. Premium & Supporter Edition (The Complete 2020 / Cold War Era Experience)</h3>
             <p><strong>The Concept:</strong> The ultimate historical restoration. Surrounding urban areas are populated with custom-modified 3D assets representing real-world layouts — including gabled residential structures, dense forest coverage, localized vehicle parking, legacy Cold War-era navigation data, instrument approaches, and the breathtaking 3D crescent-shaped terminal building.</p>
             <p><strong>Get It on Ko-fi:</strong> Available now on the OKB-1 Ko-fi Page.</p>
+
+            <!-- 3D Edition Carousel Showcase -->
+            <div class="preview-dropzone" id="eddi-3d-dropzone">
+                <button class="carousel-nav-btn prev" id="eddi-3d-prev" style="display: none;">&#10094;</button>
+                <button class="carousel-nav-btn next" id="eddi-3d-next" style="display: none;">&#10095;</button>
+                <div class="carousel-counter" id="eddi-3d-counter" style="display: none;">1 / 1</div>
+                <div class="carousel-track" id="eddi-3d-track">
+                    <!-- Slides injected dynamically via ES module -->
+                </div>
+                <div class="dropzone-text" id="eddi-3d-text">
+                    <span>EDDI 3D Premium Edition</span>Cold War & 2020 Terminal Showcase
+                </div>
+            </div>
+
+            <p style="margin-top: 1rem; margin-bottom: 2rem;">
+                <a href="https://ko-fi.com/s/68affec7e2" target="_blank" rel="noopener" class="btn-action btn-kofi" style="display: inline-block; width: auto; padding: 0.75rem 1.5rem;">
+                    German Lost Airport Early Access on Ko-fi
+                </a>
+            </p>
 
             <h2>Scenery Documentation & Installation Guide</h2>
             <p>To ensure X-Plane 12 loads your restored Tempelhof layout cleanly over default global assets, follow this installation hierarchy:</p>
@@ -414,14 +531,14 @@ SCENERY_PACK Global Scenery/Global Airports/
         </footer>
     </div>
 
-    <!-- Script Import -->
+    <!-- Script 1: Main 2D Orthophoto Asset Gallery Loader -->
     <script type="module">
         import { image_container } from './EDDI_2020_images_data.js';
 
         const gallery = document.getElementById('gallery');
 
         if (image_container && image_container.length > 0) {
-            gallery.innerHTML = ''; // Clear loading indicator
+            gallery.innerHTML = ''; // Clear loading state
 
             image_container.forEach((item, index) => {
                 const card = document.createElement('div');
@@ -444,6 +561,60 @@ SCENERY_PACK Global Scenery/Global Airports/
             });
         } else {
             gallery.innerHTML = '<div id="loading-state">No asset images found in container module.</div>';
+        }
+    </script>
+
+    <!-- Script 2: 3D Edition Carousel Showcase Loader -->
+    <script type="module">
+        import { image_container as eddi3DData } from './EDDI_3D_2020_images_data.js';
+
+        if (eddi3DData && eddi3DData.length > 0) {
+            const track = document.getElementById('eddi-3d-track');
+            const fallbackText = document.getElementById('eddi-3d-text');
+            const prevBtn = document.getElementById('eddi-3d-prev');
+            const nextBtn = document.getElementById('eddi-3d-next');
+            const counter = document.getElementById('eddi-3d-counter');
+
+            if (track) {
+                track.innerHTML = '';
+                if (fallbackText) fallbackText.style.display = 'none';
+
+                eddi3DData.forEach((item, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    const img = document.createElement('img');
+                    img.src = item.url;
+                    img.alt = item.name || `EDDI 3D Preview Asset #${idx + 1}`;
+                    slide.appendChild(img);
+                    track.appendChild(slide);
+                });
+
+                let currentIdx = 0;
+                const total = eddi3DData.length;
+
+                const updateCarousel = () => {
+                    track.style.transform = `translateX(-${currentIdx * 100}%)`;
+                    if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+                };
+
+                if (total > 1 && prevBtn && nextBtn) {
+                    prevBtn.style.display = 'flex';
+                    nextBtn.style.display = 'flex';
+                    if (counter) counter.style.display = 'block';
+
+                    prevBtn.onclick = () => {
+                        currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                        updateCarousel();
+                    };
+
+                    nextBtn.onclick = () => {
+                        currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                        updateCarousel();
+                    };
+                }
+
+                updateCarousel();
+            }
         }
     </script>
 </body>
