@@ -175,4 +175,454 @@
 
         .dropzone-text {
             text-align: center;
-            color:
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 1rem;
+            pointer-events: none;
+            border: 2px dashed rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            width: 85%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: absolute;
+            top: 10%;
+            left: 7.5%;
+        }
+
+        .dropzone-text span {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .product-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-glow);
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-open {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .product-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-body {
+            padding: 2rem;
+        }
+
+        .product-body p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #0b0f19;
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .vision-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .vision-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .vision-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <p class="subtitle">Independent Digital Design Bureau</p>
+        <h1>OKB-1 Creative Design Bureau</h1>
+        <p class="bio">WELCOME TO MY PERSONAL HANGAR</p>
+    </header>
+
+    <main>
+        <h2 class="section-heading">Featured Scenery & Products</h2>
+        
+        <div class="product-grid">
+            <!-- Tier 1: Post-USSR DLC -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="ussr-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="ussr-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="ussr-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="ussr-track"></div>
+                    <img src="" alt="Post USSR airstrips preview" style="display: none;">
+                    <div class="dropzone-text" id="ussr-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">X-Plane 12 DLC</span>
+                    <h2>1. Post-USSR DLC</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Regional aviation infrastructure and remote airfield packages tailored for precision bush and regional operations for post USSR countries.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Features detailed terrain integration, custom layout structures, and localized environmental detailing.</p>
+                    <div class="btn-group">
+                        <a href="./post_ussr_dlc/post_ussr_dlc.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 2: Germany Lost Airport -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="germany-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="germany-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="germany-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="germany-track"></div>
+                    <img src="" alt="Germany Lost Airport Preview" style="display: none;">
+                    <div class="dropzone-text" id="germany-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">X-Plane 12 Scenery</span>
+                    <h2>2. Germany Lost Airport</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Historical and retired German aviation nodes reconstructed from archival layouts and period-accurate specifications.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Includes meticulous tile alignments, custom orthophoto layers, and legacy lighting layouts (such as Tempelhof/corridor expansions).</p>
+                    <div class="btn-group">
+                        <a href="./german_lost_dlc/german_lost_dlc.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 3: Indonesia DLC -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="indonesia-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="indonesia-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="indonesia-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="indonesia-track"></div>
+                    <img src="" alt="Indonesia DLC Preview" style="display: none;">
+                    <div class="dropzone-text" id="indonesia-text">
+                        <span>Drop Scenery Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">X-Plane 12 DLC</span>
+                    <h2>3. Indonesia DLC</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Challenging tropical aerodromes and regional historical hubs across the archipelago.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Engineered for complex visual flight rules, local topography constraints, and authentic terminal layouts.</p>
+                    <div class="btn-group">
+                        <a href="./indonesia_dlc/indonesia_dlc.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 4: WED Developer Plugin -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="pbr-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="pbr-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="pbr-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="pbr-track"></div>
+                    <img src="" alt="WED Developer Plugin Preview" style="display: none;">
+                    <div class="dropzone-text" id="pbr-text">
+                        <span>Drop Plugin Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge">X-Plane WED Developer Plugin</span>
+                    <h2>4. World Editor (WED) Developer Plugin</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Developer plugin for custom material and add-on objects for your creative world (Powered by WED Engine).
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Engineered for complex visuals, local topography constraints, and authentic PBR materials.</p>
+                    <div class="btn-group">
+                        <a href="./WED_DEV_Folder/WED_Dev_Tools.html" class="btn btn-primary">Explore Hangar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 5: Free Orthophotos -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="ortho-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="ortho-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="ortho-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="ortho-track"></div>
+                    <img src="" alt="Free Orthophotos Preview" style="display: none;">
+                    <div class="dropzone-text" id="ortho-text">
+                        <span>Drop Orthophoto Preview Here</span>
+                        Drag & drop screenshot directly onto this box
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-open">Open-Source</span>
+                    <h2>5. Free Orthophotos</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        High-resolution uncompressed GeoTIFF layers and custom orthophoto mirrors provided freely to the community.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Carefully processed geospatial imagery optimized for seamless WorldEditor assembly and realistic simulator rendering.</p>
+                    <div class="btn-group">
+                        <a href="./free_ortho/free_ortho.html" class="btn btn-primary">Download Free Assets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="vision-box">
+            <h2 class="section-heading" style="border: none; padding: 0; margin-bottom: 1rem;">The Vision & Hangar Ethos</h2>
+            <p>
+                OKB-1 is an independent solo-developer design bureau specializing in high-fidelity X-Plane mod products, focusing specifically on custom sceneries and precision orthophotos projects. Every asset is engineered from first-principles based on authentic architectural layouts, historical blueprints, and real-world performance parameters rather than decorative visual meshes.
+            </p>
+            <p>
+                By developing and hosting independently (or me as indie dev working solo... lol...), we maintain total ownership over our work, bypass restrictive platform curation, and deliver direct access to serious flight simulation enthusiasts.
+            </p>
+        </section>
+
+        <!-- Personal Space & Outposts Section -->
+        <h2 class="section-heading">Personal Space & Outposts</h2>
+        <div class="product-grid" style="margin-bottom: 2rem;">
+
+            <!-- About Me Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Personal Space</span>
+                    <h2>About Me</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Engineering background, CAD modeling philosophy, aerospace research, and digital craftsmanship history.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/about_me.html" class="btn btn-secondary">Visit About Me &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Store Page Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Marketplace</span>
+                    <h2>Other Store Pages</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Distribution channels for 3D printing assets, SolidWorks STEP solid bodies, and digital storefronts.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/see-also.html" class="btn btn-secondary">Visit Marketplace &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Blog Card -->
+            <div class="product-card">
+                <div class="product-header">
+                    <span class="badge">Dev Log</span>
+                    <h2>Product Blog Page</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Technical breakdowns, NURBS surface lofting updates, and historical GIS raster reconstruction dev logs.
+                    </p>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/blog.html" class="btn btn-secondary">Read Blog &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    // Automatically keeps the year current
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function handleDrop(ev, dropzone) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items && ev.dataTransfer.items.length > 0) {
+            const item = ev.dataTransfer.items[0];
+            if (item.kind === 'file') {
+                const file = item.getAsFile();
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = dropzone.querySelector('img');
+                    const text = dropzone.querySelector('.dropzone-text');
+                    const track = dropzone.querySelector('.carousel-track');
+                    if (track) track.style.display = 'none';
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    if (text) text.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+</script>
+
+<!-- Dynamic ES Module Roll Script Loader -->
+<script type="module">
+    import { image_container as ussrData } from './ex-ussr_roll.js';
+    import { image_container as germanyData } from './germany_lost_airport.js';
+    import { image_container as indonesiaData } from './indonesia_dlc_roll.js';
+    import { image_container as pbrData } from './PBR_4K_roll.js';
+    import { image_container as orthoData } from './ortho_roll.js';
+
+    function initCarousel(prefix, data) {
+        if (!data || data.length === 0) return;
+
+        const track = document.getElementById(`${prefix}-track`);
+        const fallbackText = document.getElementById(`${prefix}-text`);
+        const prevBtn = document.getElementById(`${prefix}-prev`);
+        const nextBtn = document.getElementById(`${prefix}-next`);
+        const counter = document.getElementById(`${prefix}-counter`);
+
+        if (!track) return;
+
+        track.innerHTML = '';
+        if (fallbackText) fallbackText.style.display = 'none';
+
+        data.forEach((item, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.name || `${prefix.toUpperCase()} Asset ${idx + 1}`;
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+
+        let currentIdx = 0;
+        const total = data.length;
+
+        const update = () => {
+            track.style.transform = `translateX(-${currentIdx * 100}%)`;
+            if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+        };
+
+        if (total > 1 && prevBtn && nextBtn) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            if (counter) counter.style.display = 'block';
+
+            prevBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                update();
+            };
+
+            nextBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                update();
+            };
+        }
+
+        update();
+    }
+
+    initCarousel('ussr', ussrData);
+    initCarousel('germany', germanyData);
+    initCarousel('indonesia', indonesiaData);
+    initCarousel('pbr', pbrData);
+    initCarousel('ortho', orthoData);
+</script>
+
+</body>
+</html>
