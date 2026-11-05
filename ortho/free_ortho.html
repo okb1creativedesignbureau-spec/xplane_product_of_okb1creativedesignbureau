@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free & Open-Source Orthophoto Series | OKB-1 Creative Design Bureau</title>
+    <title>Free Orthophoto Hub | OKB-1 Creative Design Bureau</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -16,417 +16,124 @@
             --border-color: #1e293b;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 900px; margin: 0 auto; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding: 3rem 1rem;
-        }
+        /* Welcome Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 15, 25, 0.85); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 99999; padding: 1rem; }
+        .modal-card { background-color: var(--card-bg); border: 1px solid var(--accent-color); border-radius: 12px; max-width: 540px; width: 100%; padding: 2.5rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+        .modal-card h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .modal-card p.intro { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; }
+        .modal-card .terms-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.95rem; }
+        .modal-card .term-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .modal-card .term-item span { color: var(--accent-color); font-weight: 700; }
+        .btn-modal { background-color: var(--orange-color); color: #0b0f19; border: none; width: 100%; padding: 0.8rem; border-radius: 6px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: opacity 0.2s ease; }
+        .btn-modal:hover { opacity: 0.9; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .back-link { color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
 
-        /* Welcome Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 1rem;
-        }
+        header { text-align: center; margin-bottom: 3.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p.subtitle { color: var(--accent-color); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem; }
+        header p.bio { color: var(--text-secondary); font-size: 0.95rem; max-width: 720px; margin: 0 auto; }
 
-        .modal-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 12px;
-            max-width: 540px;
-            width: 100%;
-            padding: 2.5rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
+        .selection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        
+        .selector-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; text-align: center; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; text-decoration: none; display: block; }
+        .selector-card:hover:not(.disabled) { border-color: var(--accent-color); transform: translateY(-3px); }
+        .selector-card.disabled { opacity: 0.45; cursor: not-allowed; }
+        .selector-card .flag { font-size: 3rem; margin-bottom: 0.75rem; display: block; }
+        .selector-card h3 { font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .selector-card p { font-size: 0.85rem; color: var(--text-secondary); }
 
-        .modal-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
+        .wip-tag { position: absolute; top: 12px; right: 12px; background: rgba(249, 115, 22, 0.15); color: var(--orange-color); font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(249, 115, 22, 0.3); text-transform: uppercase; }
+        .active-tag { position: absolute; top: 12px; right: 12px; background: rgba(34, 197, 94, 0.15); color: #22c55e; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.3); text-transform: uppercase; }
 
-        .modal-card p.intro {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .modal-card .terms-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .modal-card .term-item {
-            display: flex;
-            gap: 0.75rem;
-            align-items: flex-start;
-        }
-
-        .modal-card .term-item span {
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        .btn-modal {
-            background-color: var(--orange-color);
-            color: #0b0f19;
-            border: none;
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .btn-modal:hover {
-            opacity: 0.9;
-        }
-
-        /* Top Action Bar for Export */
-        .action-bar {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .action-bar p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .btn-export {
-            background-color: #22c55e;
-            color: #0b0f19;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .btn-export:hover {
-            opacity: 0.9;
-        }
-
-        .nav-back {
-            margin-bottom: 2rem;
-        }
-
-        .nav-back a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .nav-back a:hover {
-            text-decoration: underline;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        header p.subtitle {
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.75rem;
-        }
-
-        header p.bio {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .section-heading {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            border-left: 3px solid var(--accent-color);
-            padding-left: 0.75rem;
-        }
-
-        .product-grid {
-            display: grid;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .preview-dropzone {
-            width: 100%;
-            height: 280px;
-            background-color: #080c14;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel-track {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(11, 15, 25, 0.75);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(14, 165, 233, 0.8);
-        }
-
-        .carousel-prev { left: 12px; }
-        .carousel-next { right: 12px; }
-
-        .dropzone-text {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            padding: 1rem;
-            pointer-events: none;
-            border: 2px dashed rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            width: 85%;
-            height: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            position: absolute;
-            top: 10%;
-            left: 7.5%;
-            z-index: 1;
-        }
-
-        .dropzone-text span {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        .product-header {
-            padding: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: var(--accent-glow);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            text-transform: uppercase;
-        }
-
-        .badge-free {
-            background-color: rgba(34, 197, 94, 0.15);
-            color: #22c55e;
-            border-color: rgba(34, 197, 94, 0.3);
-        }
-
-        .product-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-body {
-            padding: 2rem;
-        }
-
-        .product-body p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background-color: var(--orange-color);
-            color: #0b0f19;
-            font-weight: 700;
-        }
-
-        .btn-secondary {
-            background-color: var(--accent-color);
-            color: #0b0f19;
-            font-weight: 700;
-        }
-
-        footer {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-        }
+        footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
     </style>
 </head>
 <body>
 
-    <!-- Welcome Modal Banner -->
+    <!-- Terms Modal -->
     <div id="welcomeModal" class="modal-overlay">
         <div class="modal-card">
             <h2>Welcome to OKB-1 Free Ortho Archive</h2>
             <p class="intro">Please review the terms of this open-source release before proceeding:</p>
             <div class="terms-list">
-                <div class="term-item">
-                    <span>1.</span>
-                    <div>All packages are derived entirely from open-source survey and spatial data material.</div>
-                </div>
-                <div class="term-item">
-                    <span>2.</span>
-                    <div>Distributed under a non-commercial use model. Coffee money tips and "Pay as You Want" support are deeply appreciated.</div>
-                </div>
-                <div class="term-item">
-                    <span>3.</span>
-                    <div>Your contributions and tips directly help keep OKB-1 Creative Design Bureau's research and asset pipelines alive.</div>
-                </div>
+                <div class="term-item"><span>1.</span><div>All packages are derived entirely from open-source survey and spatial data material.</div></div>
+                <div class="term-item"><span>2.</span><div>Distributed under a non-commercial use model. Coffee money tips and "Pay as You Want" support are deeply appreciated.</div></div>
+                <div class="term-item"><span>3.</span><div>Your contributions and tips directly help keep OKB-1 Creative Design Bureau's research and asset pipelines alive.</div></div>
             </div>
             <button class="btn-modal" onclick="closeModal()">I Understand & Accept</button>
         </div>
     </div>
 
 <div class="container">
-    <div class="action-bar">
-        <p>💡 Drag & drop screenshots onto any card below, then click export.</p>
-        <button class="btn-export" onclick="exportHTML()">Export Updated HTML</button>
-    </div>
-
-    <div class="nav-back">
-        <a href="../index.html">&larr; Back to Main Hangar</a>
+    <div class="nav-header">
+        <a href="../index.html" class="back-link">&larr; Back to Main Hangar</a>
     </div>
 
     <header>
-        <p class="subtitle">OKB-1 Open-Source Series</p>
-        <h1>Free & Open-Source Orthophoto Packs</h1>
-        <p class="bio">
-            Archival orthophotography and aerodrome packages curated for non-commercial flight simulation use. Pay as you want or drop a tip for coffee!
-        </p>
+        <p class="subtitle">OKB-1 Open-Source Hub</p>
+        <h1>Select Region / Continent</h1>
+        <p class="bio">Browse open-source archival orthophotography coverage by global region.</p>
     </header>
 
     <main>
-        <h2 class="section-heading">Orthophoto Packages</h2>
-        <div class="product-grid">
+        <div class="selection-grid">
+            <a href="europe_ortho.html" class="selector-card">
+                <span class="active-tag">Active</span>
+                <span class="flag">🇪🇺</span>
+                <h3>Europe (EU)</h3>
+                <p>Available Coverage</p>
+            </a>
+            <div class="selector-card disabled">
+                <span class="wip-tag">WIP</span>
+                <span class="flag">🌏</span>
+                <h3>Asia</h3>
+                <p>In Planning</p>
+            </div>
+            <div class="selector-card disabled">
+                <span class="wip-tag">WIP</span>
+                <span class="flag">🌎</span>
+                <h3>North America</h3>
+                <p>In Planning</p>
+            </div>
+            <div class="selector-card disabled">
+                <span class="wip-tag">WIP</span>
+                <span class="flag">💃</span>
+                <h3>South America</h3>
+                <p>In Planning</p>
+            </div>
+            <div class="selector-card disabled">
+                <span class="wip-tag">WIP</span>
+                <span class="flag">🌍</span>
+                <h3>Africa</h3>
+                <p>In Planning</p>
+            </div>
+            <div class="selector-card disabled">
+                <span class="wip-tag">WIP</span>
+                <span class="flag">🦘</span>
+                <h3>Oceania</h3>
+                <p>In Planning</p>
+            </div>
+        </div>
+    </main>
 
-            <!-- Pack 1 -->
-            <div class="product-card" id="card-1">
-                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-btn carousel-prev" onclick="moveSlide('card-1', -1)">&lt;</button>
-                    <button class="carousel-btn carousel-next" onclick="moveSlide('card-1', 1)">&gt;</button>
-                    <div class="carousel-track">
-                        <div class="carousel-slide">
-                            <img src="images/eddt_preview1.jpg" alt="EDDT Preview" onerror="this.parentElement.style.display='none'">
-                        </div>
-                    </div>
-                    <div class="dropzone-text">
-                        <span>Drop Asset Screenshots Here</span>
-                        Drag & drop multiple screenshots directly onto this box
-                    </div>
-                </div>
-                <div class="product-header">
-                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
-                    <h2>1. EDDT 2019 Orthophoto Version (3D Airport)</h2>
-                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                        Detailed 3D airport reconstruction utilizing 2019 survey orthophotography.
-                    </p>
-                </div>
-                <div class
+    <footer>
+        <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    function closeModal() {
+        document.getElementById('welcomeModal').style.display = 'none';
+    }
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
