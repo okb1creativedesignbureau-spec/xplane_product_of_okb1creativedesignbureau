@@ -20,7 +20,7 @@
             --text-secondary: #94a3b8;
             --border-color: #1e293b;
             --red-color: #dc2626;     /* Crimson / Bold Red */
-            --white-color: #ffffff;
+            --white-color: #ffffff;   /* Pure White */
         }
 
         * {
@@ -271,15 +271,15 @@
             transition: opacity 0.2s ease;
         }
 
+        .btn:hover {
+            opacity: 0.9;
+        }
+
         /* Primary action buttons in Orange */
         .btn-primary {
             background-color: var(--orange-color);
             color: #0b0f19;
             font-weight: 700;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
         }
 
         /* Secondary / More Info buttons in Laminar's Blue */
@@ -289,26 +289,18 @@
             font-weight: 700;
         }
 
-        /* Indo / Trakteer buttons in Crimson Red */
+        /* Trakteer Button in Crimson Red */
         .btn-merah {
-            background-color: var(--accent-color);
-            color: #dc2626;
-            font-weight: 700;
-        }
-
-        .btn-secondary:hover {
-            opacity: 0.9;
-        }
-
-        /* Indo / More Info buttons in white */
-        .btn-putih {
-            background-color: var(--accent-color);
+            background-color: var(--red-color);
             color: #ffffff;
             font-weight: 700;
         }
 
-        .btn-secondary:hover {
-            opacity: 0.9;
+        /* Info Lanjutan ID Button in White */
+        .btn-putih {
+            background-color: var(--white-color);
+            color: #0b0f19;
+            font-weight: 700;
         }
 
         footer {
@@ -494,4 +486,3 @@
 
 </body>
 </html>
-
