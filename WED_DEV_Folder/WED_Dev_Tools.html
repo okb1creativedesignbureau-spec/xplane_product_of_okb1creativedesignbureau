@@ -149,25 +149,75 @@
             border-color: rgba(14, 165, 233, 0.4);
         }
 
-        /* Drag & Drop Preview Zone */
+        /* Carousel / Dropzone Area */
         .preview-dropzone {
             width: 100%;
-            height: 260px;
+            height: 320px;
             background-color: #080c14;
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        .preview-dropzone img {
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
+        }
+
+        /* Overlay Carousel Controls */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 15, 25, 0.75);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(14, 165, 233, 0.8);
+            border-color: var(--accent-color);
+        }
+
+        .carousel-prev { left: 12px; }
+        .carousel-next { right: 12px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 10;
         }
 
         .dropzone-text {
@@ -185,6 +235,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            position: absolute;
+            top: 10%;
+            left: 7.5%;
+            z-index: 1;
         }
 
         .dropzone-text span {
@@ -305,13 +359,18 @@
         <h2 class="section-heading">Available Developer Tools</h2>
         
         <div class="product-grid">
-            <!-- Product 1: PBR Polygons for ground material -->
-            <div class="product-card">
+            <!-- Product 1: PBR Polygons for ground material (With Roll Carousel) -->
+            <div class="product-card" id="card-1">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="PBR Polygons for ground material preview">
-                    <div class="dropzone-text">
-                        <span>loading images</span>
-                        loading images
+                    <button class="carousel-btn carousel-prev" id="pbr-prev" style="display: none;">&lt;</button>
+                    <button class="carousel-btn carousel-next" id="pbr-next" style="display: none;">&gt;</button>
+                    <div class="carousel-counter" id="pbr-counter" style="display: none;">1 / 1</div>
+                    
+                    <div class="carousel-track" id="pbr-track"></div>
+
+                    <div class="dropzone-text" id="pbr-text">
+                        <span>Drop Asset Screenshots Here</span>
+                        Drag & drop multiple screenshots directly onto this box
                     </div>
                 </div>
                 <div class="product-header">
@@ -331,12 +390,11 @@
             </div>
 
             <!-- Product 2: Free Demo Version -->
-            <div class="product-card">
+            <div class="product-card" id="card-2">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="Free Demo Version Preview">
                     <div class="dropzone-text">
                         <span>Drop Demo Preview Here</span>
-                        loading images
+                        Evaluation assets package
                     </div>
                 </div>
                 <div class="product-header">
@@ -355,12 +413,11 @@
             </div>
 
             <!-- Product 3: 3D Static Objects -->
-            <div class="product-card">
+            <div class="product-card" id="card-3">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <img src="" alt="3D Static Objects Preview">
                     <div class="dropzone-text">
                         <span>Drop 3D Static Objects Preview Here</span>
-                        loading images
+                        Static asset library
                     </div>
                 </div>
                 <div class="product-header">
@@ -392,20 +449,25 @@
 
     function handleDrop(ev, dropzone) {
         ev.preventDefault();
-        if (ev.dataTransfer.items && ev.dataTransfer.items.length > 0) {
-            const item = ev.dataTransfer.items[0];
-            if (item.kind === 'file') {
-                const file = item.getAsFile();
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = dropzone.querySelector('img');
-                    const text = dropzone.querySelector('.dropzone-text');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    text.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
+        const track = dropzone.querySelector('.carousel-track');
+        const text = dropzone.querySelector('.dropzone-text');
+
+        if (ev.dataTransfer.files && ev.dataTransfer.files.length > 0) {
+            if (track) track.innerHTML = '';
+            if (text) text.style.display = 'none';
+
+            Array.from(ev.dataTransfer.files).forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const slide = document.createElement('div');
+                        slide.className = 'carousel-slide';
+                        slide.innerHTML = `<img src="${e.target.result}" alt="Dropped Preview">`;
+                        if (track) track.appendChild(slide);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
         }
     }
 
@@ -421,14 +483,70 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'PBR_Poly.html';
+        a.download = 'WED_Dev_Tools.html';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    }
 
-        // Automatically keeps the year current
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    // Automatically keeps the year current
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- ES Module Roll Loader for PBR 4K Polygons -->
+<script type="module">
+    import { image_container as pbrData } from './PBR_4K_roll.js';
+
+    if (pbrData && pbrData.length > 0) {
+        const track = document.getElementById('pbr-track');
+        const fallbackText = document.getElementById('pbr-text');
+        const prevBtn = document.getElementById('pbr-prev');
+        const nextBtn = document.getElementById('pbr-next');
+        const counter = document.getElementById('pbr-counter');
+
+        if (track) {
+            track.innerHTML = '';
+            if (fallbackText) fallbackText.style.display = 'none';
+
+            pbrData.forEach((item, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = item.url;
+                img.alt = item.name || `PBR Asset #${idx + 1}`;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            let currentIdx = 0;
+            const total = pbrData.length;
+
+            const updateCarousel = () => {
+                track.style.transform = `translateX(-${currentIdx * 100}%)`;
+                if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+            };
+
+            if (total > 1 && prevBtn && nextBtn) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                if (counter) counter.style.display = 'block';
+
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                    updateCarousel();
+                };
+
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                    updateCarousel();
+                };
+            }
+
+            updateCarousel();
+        }
     }
 </script>
 
