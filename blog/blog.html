@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Blog | OKB-1 Creative Design Bureau</title>
-    <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>
+    <title>Engineering Blog Directory | OKB-1 Creative Design Bureau</title>
     
-    <!-- Central SEO Loader (1 level up to root) -->
-    
+    <!-- Central SEO Loader -->
+    <script type="module" src="../seo-config.js"></script>
 
     <style>
         :root {
@@ -18,7 +17,6 @@
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: #1e293b;
-            --badge-bg: #f59e0b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +46,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 2rem;
         }
@@ -62,113 +60,50 @@
             letter-spacing: 2px;
         }
 
-        /* 5 Core Minimalist Folder Grid */
-        .folder-grid {
+        /* Modern Minimalist Product Folder Grid */
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
         }
 
-        .folder-btn {
+        .category-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 1rem 0.75rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
+            border-radius: 10px;
+            padding: 1.75rem;
+            text-decoration: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
+            justify-content: space-between;
             transition: all 0.2s ease;
         }
 
-        .folder-btn span.icon { font-size: 1.3rem; }
-
-        .folder-btn.active, .folder-btn:hover {
+        .category-card:hover {
             border-color: var(--accent-color);
-            color: var(--text-primary);
-            background-color: var(--accent-glow);
-            box-shadow: 0 0 12px var(--accent-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px var(--accent-glow);
         }
 
-        /* Selected Category Header Banner */
-        .category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+        .category-card h2 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
 
-        .category-header h3 { font-size: 1.1rem; color: var(--accent-color); }
-        .folder-direct-link {
-            color: var(--text-primary);
-            background-color: rgba(14, 165, 233, 0.2);
-            border: 1px solid var(--accent-color);
-            padding: 0.4rem 0.85rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-        }
-        .folder-direct-link:hover { background-color: var(--accent-color); color: #0b0f19; }
-
-        .blog-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        
-        .blog-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.75rem 2rem;
-            position: relative;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .blog-card:hover { 
-            border-color: rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        .post-meta { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .post-title { font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.3; }
-        .post-snippet { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; }
-
-        .read-more-btn {
-            background-color: transparent;
+        .card-action {
             color: var(--accent-color);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            padding: 0.45rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
             font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        .read-more-btn:hover { background-color: var(--accent-color); color: #0b0f19; }
-
-        #readerView {
-            display: none;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 3rem 2.5rem;
-        }
-
-        #readerTitle { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text-primary); }
-        #readerMeta { font-size: 0.9rem; color: var(--accent-color); margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
-        #readerBody { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; }
-        #readerBody p { margin-bottom: 1.25rem; }
-        #readerBody img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; border: 1px solid var(--border-color); }
 
         footer { 
             text-align: center; 
@@ -187,50 +122,54 @@
         <a href="../index.html" class="back-link">&larr; Back to Hangar</a>
     </div>
 
-    <header id="pageHeader">
+    <header>
         <p class="subtitle">OKB-1 Creative Design Bureau</p>
-        <h1>Engineering & Research Log</h1>
+        <h1>Engineering & Research Archives</h1>
     </header>
 
     <main>
-        <div id="feedView">
-            <!-- 5 Core Product Folder Buttons (No Redundant "All" Button) -->
-            <div class="folder-grid">
-                <button class="folder-btn active" onclick="selectFolder('Ex-USSR Airport')">
-                    <span class="icon">📁</span> Ex-USSR Airport
-                </button>
-                <button class="folder-btn" onclick="selectFolder('Germany Lost Airport')">
-                    <span class="icon">📁</span> Germany Lost Airport
-                </button>
-                <button class="folder-btn" onclick="selectFolder('Indonesia DLC')">
-                    <span class="icon">📁</span> Indonesia DLC
-                </button>
-                <button class="folder-btn" onclick="selectFolder('WED Dev Tools')">
-                    <span class="icon">📁</span> WED Dev Tools
-                </button>
-                <button class="folder-btn" onclick="selectFolder('Orthophoto')">
-                    <span class="icon">🌍</span> Free Orthophotos
-                </button>
-            </div>
+        <div class="category-grid">
+            
+            <a href="../post_ussr/index.html" class="category-card">
+                <div>
+                    <h2>Ex-USSR Airport</h2>
+                    <p>Explore historical reconstruction logs across Belarus, Vladivostok, and Knevichi airspace assets.</p>
+                </div>
+                <span class="card-action">Browse Archive &rarr;</span>
+            </a>
 
-            <!-- Selected Category Info Header -->
-            <div class="category-header">
-                <h3 id="currentCategoryTitle">Displaying: Ex-USSR Airport</h3>
-                <a id="folderDirectLink" href="../post_ussr/index.html" class="folder-direct-link">📁 Open Product Directory &rarr;</a>
-            </div>
+            <a href="../german_lost_airport/index.html" class="category-card">
+                <div>
+                    <h2>Germany Lost Airport</h2>
+                    <p>Deep-dive CAD documentation on Berlin Tempelhof, Tegel, Johannisthal, and lost Weimar aviation hubs.</p>
+                </div>
+                <span class="card-action">Browse Archive &rarr;</span>
+            </a>
 
-            <div id="blog-container" class="blog-list">
-                <p style="color: var(--text-secondary); text-align: center;">Loading engineering archives...</p>
-            </div>
-        </div>
+            <a href="../indonesia_dlc/index.html" class="category-card">
+                <div>
+                    <h2>Indonesia DLC</h2>
+                    <p>Project Jabodetabek, Lanud Rumpin, Nusantara spatial shifts, and historic Kemayoran infrastructure.</p>
+                </div>
+                <span class="card-action">Browse Archive &rarr;</span>
+            </a>
 
-        <!-- Reader View for Full Articles -->
-        <div id="readerView">
-            <div id="readerMeta"></div>
-            <h1 id="readerTitle"></h1>
-            <div id="readerBody"></div>
-            <br>
-            <button class="read-more-btn" onclick="closeReader()">&larr; Back to category logs</button>
+            <a href="../wed_dev_tools/index.html" class="category-card">
+                <div>
+                    <h2>WED Dev Tools</h2>
+                    <p>Advanced bare-metal PBR ground polygon pipelines and X-Plane 12 scenery engineering toolchains.</p>
+                </div>
+                <span class="card-action">Browse Archive &rarr;</span>
+            </a>
+
+            <a href="../free_orthophotos/index.html" class="category-card">
+                <div>
+                    <h2>Free Orthophotos</h2>
+                    <p>Georeferenced raster tiles, Pacific frontier heliport layouts, and high-resolution spatial datasets.</p>
+                </div>
+                <span class="card-action">Browse Archive &rarr;</span>
+            </a>
+
         </div>
     </main>
 
@@ -239,106 +178,8 @@
     </footer>
 </div>
 
-<!-- Load Hardcoded .js files exported from Python -->
-<script src="../post_ussr/posts.js"></script>
-<script src="../german_lost_airport/posts.js"></script>
-<script src="../indonesia_dlc/posts.js"></script>
-<script src="../wed_dev_tools/posts.js"></script>
-<script src="../free_orthophotos/posts.js"></script>
-
 <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-    // Correct relative paths to each folder's index.html
-    const folderPathMap = {
-        "Ex-USSR Airport": "../post_ussr/index.html",
-        "Germany Lost Airport": "../german_lost_airport/index.html",
-        "Indonesia DLC": "../indonesia_dlc/index.html",
-        "WED Dev Tools": "../wed_dev_tools/index.html",
-        "Orthophoto": "../free_orthophotos/index.html"
-    };
-
-    let activeFolder = 'Ex-USSR Airport';
-
-    function getAllPosts() {
-        return [
-            ...(window.POST_USSR_POSTS || []),
-            ...(window.GERMANY_LOST_AIRPORT_POSTS || []),
-            ...(window.INDONESIA_DLC_POSTS || []),
-            ...(window.WED_DEV_TOOLS_POSTS || []),
-            ...(window.FREE_ORTHOPHOTOS_POSTS || [])
-        ];
-    }
-
-    function selectFolder(folderName) {
-        activeFolder = folderName;
-        
-        // Update active UI state for the 5 buttons
-        document.querySelectorAll('.folder-btn').forEach(btn => {
-            const isMatch = btn.textContent.includes(folderName) || (folderName === 'Orthophoto' && btn.textContent.includes('Free Orthophotos'));
-            btn.classList.toggle('active', isMatch);
-        });
-
-        document.getElementById('currentCategoryTitle').textContent = `Displaying: ${folderName}`;
-        document.getElementById('folderDirectLink').href = folderPathMap[folderName] || '../index.html';
-
-        renderPosts();
-    }
-
-    function renderPosts() {
-        const container = document.getElementById('blog-container');
-        const posts = getAllPosts();
-        
-        // Exact category matching
-        const filteredPosts = posts.filter(p => p.category === activeFolder || (activeFolder === 'Ex-USSR Airport' && p.category === 'Post-USSR DLC'));
-        
-        container.innerHTML = '';
-        if (filteredPosts.length === 0) {
-            container.innerHTML = `<p style="color: var(--text-secondary); text-align: center;">No engineering logs found in the "${activeFolder}" folder archive.</p>`;
-            return;
-        }
-
-        filteredPosts.forEach((post) => {
-            const actualIndex = posts.indexOf(post);
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = post.content;
-            const snippetText = tempDiv.textContent.slice(0, 140) + '...';
-
-            const card = document.createElement('div');
-            card.className = 'blog-card';
-            card.innerHTML = `
-                <div class="post-meta">📅 ${post.date} &bull; <span style="color: var(--accent-color);">📁 ${post.category || 'General'}</span></div>
-                <h2 class="post-title">${post.title}</h2>
-                <div class="post-snippet">${snippetText}</div>
-                <button class="read-more-btn" onclick="openPost(${actualIndex})">Read Log &rarr;</button>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function openPost(index) {
-        const posts = getAllPosts();
-        const post = posts[index];
-
-        document.getElementById('readerTitle').textContent = post.title;
-        document.getElementById('readerMeta').innerHTML = `📅 ${post.date} &bull; <span>📁 ${post.category || 'General'}</span>`;
-        document.getElementById('readerBody').innerHTML = post.content;
-
-        document.getElementById('feedView').style.display = 'none';
-        document.getElementById('pageHeader').style.display = 'none';
-        document.getElementById('readerView').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-
-    function closeReader() {
-        document.getElementById('readerView').style.display = 'none';
-        document.getElementById('feedView').style.display = 'block';
-        document.getElementById('pageHeader').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-
-    // Default load to first category
-    renderPosts();
 </script>
 
 </body>
