@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Blog | OKB-1 Creative Design Bureau</title>
     
-    <!-- Central SEO & Favicon Auto-Loader (1 level up to repository root) -->
+    <!-- Central SEO & Favicon Loader (1 level up to root) -->
     <script type="module" src="../seo-config.js"></script>
 
     <style>
@@ -30,7 +30,7 @@
             padding: 3rem 1rem;
         }
 
-        .container { max-width: 780px; margin: 0 auto; }
+        .container { max-width: 820px; margin: 0 auto; }
 
         .top-nav {
             display: flex;
@@ -45,20 +45,9 @@
             font-weight: 600;
         }
 
-        .btn-admin {
-            background-color: var(--badge-bg);
-            color: #0b0f19;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 2rem;
         }
@@ -72,74 +61,69 @@
             letter-spacing: 2px;
         }
 
-        /* Product Pillar Filter Tabs */
-        .category-filters {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+        /* 5 Main Product Folder Navigation Grid */
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
         }
 
-        .filter-btn {
+        .folder-btn {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.82rem;
+            padding: 0.85rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
             transition: all 0.2s ease;
         }
 
-        .filter-btn.active, .filter-btn:hover {
+        .folder-btn span.icon { font-size: 1.2rem; }
+
+        .folder-btn.active, .folder-btn:hover {
             border-color: var(--accent-color);
             color: var(--text-primary);
             background-color: var(--accent-glow);
+            box-shadow: 0 0 12px var(--accent-glow);
         }
 
-        /* Admin Publisher Modal */
-        .editor-modal {
-            display: none;
+        /* Selected Category Header Banner */
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background-color: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
-        .form-control {
-            width: 100%;
-            background-color: var(--bg-color);
             border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-header h3 { font-size: 1.1rem; color: var(--accent-color); }
+        .folder-direct-link {
             color: var(--text-primary);
-            padding: 0.75rem;
+            background-color: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--accent-color);
+            padding: 0.4rem 0.85rem;
             border-radius: 6px;
-            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
         }
-        select.form-control { cursor: pointer; }
-        textarea.form-control { resize: vertical; min-height: 140px; }
-
-        .editor-dropzone {
-            border: 2px dashed rgba(14, 165, 233, 0.4);
-            background-color: #080c14;
-            padding: 1.25rem;
-            text-align: center;
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
-        .btn { padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; }
-        .btn-primary { background-color: var(--accent-color); color: #0b0f19; font-weight: 700; }
-        .btn-secondary { background-color: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); }
+        .folder-direct-link:hover { background-color: var(--accent-color); color: #0b0f19; }
 
         /* Blog Feed Cards */
         .blog-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        
         .blog-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -148,7 +132,11 @@
             position: relative;
             transition: border-color 0.2s ease, transform 0.2s ease;
         }
-        .blog-card:hover { border-color: rgba(14, 165, 233, 0.4); transform: translateY(-2px); }
+
+        .blog-card:hover { 
+            border-color: rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
 
         .new-badge {
             position: absolute;
@@ -172,12 +160,14 @@
             background-color: transparent;
             color: var(--accent-color);
             border: 1px solid rgba(14, 165, 233, 0.3);
-            padding: 0.4rem 0.9rem;
+            padding: 0.45rem 1rem;
             border-radius: 6px;
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
+
         .read-more-btn:hover { background-color: var(--accent-color); color: #0b0f19; }
 
         /* Reader View */
@@ -188,13 +178,21 @@
             border-radius: 10px;
             padding: 3rem 2.5rem;
         }
+
         #readerTitle { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text-primary); }
         #readerMeta { font-size: 0.9rem; color: var(--accent-color); margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
         #readerBody { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; }
         #readerBody p { margin-bottom: 1.25rem; }
         #readerBody img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; border: 1px solid var(--border-color); }
 
-        footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 4rem; }
+        footer { 
+            text-align: center; 
+            color: var(--text-secondary); 
+            font-size: 0.85rem; 
+            border-top: 1px solid var(--border-color); 
+            padding-top: 2rem; 
+            margin-top: 4rem; 
+        }
     </style>
 </head>
 <body>
@@ -202,43 +200,6 @@
 <div class="container">
     <div class="top-nav">
         <a href="../index.html" class="back-link">&larr; Back to Hangar</a>
-        <button class="btn-admin" onclick="toggleEditor()">+ New Blog Log</button>
-    </div>
-
-    <!-- Admin Publisher Modal -->
-    <div id="editorModal" class="editor-modal">
-        <h3>Publish Technical Log Entry</h3>
-        <div class="form-group">
-            <label>Post Title</label>
-            <input type="text" id="postTitle" class="form-control" placeholder="e.g., Reconstructing Berlin Tempelhof EDDT Runway Alignment...">
-        </div>
-        <div class="form-group">
-            <label>Product Category</label>
-            <select id="postCategory" class="form-control">
-                <option value="Post-USSR DLC">Post-USSR DLC</option>
-                <option value="Germany Lost Airport">Germany Lost Airport</option>
-                <option value="Indonesia DLC">Indonesia DLC</option>
-                <option value="WED Developer Plugin">WED Developer Plugin</option>
-                <option value="Free Orthophotos">Free Orthophotos</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label>Insert Image / Ortho Preview</label>
-            <div class="editor-dropzone" ondragover="event.preventDefault()" ondrop="handleImageDrop(event)" onclick="document.getElementById('imageFilePicker').click()">
-                📷 <strong>Drop screenshot/ortho layer here</strong> or click to upload
-            </div>
-            <input type="file" id="imageFilePicker" accept="image/*" style="display: none;" onchange="handleImagePick(this)">
-        </div>
-
-        <div class="form-group">
-            <label>Full Content (HTML supported)</label>
-            <textarea id="postContent" class="form-control" placeholder="Write your technical notes here... use <p> tags."></textarea>
-        </div>
-        <div class="form-actions">
-            <button class="btn btn-primary" onclick="publishPost()">Publish Live & Notify</button>
-            <button class="btn btn-secondary" onclick="toggleEditor()">Cancel</button>
-        </div>
     </div>
 
     <header id="pageHeader">
@@ -248,28 +209,46 @@
 
     <main>
         <div id="feedView">
-            <!-- Filter Tabs for Top 5 Products -->
-            <div id="categoryFilters" class="category-filters">
-                <button class="filter-btn active" onclick="setFilter('All')">All Logs</button>
-                <button class="filter-btn" onclick="setFilter('Post-USSR DLC')">Post-USSR DLC</button>
-                <button class="filter-btn" onclick="setFilter('Germany Lost Airport')">Germany Lost Airport</button>
-                <button class="filter-btn" onclick="setFilter('Indonesia DLC')">Indonesia DLC</button>
-                <button class="filter-btn" onclick="setFilter('WED Developer Plugin')">WED Developer Plugin</button>
-                <button class="filter-btn" onclick="setFilter('Free Orthophotos')">Free Orthophotos</button>
+            <!-- 5 Core Product Folder Buttons -->
+            <div class="folder-grid">
+                <button class="folder-btn active" onclick="selectFolder('All')">
+                    <span class="icon">📂</span> All Archives
+                </button>
+                <button class="folder-btn" onclick="selectFolder('Ex-USSR Airport')">
+                    <span class="icon">📁</span> Ex-USSR Airport
+                </button>
+                <button class="folder-btn" onclick="selectFolder('Germany Lost Airport')">
+                    <span class="icon">📁</span> Germany Lost Airport
+                </button>
+                <button class="folder-btn" onclick="selectFolder('Indonesia DLC')">
+                    <span class="icon">📁</span> Indonesia DLC
+                </button>
+                <button class="folder-btn" onclick="selectFolder('WED Dev Tools')">
+                    <span class="icon">📁</span> WED Dev Tools
+                </button>
+                <button class="folder-btn" onclick="selectFolder('Orthophoto')">
+                    <span class="icon">🌍</span> Free Orthophotos
+                </button>
+            </div>
+
+            <!-- Selected Category Info Header -->
+            <div class="category-header">
+                <h3 id="currentCategoryTitle">Displaying: All Archives</h3>
+                <a id="folderDirectLink" href="../index.html" class="folder-direct-link">📁 Open Product Directory &rarr;</a>
             </div>
 
             <div id="blog-container" class="blog-list">
-                <p style="color: var(--text-secondary); text-align: center;">Loading logs...</p>
+                <p style="color: var(--text-secondary); text-align: center;">Loading engineering archives...</p>
             </div>
         </div>
 
-        <!-- Full Article Reader View -->
+        <!-- Reader View for Full Articles -->
         <div id="readerView">
             <div id="readerMeta"></div>
             <h1 id="readerTitle"></h1>
             <div id="readerBody"></div>
             <br>
-            <button class="btn btn-secondary" onclick="closeReader()">&larr; Back to all logs</button>
+            <button class="read-more-btn" onclick="closeReader()">&larr; Back to all logs</button>
         </div>
     </main>
 
@@ -278,53 +257,67 @@
     </footer>
 </div>
 
+<!-- Load Hardcoded .js exported from Python -->
+<script src="../post_ussr/posts.js"></script>
+<script src="../german_lost_airport/posts.js"></script>
+<script src="../indonesia_dlc/posts.js"></script>
+<script src="../wed_dev_tools/posts.js"></script>
+<script src="../free_orthophotos/posts.js"></script>
+
 <script>
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-    // Default Seed Posts matching your 5 core product lines
-    const defaultPosts = [
-        {
-            title: "Reconstructing Berlin Tempelhof in 1:500 Scale",
-            date: "November 4, 2026",
-            category: "Germany Lost Airport",
-            content: "<p>Using survey layers from GeoBasis Brandenburg (2019–2021), we mapped historical orthophoto rasters to match precise architectural blueprints...</p><p>Every NURBS surface loft was optimized for X-Plane 12 rendering pipelines without sacrificing geometric fidelity, ensuring seamless runway integration and authentic lighting layouts.</p>"
-        },
-        {
-            title: "Primorsky Krai Orthophoto Pipeline & Terrain Stitching",
-            date: "November 5, 2026",
-            category: "Post-USSR DLC",
-            content: "<p>Harvesting and patching georeferenced raster tiles from public WMS map servers to generate high-resolution historical scenery expansions...</p><p>Channel inversion methods applied via Python imaging libraries to map modern normal map textures into legacy X-Plane NML coordinate spaces seamlessly.</p>"
-        }
-    ];
+    // Map 5 folder buttons directly to your repository folder paths
+    const folderPathMap = {
+        "All": "../index.html",
+        "Ex-USSR Airport": "../post_ussr/index.html",
+        "Germany Lost Airport": "../german_lost_airport/index.html",
+        "Indonesia DLC": "../indonesia_dlc/index.html",
+        "WED Dev Tools": "../wed_dev_tools/index.html",
+        "Orthophoto": "../free_orthophotos/index.html"
+    };
 
-    let currentFilter = 'All';
+    let activeFolder = 'All';
 
-    function getStoredPosts() {
-        const stored = localStorage.getItem('okb1_blog_posts');
-        if (!stored) {
-            localStorage.setItem('okb1_blog_posts', JSON.stringify(defaultPosts));
-            return defaultPosts;
-        }
-        return JSON.parse(stored);
+    // Harvest posts from all exported JavaScript files
+    function getAllPosts() {
+        return [
+            ...(window.POST_USSR_POSTS || []),
+            ...(window.GERMANY_LOST_AIRPORT_POSTS || []),
+            ...(window.INDONESIA_DLC_POSTS || []),
+            ...(window.WED_DEV_TOOLS_POSTS || []),
+            ...(window.FREE_ORTHOPHOTOS_POSTS || [])
+        ];
     }
 
-    function setFilter(category) {
-        currentFilter = category;
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.textContent.trim() === (category === 'All' ? 'All Logs' : category));
+    function selectFolder(folderName) {
+        activeFolder = folderName;
+        
+        // Update button visual state
+        document.querySelectorAll('.folder-btn').forEach(btn => {
+            const isMatch = btn.textContent.includes(folderName) || (folderName === 'Orthophoto' && btn.textContent.includes('Free Orthophotos')) || (folderName === 'All' && btn.textContent.includes('All Archives'));
+            btn.classList.toggle('active', isMatch);
         });
+
+        // Update banner text & direct folder link target
+        document.getElementById('currentCategoryTitle').textContent = `Displaying: ${folderName === 'All' ? 'All Archives' : folderName}`;
+        document.getElementById('folderDirectLink').href = folderPathMap[folderName] || '../index.html';
+
         renderPosts();
     }
 
     function renderPosts() {
         const container = document.getElementById('blog-container');
-        const posts = getStoredPosts();
+        const posts = getAllPosts();
         
-        const filteredPosts = currentFilter === 'All' ? posts : posts.filter(p => p.category === currentFilter);
+        // Filter by folder category
+        const filteredPosts = activeFolder === 'All' 
+            ? posts 
+            : posts.filter(p => p.category === activeFolder || (activeFolder === 'Ex-USSR Airport' && p.category === 'Post-USSR DLC'));
         
         container.innerHTML = '';
         if (filteredPosts.length === 0) {
-            container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No engineering logs found in this product category.</p>';
+            container.innerHTML = `<p style="color: var(--text-secondary); text-align: center;">No engineering logs found in the "${activeFolder}" folder archive.</p>`;
             return;
         }
 
@@ -334,15 +327,14 @@
             tempDiv.innerHTML = post.content;
             const snippetText = tempDiv.textContent.slice(0, 140) + '...';
 
-            // Show "New Log" badge if published within 3 days
             const postDate = new Date(post.date);
-            const isNew = !isNaN(postDate) && (new Date() - postDate) / (1000 * 60 * 60 * 24) < 3;
+            const isNew = !isNaN(postDate) && (new Date() - postDate) / (1000 * 60 * 60 * 24) < 5;
 
             const card = document.createElement('div');
             card.className = 'blog-card';
             card.innerHTML = `
                 ${isNew ? '<span class="new-badge">New Log</span>' : ''}
-                <div class="post-meta">📅 ${post.date} &bull; <span style="color: var(--accent-color);">📦 ${post.category || 'General'}</span></div>
+                <div class="post-meta">📅 ${post.date} &bull; <span style="color: var(--accent-color);">📁 ${post.category || 'General'}</span></div>
                 <h2 class="post-title">${post.title}</h2>
                 <div class="post-snippet">${snippetText}</div>
                 <button class="read-more-btn" onclick="openPost(${actualIndex})">Read Log &rarr;</button>
@@ -351,35 +343,12 @@
         });
     }
 
-    function insertImageTag(base64Data) {
-        const textarea = document.getElementById('postContent');
-        const imgTag = `<img src="${base64Data}" alt="Ortho/Scenery Preview">`;
-        const start = textarea.selectionStart;
-        textarea.value = textarea.value.substring(0, start) + imgTag + textarea.value.substring(textarea.selectionEnd);
-        textarea.focus();
-    }
-
-    function handleImageDrop(ev) {
-        ev.preventDefault();
-        if (ev.dataTransfer.files?.[0]) processImageFile(ev.dataTransfer.files[0]);
-    }
-
-    function handleImagePick(input) {
-        if (input.files?.[0]) processImageFile(input.files[0]);
-    }
-
-    function processImageFile(file) {
-        const reader = new FileReader();
-        reader.onload = (e) => insertImageTag(e.target.result);
-        reader.readAsDataURL(file);
-    }
-
     function openPost(index) {
-        const posts = getStoredPosts();
+        const posts = getAllPosts();
         const post = posts[index];
 
         document.getElementById('readerTitle').textContent = post.title;
-        document.getElementById('readerMeta').innerHTML = `📅 ${post.date} &bull; <span>📦 ${post.category || 'General'}</span>`;
+        document.getElementById('readerMeta').innerHTML = `📅 ${post.date} &bull; <span>📁 ${post.category || 'General'}</span>`;
         document.getElementById('readerBody').innerHTML = post.content;
 
         document.getElementById('feedView').style.display = 'none';
@@ -395,38 +364,7 @@
         window.scrollTo(0, 0);
     }
 
-    function toggleEditor() {
-        const modal = document.getElementById('editorModal');
-        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function publishPost() {
-        const title = document.getElementById('postTitle').value.trim();
-        const category = document.getElementById('postCategory').value;
-        const content = document.getElementById('postContent').value.trim();
-
-        if (!title || !content) {
-            alert('Please fill out both the title and content fields.');
-            return;
-        }
-
-        const newPost = {
-            title,
-            category,
-            content: content.startsWith('<p>') ? content : `<p>${content}</p>`,
-            date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-        };
-
-        const posts = getStoredPosts();
-        posts.unshift(newPost);
-        localStorage.setItem('okb1_blog_posts', JSON.stringify(posts));
-
-        document.getElementById('postTitle').value = '';
-        document.getElementById('postContent').value = '';
-        toggleEditor();
-        renderPosts();
-    }
-
+    // Initial load
     renderPosts();
 </script>
 
