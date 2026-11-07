@@ -1,5 +1,5 @@
 /**
- * OKB-1 Central SEO, Favicon & Search Image Snippet Dynamic Loader
+ * OKB-1 Central SEO, Favicon & Randomized Search Image Snippet Dynamic Loader
  */
 
 // 1. Calculate relative path to root assets based on script location
@@ -7,12 +7,32 @@ const scriptUrl = new URL(import.meta.url);
 const rootPath = scriptUrl.pathname.substring(0, scriptUrl.pathname.lastIndexOf('/') + 1);
 const faviconUrl = `${scriptUrl.origin}${rootPath}favicon.png`;
 
-// 2. Determine Preview Image for Google Search Snippets & Social Cards
-// Checks if the HTML page defines data-preview-image on <body> or falls back to a default banner
+// 2. Determine Preview Image (Supports explicit per-page override OR random rotation pool)
 const customPageImage = document.body.getAttribute('data-preview-image');
-const defaultImage = customPageImage 
-    ? (customPageImage.startsWith('http') ? customPageImage : `${scriptUrl.origin}${rootPath}${customPageImage}`)
-    : `${scriptUrl.origin}${rootPath}Screenshot%202026-11-06%20170055.png`;
+
+let selectedImageName = '';
+
+if (customPageImage) {
+    // If the page specifies an exact preview image, use it
+    selectedImageName = customPageImage;
+} else {
+    // RANDOM IMAGE POOL: Add all your key showcase screenshots here!
+    const bannerPool = [
+        'Screenshot%202026-11-06%20170055.png',
+        // Add more image filenames here as you upload them to your root folder:
+        // 'berlin_tempelhof_preview.png',
+        // 'vladivostok_preview.png',
+        // 'rumpin_airfield_preview.png'
+    ];
+    
+    // Pick a random integer based on the array length
+    const randomIndex = Math.floor(Math.random() * bannerPool.length);
+    selectedImageName = bannerPool[randomIndex];
+}
+
+const defaultImage = selectedImageName.startsWith('http') 
+    ? selectedImageName 
+    : `${scriptUrl.origin}${rootPath}${selectedImageName}`;
 
 // 3. Define Metadata & Image Preview Tags
 const pageTitle = document.title || 'OKB-1 Creative Design Bureau';
