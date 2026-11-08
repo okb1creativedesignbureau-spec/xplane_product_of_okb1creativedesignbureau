@@ -1,5 +1,6 @@
 name: Inject Root Favicons & SEO Loader on Build
 
+
 on:
   push:
     branches:
