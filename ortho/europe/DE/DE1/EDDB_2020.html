@@ -117,6 +117,13 @@
             font-weight: 600;
         }
 
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
@@ -132,6 +139,12 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
         }
 
         .img-container {
@@ -152,11 +165,31 @@
 
         .card-body {
             padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
         }
 
         .card-title {
             font-size: 0.95rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .view-btn {
+            display: inline-block;
+            text-align: center;
+            background-color: #232730;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+            border: 1px dashed var(--border-color);
+            cursor: default;
         }
 
         /* Article / Blog Styling */
@@ -274,11 +307,6 @@
             opacity: 0.9;
         }
 
-        .btn-kofi {
-            background-color: var(--kofi-color);
-            color: #ffffff;
-        }
-
         .btn-gumroad {
             background-color: var(--orange-color);
             color: #0f1115;
@@ -310,6 +338,13 @@
             font-size: 0.875rem;
             color: var(--text-muted);
         }
+
+        #loading-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
@@ -339,6 +374,15 @@
             <div class="meta-item">
                 <strong>Publisher</strong>
                 <span>OKB-1 Design Bureau</span>
+            </div>
+        </section>
+
+        <!-- Screenshot Previews Section -->
+        <section>
+            <h2 class="section-title">Orthophoto Asset Gallery</h2>
+            
+            <div id="gallery" class="gallery-grid">
+                <div id="loading-state">Loading image dataset...</div>
             </div>
         </section>
 
@@ -472,5 +516,38 @@ SCENERY_PACK Global Scenery/Global Airports/</code></pre>
             <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
         </footer>
     </div>
+
+    <!-- Dynamic Image Grid Script -->
+    <script type="module">
+        import { image_container } from './EDDB_2020_Orthophoto.js';
+
+        const gallery = document.getElementById('gallery');
+
+        if (image_container && image_container.length > 0) {
+            gallery.innerHTML = ''; // Clear loading state
+
+            image_container.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+
+                const imageName = item.name || `EDDB 2020 Ortho Asset #${index + 1}`;
+                const imageUrl = item.url;
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img src="${imageUrl}" alt="${imageName}" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${imageName}</div>
+                        <a href="#" onclick="return false;" class="view-btn">View Larger Image</a>
+                    </div>
+                `;
+
+                gallery.appendChild(card);
+            });
+        } else {
+            gallery.innerHTML = '<div id="loading-state">No asset images found in container module.</div>';
+        }
+    </script>
 </body>
 </html>
