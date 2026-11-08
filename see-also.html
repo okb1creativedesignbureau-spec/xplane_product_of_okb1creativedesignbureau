@@ -7,6 +7,18 @@
     <!-- SEO & Metadata -->
     <meta name="description" content="OKB-1 Creative Design Bureau - External Storefronts, 3D CAD Marketplaces, and Support Links.">
     <meta name="author" content="OKB-1 Creative Design Bureau">
+    
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from './favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+    
     <title>See Also & External Outposts | OKB-1 Creative Design Bureau</title>
     <style>
         :root {
