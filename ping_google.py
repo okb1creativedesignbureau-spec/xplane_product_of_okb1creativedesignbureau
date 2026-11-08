@@ -20,6 +20,18 @@ URLS_TO_UPDATE = [
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/post_ussr/recreating-primorsky-krai-in-x-plane-12-far-east-air-bases-and-regional-hubs-be360fe0dafd.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/post_ussr/project-log-preserving-belorussian-aviation-history-in-x-plane-12--minsk-1-and-machulishchy-air-87092d77bb00.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/post_ussr/index.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/index.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/reconstructing-a-lost-airport-in-a-digital-world-the-story-of-kemayoran-9035b67f5258.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/engineering-the-gateway-reconstructing-the-kemayoran-main-terminal-geometry-59f0161fa279.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/project-jabodetabek-enhancing-rumpin-airfield-and-west-java-s-aviation-mesh-in-x-plane-12-e2ba215e818e.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/reconstructing-nusantara-walk--fixing-spatial-shifts-and-forest-hydrology-in-x-plane-12-0a7447271c6d.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/the-hidden-runway-in-the-paddy-fields-lanud-gorda-tangerang-in-x-plane-12-edb2c34d92f6.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/indonesia_dlc/-xp12-project-jabodetabek-lanud-rumpin--satradar-211--penataan-mesh-regional-1985f016eeca.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/wed_dev_tools/index.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/wed_dev_tools/bare-metal-pbr-ground-polygons-revolutionizing-x-plane-12-surface-engineering-7585cdfb7d24.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/free_orthophotos/index.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/free_orthophotos/draft_resurrecting-berlin-tempelhof-eddi--reactivating-an-alternate-2020-operational-hub-in-x-plane-12-5e842890da7b.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/blog/free_orthophotos/resurrecting-berlin-tegel-eddt--reactivating-ghost-navdata-and-cold-war-aviation-heritage-in-6099875c425e.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1/EDDI_2020.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1/EDDT_2019.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1.html",
@@ -28,7 +40,8 @@ URLS_TO_UPDATE = [
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/see-also.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/about_me.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/post_ussr_dlc/post_ussr_dlc.html",
-"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/WED_DEV_Folder/WED_Dev_Tools.html"
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/WED_DEV_Folder/WED_Dev_Tools.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html",
 ]
 
 def notify_google():
