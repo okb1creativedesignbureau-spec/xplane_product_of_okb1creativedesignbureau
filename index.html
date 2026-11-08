@@ -13,6 +13,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/">
     <link rel="icon" type="image/png" href="Screenshot 2026-11-06 170055.png"> 
+
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from './favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+    
     <title>OKB-1 Creative Design Bureau | X-Plane Assets & Scenery</title>
     
     <style>
