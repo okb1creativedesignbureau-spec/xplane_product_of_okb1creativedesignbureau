@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Screenshot 2026-11-06 170055.png">
     <script type="module" src="../seo-config.js"></script>
+    
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+    
     <title>Germany Lost Airport Series | OKB-1 Creative Design Bureau</title>
     <style>
         :root {
