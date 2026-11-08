@@ -5,8 +5,13 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build-and-inject:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -17,41 +22,38 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Create Python Injection Script
+      - name: Inject Absolute Head Tags During Build
         run: |
-          cat << 'EOF' > inject_head.py
+          python3 -c "
           import os, re
-
           HEAD_TAGS = '''<head>
-              <link rel="icon" type="image/png" sizes="48x48" href="/xplane_product_of_okb1creativedesignbureau/favicon.png">
-              <link rel="icon" type="image/png" sizes="192x192" href="/xplane_product_of_okb1creativedesignbureau/favicon.png">
-              <link rel="apple-touch-icon" href="/xplane_product_of_okb1creativedesignbureau/favicon.png">
-              <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>'''
+              <link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"/xplane_product_of_okb1creativedesignbureau/favicon.png\">
+              <link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/xplane_product_of_okb1creativedesignbureau/favicon.png\">
+              <link rel=\"apple-touch-icon\" href=\"/xplane_product_of_okb1creativedesignbureau/favicon.png\">
+              <script type=\"module\" src=\"/xplane_product_of_okb1creativedesignbureau/seo-config.js\"></script>'''
 
           for root, dirs, files in os.walk('.'):
               for file in files:
                   if file.endswith('.html'):
                       path = os.path.join(root, file)
                       with open(path, 'r', encoding='utf-8') as f:
-                          content = f.read()
-
-                      # Strip any pre-existing relative seo-config script tags
+                        content = f.read()
                       content = re.sub(r'<script[^>]*seo-config\.js[^>]*></script>', '', content)
-
-                      # Inject absolute tags right under <head>
                       if '<head>' in content:
                           content = content.replace('<head>', HEAD_TAGS, 1)
                           with open(path, 'w', encoding='utf-8') as f:
                               f.write(content)
-                          print(f'Successfully injected: {path}')
-          EOF
+                          print(f'Injected: {path}')
+          "
 
-      - name: Run Injection Script
-        run: python inject_head.py
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Commit and Push Clean HTML Changes Back to Repository
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add *.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "auto: inject static favicons and seo config" && git push)
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
