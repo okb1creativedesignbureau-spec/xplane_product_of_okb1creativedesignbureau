@@ -8,6 +8,19 @@
     <meta name="description" content="OKB-1 Creative Design Bureau - World Editor (WED) Developer Tools engineered for creating custom X-Plane 12 sceneries, PBR ground materials, and static 3D objects.">
     <meta name="keywords" content="X-Plane 12, World Editor, WED tools, PBR Polygons, ground materials, 3D static objects, OKB-1 developer tools">
     <meta name="author" content="OKB-1 Creative Design Bureau">
+
+        
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+    
     <script type="module" src="../seo-config.js"></script>
     
     <title>WED Developer Tool Series | OKB-1 Creative Design Bureau</title>
