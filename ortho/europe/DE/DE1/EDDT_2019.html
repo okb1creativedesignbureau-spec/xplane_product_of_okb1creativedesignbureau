@@ -8,6 +8,17 @@
     <link rel="icon" type="image/png" href="../../../../../favicon.png">
     <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>
 
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../../../favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+
     <!-- Replace the URL with the exact homepage URL of that sub-site -->
     <script type="application/ld+json">
       {
