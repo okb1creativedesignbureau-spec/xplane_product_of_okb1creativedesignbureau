@@ -192,10 +192,13 @@
             <!-- Item 3: EDDB -->
             <div class="product-card">
                 <div class="preview-dropzone">
-                    <div class="carousel-track">
+                    <button class="carousel-nav-btn prev" id="eddb-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddb-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddb-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddb-track">
                         <div class="carousel-slide"><img src="images/eddb_preview1.jpg" alt="EDDB Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
-                    <div class="dropzone-text"><span>EDDB Brandenburg</span>2020 Regional Orthophoto Package</div>
+                    <div class="dropzone-text" id="eddb-text"><span>EDDB Brandenburg</span>2020 Regional Orthophoto Package</div>
                 </div>
                 <div class="product-header">
                     <span class="badge badge-free">Free / Pay-What-You-Want</span>
@@ -254,6 +257,7 @@
 <script type="module">
     import { image_container as eddtData } from './DE1/EDDT_2019_images_data.js';
     import { image_container as eddiData } from './DE1/EDDI_2020_images_data.js';
+    import { image_container as eddbData } from './DE1/EDDB_2020_Orthophoto.js';
 
     // Universal Carousel Factory Function
     function buildCarousel(prefix, imageData) {
@@ -312,6 +316,7 @@
     // Initialize all aerodrome carousels seamlessly
     buildCarousel('eddt', eddtData);
     buildCarousel('eddi', eddiData);
+    buildCarousel('eddb', eddbData);
 </script>
 
 </body>
