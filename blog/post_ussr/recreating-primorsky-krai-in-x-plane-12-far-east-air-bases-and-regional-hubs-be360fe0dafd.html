@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recreating Primorsky Krai in X-Plane 12: Far East Air Bases and Regional Hubs | OKB-1 Creative Design Bureau</title>
-    <script type="module" src="../seo-config.js"></script>
+    <script type="module" src="../../seo-config.js"></script>
+    
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+
+    
     <style>
         :root {
             --bg-color: #0b0f19;
