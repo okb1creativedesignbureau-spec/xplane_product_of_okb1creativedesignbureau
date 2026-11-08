@@ -1,0 +1,28 @@
+name: Notify Google Indexing API
+
+on:
+  push:
+    branches:
+      - main  # Adjust if your primary branch is master
+
+jobs:
+  ping-google:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          pip install google-auth requests
+
+      - name: Run Indexing Script
+        env:
+          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: |
+          python ping_google.py
