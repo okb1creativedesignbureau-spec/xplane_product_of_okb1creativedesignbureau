@@ -4,193 +4,473 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freezing Aviation History: Digitizing COVID-Era Berlin Brandenburg (EDDB 2020) in X-Plane 12</title>
-    <!-- Master Absolute Favicon & SEO Configuration Loader -->
-    <link rel="icon" type="image/png" href="/xplane_product_of_okb1creativedesignbureau/Screenshot%202026-11-06%20170055.png">
+    <!-- Explicit Favicon for Search Crawlers -->
+    <link rel="icon" type="image/png" href="../../../../../favicon.png">
     <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>
+
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../../../favicon_data.js';
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "X-Plane Product of OKB-1 Creative Design Bureau",
+        "alternateName": "X-Plane-of-OKB-1_CDB",
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1/EDDB_2020.html"
+      }
+    </script>
+
     <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #181b21;
+            --accent-color: #3b82f6;
+            --orange-color: #f97316;
+            --kofi-color: #ff5e5b;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #262b36;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.25;
-            color: #0b0f19;
-            max-width: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #fafbfc;
         }
-        h1 { font-size: 28px; color: #111; margin-bottom: 10px; }
-        h2 { font-size: 22px; color: #222; margin-top: 35px; border-bottom: 2px solid #eaeaea; padding-bottom: 6px; }
-        h3 { font-size: 18px; color: #333; margin-top: 20px; }
-        p { margin: 12px 0; }
-        ul, ol { margin: 12px 0; padding-left: 24px; }
-        li { margin-bottom: 6px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #fff; }
-        th, td { border: 1px solid #ddd; padding: 12px 16px; text-align: left; vertical-align: top; }
-        th { background-color: #f4f6f8; font-weight: bold; color: #222; }
-        code { background-color: #eef2f5; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
-        pre { background-color: #0b0f19; color: #f8f9fa; padding: 14px; border-radius: 6px; overflow-x: auto; }
-        pre code { background-color: transparent; color: #f8f9fa; }
-        .cta-box {
-            background-color: #f1f5f9;
-            border-left: 4px solid #0b0f19;
-            padding: 14px 18px;
+
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .meta-item span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .gallery-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #050608;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Article / Blog Styling */
+        .article-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            font-size: 1.025rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
-            font-weight: bold;
+            background-color: var(--bg-color);
         }
-        .cta-box a { color: #0b0f19; text-decoration: none; }
-        .cta-box a:hover { text-decoration: underline; }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #11151d;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        code, pre {
+            background-color: #0b0d11;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        pre {
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        code {
+            padding: 2px 6px;
+            font-size: 14px;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: var(--accent-color);
+            padding: 0;
+        }
+
+        /* CTA Callouts */
+        .cta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .btn-action {
+            flex: 1;
+            min-width: 260px;
+            display: inline-block;
+            text-align: center;
+            padding: 0.85rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .btn-kofi {
+            background-color: var(--kofi-color);
+            color: #ffffff;
+        }
+
+        .btn-gumroad {
+            background-color: var(--orange-color);
+            color: #0f1115;
+        }
+
         .footer-links {
             list-style: none;
             padding-left: 0;
-            margin-top: 20px;
+            margin-top: 2rem;
+            display: grid;
+            gap: 0.75rem;
         }
-        .footer-links li {
-            margin-bottom: 10px;
-        }
+
         .footer-links a {
-            color: #0366d6;
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
         }
+
         .footer-links a:hover {
             text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
-    <h1>Freezing Aviation History: Digitizing COVID-Era Berlin Brandenburg (EDDB 2020) in X-Plane 12</h1>
-    <p><em>How 2020 aerial survey imagery, custom raster calibration, taxiway re-routing, and static ghost fleet placement captured BER's historic opening during the global aviation shutdown.</em></p>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../DE1.html">← Back to Germany Ortho Archive (Page 1)</a>
+            </nav>
+            <h1>Freezing Aviation History: Digitizing COVID-Era Berlin Brandenburg (EDDB 2020) in X-Plane 12</h1>
+            <p class="subtitle">How 2020 aerial survey imagery, custom raster calibration, taxiway re-routing, and static ghost fleet placement captured BER's historic opening during the global aviation shutdown.</p>
+        </header>
 
-    <p>If you fly into Berlin Brandenburg Airport (EDDB / BER) in modern desktop flight simulators, you typically experience one of two things: a generic modern hub bustling with active gate traffic, or legacy scenery layouts that still struggle to bridge the gap between old Schönefeld (SXF) infrastructure and the central Willy Brandt terminal.</p>
-    
-    <p>However, 2020 was a year unlike any other in aviation history.</p>
+        <section class="meta-grid">
+            <div class="meta-item">
+                <strong>ICAO / Region</strong>
+                <span>EDDB / Berlin, Germany</span>
+            </div>
+            <div class="meta-item">
+                <strong>Dataset Year</strong>
+                <span>2020 COVID Freeze Snapshot</span>
+            </div>
+            <div class="meta-item">
+                <strong>Target Simulator</strong>
+                <span>X-Plane 12 Scenery Engine</span>
+            </div>
+            <div class="meta-item">
+                <strong>Publisher</strong>
+                <span>OKB-1 Design Bureau</span>
+            </div>
+        </section>
 
-    <p>On October 31, 2020 — after nearly a decade of notorious construction delays — BER officially opened its doors. But instead of vibrant international launch events, the airport opened right into the teeth of the global COVID-19 pandemic. Millions of square meters of pristine new tarmac, brand-new taxiway networks, and dual parallel runways were immediately converted into massive storage yards for grounded airline fleets across Europe.</p>
+        <!-- Article / Blog Documentation Content -->
+        <article class="article-content">
+            <p>If you fly into Berlin Brandenburg Airport (EDDB / BER) in modern desktop flight simulators, you typically experience one of two things: a generic modern hub bustling with active gate traffic, or legacy scenery layouts that still struggle to bridge the gap between old Schönefeld (SXF) infrastructure and the central Willy Brandt terminal.</p>
+            
+            <p>However, 2020 was a year unlike any other in aviation history.</p>
 
-    <p>At OKB-1 Creative Design Bureau, we set out to capture this exact frozen moment in time. Using high-resolution 2020 georeferenced raster imagery, custom WED vector calibration, and precise ground routing, our <strong>EDDB 2020 Orthophoto Immersive Edition</strong> recreates Berlin Brandenburg during its surreal, historic opening year.</p>
+            <p>On October 31, 2020 — after nearly a decade of notorious construction delays — BER officially opened its doors. But instead of vibrant international launch events, the airport opened right into the teeth of the global COVID-19 pandemic. Millions of square meters of pristine new tarmac, brand-new taxiway networks, and dual parallel runways were immediately converted into massive storage yards for grounded airline fleets across Europe.</p>
 
-    <div class="cta-box">
-        👉 <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener">Get the file here!</a>
-    </div>
+            <p>At OKB-1 Creative Design Bureau, we set out to capture this exact frozen moment in time. Using high-resolution 2020 georeferenced raster imagery, custom WED vector calibration, and precise ground routing, our <strong>EDDB 2020 Orthophoto Immersive Edition</strong> recreates Berlin Brandenburg during its surreal, historic opening year.</p>
 
-    <h2>🏛️ Deep Dive: The Operational Paradox of BER 2020</h2>
-    <p>To understand why this scenery exists, one must look at the unique operational context of Berlin Brandenburg in late 2020:</p>
+            <div class="cta-container">
+                <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener" class="btn-action btn-gumroad">Download EDDB 2020 Package on Gumroad</a>
+            </div>
 
-    <table>
-        <tr>
-            <th>[ SCHÖNEFELD (SXF) LEGACY ]</th>
-            <th>[ EDDB 2020 COVID FREEZE ]</th>
-        </tr>
-        <tr>
-            <td>
-                <ul>
-                    <li>North Runway System (07L/25R)</li>
-                    <li>Old Terminal 5 Operations</li>
-                    <li>Uncalibrated Taxiways</li>
-                    <li>Legacy Navdata Geometry</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Dual Active Runway Calibration</li>
-                    <li>Runway 07R/25L Activation</li>
-                    <li>Grounded Airline Row Storage</li>
-                    <li>High-Res GeoBasis-BB Orthos</li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+            <h2>🏛️ Deep Dive: The Operational Paradox of BER 2020</h2>
+            <p>To understand why this scenery exists, one must look at the unique operational context of Berlin Brandenburg in late 2020:</p>
 
-    <h3>1. The Opening Day Lockdown</h3>
-    <p>When Terminal 1 finally received its first commercial arrivals (a synchronized double landing by Lufthansa and EasyJet), global air traffic had collapsed by over 70%. BER did not open as a bustling international hub; it opened as a quiet fortress. Aircraft from major European carriers were lined up nose-to-tail on newly constructed taxiways and remote aprons that had never seen a revenue passenger.</p>
+            <table>
+                <tr>
+                    <th>[ SCHÖNEFELD (SXF) LEGACY ]</th>
+                    <th>[ EDDB 2020 COVID FREEZE ]</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>North Runway System (07L/25R)</li>
+                            <li>Old Terminal 5 Operations</li>
+                            <li>Uncalibrated Taxiways</li>
+                            <li>Legacy Navdata Geometry</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Dual Active Runway Calibration</li>
+                            <li>Runway 07R/25L Activation</li>
+                            <li>Grounded Airline Row Storage</li>
+                            <li>High-Res GeoBasis-BB Orthos</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-    <h3>2. The Taxiway Re-Routing Challenge</h3>
-    <p>In 2020, several taxiways surrounding the south runway (07R/25L) were either undergoing final operational adjustments or actively blocked off for static aircraft parking. Flight simulators operating on modern 2024–2026 navdata force AI and ATC routing through paths that were physically obstructed during the 2020 freeze. Restoring EDDB 2020 required re-aligning and re-routing ground navigation lines to match the exact 2020 operational ground layout.</p>
+            <h3>1. The Opening Day Lockdown</h3>
+            <p>When Terminal 1 finally received its first commercial arrivals (a synchronized double landing by Lufthansa and EasyJet), global air traffic had collapsed by over 70%. BER did not open as a bustling international hub; it opened as a quiet fortress. Aircraft from major European carriers were lined up nose-to-tail on newly constructed taxiways and remote aprons that had never seen a revenue passenger.</p>
 
-    <div class="cta-box">
-        👉 <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener">Get the file here!</a>
-    </div>
+            <h3>2. The Taxiway Re-Routing Challenge</h3>
+            <p>In 2020, several taxiways surrounding the south runway (07R/25L) were either undergoing final operational adjustments or actively blocked off for static aircraft parking. Flight simulators operating on modern 2024–2026 navdata force AI and ATC routing through paths that were physically obstructed during the 2020 freeze. Restoring EDDB 2020 required re-aligning and re-routing ground navigation lines to match the exact 2020 operational ground layout.</p>
 
-    <h2>🛠️ The WED Engineering & Geospatial Pipeline</h2>
-    <p>Creating an authentic orthophoto package means going far beyond simply dropping an aerial image onto the terrain mesh. It requires sub-meter spatial accuracy, surface calibration, and hand-placed historical assets.</p>
+            <h2>🛠️ The WED Engineering & Geospatial Pipeline</h2>
+            <p>Creating an authentic orthophoto package means going far beyond simply dropping an aerial image onto the terrain mesh. It requires sub-meter spatial accuracy, surface calibration, and hand-placed historical assets.</p>
 
-    <table>
-        <tr>
-            <th>[ ARCHIVAL 2020 ORTHOPHOTO ]</th>
-            <th>[ XP12 GEOREFERENCED DIGITAL TWIN ]</th>
-        </tr>
-        <tr>
-            <td>
-                <ul>
-                    <li>GeoBasis 2020 Survey Raster</li>
-                    <li>Parked Fleet Ortho Lines</li>
-                    <li>High-Res Apron Textures</li>
-                    <li>Custom Perimeter Masking</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>WED Vector & Physics Alignment</li>
-                    <li>Calibrated 2020 Ground Markings</li>
-                    <li>Re-Routed Taxiway ATC Geometry</li>
-                    <li>Drag-and-Drop Zero Dependency</li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+            <table>
+                <tr>
+                    <th>[ ARCHIVAL 2020 ORTHOPHOTO ]</th>
+                    <th>[ XP12 GEOREFERENCED DIGITAL TWIN ]</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>GeoBasis 2020 Survey Raster</li>
+                            <li>Parked Fleet Ortho Lines</li>
+                            <li>High-Res Apron Textures</li>
+                            <li>Custom Perimeter Masking</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>WED Vector & Physics Alignment</li>
+                            <li>Calibrated 2020 Ground Markings</li>
+                            <li>Re-Routed Taxiway ATC Geometry</li>
+                            <li>Drag-and-Drop Zero Dependency</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-    <ol>
-        <li><strong>Gateway Baseline Integration & Raster Calibration:</strong> The scenery is built upon the official Scenery Gateway layout, inheriting Laminar's core airport infrastructure while completely re-calibrated against high-resolution aerial survey data captured during the 2020 survey period by GeoBasis-DE / LGB. Every inch of the twin runways, high-speed turnoffs, central apron, and surrounding logistics zones matches the real-world surface conditions of Berlin Brandenburg during its opening months.</li>
-        <li><strong>Parked Fleet & Ground Markings Integration:</strong> Captured directly within the orthophoto underlay are the actual rows and lines of aircraft parked across BER's tarmac during the COVID shutdown. Combined with calibrated ground painted lines, lead-in taxi guidelines, and updated stop bars, the airfield projects an unmistakable visual weight and atmosphere upon arrival.</li>
-        <li><strong>Re-Calibrated Ground Navigation & ATC Networks:</strong>
-            <ul>
-                <li><em>Runway & Taxiway Alignment:</em> All paved surfaces, hold-short lines, and taxiway designations were individually recalibrated against 2020 aeronautical charts over the Gateway framework.</li>
-                <li><em>Ground ATC Rerouting:</em> Navigation nodes were rebuilt in WorldEditor (WED) to prevent simulated ground traffic from routing through closed tarmac zones or parked aircraft lines.</li>
-            </ul>
-        </li>
-        <li><strong>Zero Dependencies: Simple Drag-and-Drop Installation:</strong> We designed this scenery with thermal efficiency and usability as top priorities. You do not need to hunt down dozens of external third-party object libraries or deal with complex installation tools. It is 100% drag-and-drop ready, relying entirely on native X-Plane 12 surface rendering and custom raster layering.</li>
-    </ol>
+            <ol>
+                <li><strong>Gateway Baseline Integration & Raster Calibration:</strong> The scenery is built upon the official Scenery Gateway layout, inheriting Laminar's core airport infrastructure while completely re-calibrated against high-resolution aerial survey data captured during the 2020 survey period by GeoBasis-DE / LGB. Every inch of the twin runways, high-speed turnoffs, central apron, and surrounding logistics zones matches the real-world surface conditions of Berlin Brandenburg during its opening months.</li>
+                <li><strong>Parked Fleet & Ground Markings Integration:</strong> Captured directly within the orthophoto underlay are the actual rows and lines of aircraft parked across BER's tarmac during the COVID shutdown. Combined with calibrated ground painted lines, lead-in taxi guidelines, and updated stop bars, the airfield projects an unmistakable visual weight and atmosphere upon arrival.</li>
+                <li><strong>Re-Calibrated Ground Navigation & ATC Networks:</strong>
+                    <ul>
+                        <li><em>Runway & Taxiway Alignment:</em> All paved surfaces, hold-short lines, and taxiway designations were individually recalibrated against 2020 aeronautical charts over the Gateway framework.</li>
+                        <li><em>Ground ATC Rerouting:</em> Navigation nodes were rebuilt in WorldEditor (WED) to prevent simulated ground traffic from routing through closed tarmac zones or parked aircraft lines.</li>
+                    </ul>
+                </li>
+                <li><strong>Zero Dependencies: Simple Drag-and-Drop Installation:</strong> We designed this scenery with thermal efficiency and usability as top priorities. You do not need to hunt down dozens of external third-party object libraries or deal with complex installation tools. It is 100% drag-and-drop ready, relying entirely on native X-Plane 12 surface rendering and custom raster layering.</li>
+            </ol>
 
-    <div class="cta-box" id="download">
-        👉 <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener">Get the file here!</a>
-    </div>
-
-    <h2>⚙️ Installation & Setup Guide</h2>
-    <p>To ensure X-Plane 12 loads your restored EDDB 2020 layout cleanly over default global assets, follow this simple folder hierarchy:</p>
-    <ol>
-        <li>Download and extract the project archive: <code>EDDB - Berlin Brandenburg 2020 Ortho</code>.</li>
-        <li>Move the extracted folder directly into your X-Plane 12 Custom Scenery directory:
-            <pre><code>X-Plane 12/Custom Scenery/EDDB - Berlin Brandenburg 2020 Ortho/</code></pre>
-        </li>
-        <li>Launch X-Plane 12 once to automatically update your <code>scenery_packs.ini</code> file, then exit the simulator.</li>
-        <li>Open <code>Custom Scenery/scenery_packs.ini</code> in any standard text editor and ensure the EDDB entry sits ABOVE <code>Global Scenery/Global Airports/</code>:
-            <pre><code>SCENERY_PACK Custom Scenery/EDDB - Berlin Brandenburg 2020 Ortho/
+            <h2>⚙️ Installation & Setup Guide</h2>
+            <p>To ensure X-Plane 12 loads your restored EDDB 2020 layout cleanly over default global assets, follow this simple folder hierarchy:</p>
+            <ol>
+                <li>Download and extract the project archive: <code>EDDB - Berlin Brandenburg 2020 Ortho</code>.</li>
+                <li>Move the extracted folder directly into your X-Plane 12 Custom Scenery directory:
+                    <pre><code>X-Plane 12/Custom Scenery/EDDB - Berlin Brandenburg 2020 Ortho/</code></pre>
+                </li>
+                <li>Launch X-Plane 12 once to automatically update your <code>scenery_packs.ini</code> file, then exit the simulator.</li>
+                <li>Open <code>Custom Scenery/scenery_packs.ini</code> in any standard text editor and ensure the EDDB entry sits ABOVE <code>Global Scenery/Global Airports/</code>:
+                    <pre><code>SCENERY_PACK Custom Scenery/EDDB - Berlin Brandenburg 2020 Ortho/
 ...
 SCENERY_PACK Global Scenery/Global Airports/</code></pre>
-        </li>
-        <li>Launch X-Plane 12, select EDDB, set your time and weather, and enjoy flying into 2020 Berlin Brandenburg!</li>
-    </ol>
+                </li>
+                <li>Launch X-Plane 12, select EDDB, set your time and weather, and enjoy flying into 2020 Berlin Brandenburg!</li>
+            </ol>
 
-    <p><strong>💡 Developer & WED Editing Note:</strong><br>
-    If you open this package inside WorldEditor to adjust ground flows or custom gate starts, always export using <code>File -> Export Scenery Pack</code>. To clear cached DSF geometry in-sim without restarting X-Plane 12, press <code>Ctrl + R</code> to reload scenery.</p>
+            <p><strong>💡 Developer & WED Editing Note:</strong><br>
+            If you open this package inside WorldEditor to adjust ground flows or custom gate starts, always export using <code>File -> Export Scenery Pack</code>. To clear cached DSF geometry in-sim without restarting X-Plane 12, press <code>Ctrl + R</code> to reload scenery.</p>
 
-    <h2>🌐 Archival Data Mirror & Attribution</h2>
-    <p>Raw packaged GeoTIFF assets utilized in this orthophoto pipeline are hosted on the Internet Archive Mirror.<br>
-    <strong>Data License:</strong> Datenlizenz Deutschland — Namensnennung — Version 2.0 (dl-de/by-2–0).<br>
-    <strong>Attribution Notice:</strong> Contains modified aerial imagery from GeoBasis-DE/LGB. Quelle: © GeoBasis-DE/LGB, dl-de/by-2–0.</p>
+            <h2>🌐 Archival Data Mirror & Attribution</h2>
+            <p>Raw packaged GeoTIFF assets utilized in this orthophoto pipeline are hosted on the Internet Archive Mirror.<br>
+            <strong>Data License:</strong> Datenlizenz Deutschland — Namensnennung — Version 2.0 (dl-de/by-2–0).<br>
+            <strong>Attribution Notice:</strong> Contains modified aerial imagery from GeoBasis-DE/LGB. Quelle: © GeoBasis-DE/LGB, dl-de/by-2–0.</p>
 
-    <h2>🛩️ Experience a Unique Chapter in Aviation History</h2>
-    <p>Whether you are performing low-visibility IFR approaches down to the south runway (07R/25L), conducting short-haul feeder runs across Europe, or documenting historic flight operations, Berlin Brandenburg 2020 gives you an authentic, unvarnished window into one of the most unusual periods in modern commercial flight.</p>
+            <h2>🛩️ Experience a Unique Chapter in Aviation History</h2>
+            <p>Whether you are performing low-visibility IFR approaches down to the south runway (07R/25L), conducting short-haul feeder runs across Europe, or documenting historic flight operations, Berlin Brandenburg 2020 gives you an authentic, unvarnished window into one of the most unusual periods in modern commercial flight.</p>
 
-    <div class="cta-box">
-        👉 <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener">Get the file here!</a>
+            <div class="cta-container">
+                <a href="https://creativedesigns840.gumroad.com/l/alulg" target="_blank" rel="noopener" class="btn-action btn-gumroad">Get the file here on Gumroad</a>
+            </div>
+
+            <ul class="footer-links">
+                <li>👉 Support OKB-1 Projects & Downloads on <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener">Ko-fi</a></li>
+                <li>👉 Buy the Developer a Coffee on <a href="https://creativedesigns840.gumroad.com/coffee" target="_blank" rel="noopener">Gumroad</a></li>
+                <li>👉 Follow the Germany Lost Airport Restoration Project Thread on my <a href="https://ko-fi.com/s/68affec7e2" target="_blank" rel="noopener">personal X-Plane site</a></li>
+            </ul>
+        </article>
+
+        <footer>
+            <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
+        </footer>
     </div>
-
-    <ul class="footer-links">
-        <li>👉 Support OKB-1 Projects & Downloads on <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener">Ko-fi</a></li>
-        <li>👉 Buy the Developer a Coffee on <a href="https://creativedesigns840.gumroad.com/coffee" target="_blank" rel="noopener">Gumroad</a></li>
-        <li>👉 Follow the Germany Lost Airport Restoration Project Thread on my <a href="https://ko-fi.com/s/68affec7e2" target="_blank" rel="noopener">personal X-Plane site</a></li>
-    </ul>
-
 </body>
 </html>
