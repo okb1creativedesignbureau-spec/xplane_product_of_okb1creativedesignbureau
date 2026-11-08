@@ -1,6 +1,5 @@
 name: Notify Google Indexing API
 
-
 on:
   push:
     branches:
