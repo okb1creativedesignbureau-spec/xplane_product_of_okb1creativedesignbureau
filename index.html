@@ -327,6 +327,52 @@
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
         }
+
+        
+
+        /* YouTube & Support Outpost Buttons */
+        .btn-youtube {
+            background-color: #ff0000;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+        }
+        .btn-youtube:hover {
+            opacity: 0.9;
+            color: #ffffff;
+        }
+        
+        .btn-kofi-casual {
+            background-color: #ff5e5b;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+        }
+        .btn-kofi-casual:hover {
+            opacity: 0.9;
+            color: #ffffff;
+        }
+        
+        .creator-banner {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .creator-banner h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .creator-banner p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -548,6 +594,27 @@
 
         </div>
     </main>
+
+
+
+    <!-- Flight Deck, YouTube & Coffee Support Section -->
+        <section class="creator-banner">
+            <span class="badge">Flight Deck & Dev Logs</span>
+            <h3>From the Cockpit to the CAD Bench</h3>
+            <p>
+                Behind the scenes of OKB-1: Just a casual flight simmer and engineer hand-flying vintage airliners, testing scenery boundary layers, and documenting flight simulation physics.
+            </p>
+            <div class="btn-group" style="max-width: 600px; margin: 0 auto;">
+                <a href="https://youtube.com/@bandungenginered025?si=xtlL2P1WB0XvQfj7" target="_blank" rel="noopener" class="btn btn-youtube">
+                    🎥 Watch Flight Sim Footage on YouTube
+                </a>
+                <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener" class="btn btn-kofi-casual">
+                    ☕ Buy Me a Coffee on Ko-fi
+                </a>
+            </div>
+        </section>
+
+    
 
     <footer>
         <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
