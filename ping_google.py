@@ -43,6 +43,9 @@ URLS_TO_UPDATE = [
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/WED_DEV_Folder/WED_Dev_Tools.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html",
 "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1/EDDB_2020.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/raw_ortho.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/europe_ortho_raw.html",
+"https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/DE/DE1/DE1.html",
 ]
 
 def notify_google():
