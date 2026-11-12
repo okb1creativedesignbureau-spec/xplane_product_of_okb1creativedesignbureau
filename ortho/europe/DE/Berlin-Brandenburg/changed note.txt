@@ -2,7 +2,7 @@ New Replacement: Replaced <nav class="breadcrumb"> with a dedicated flex contain
 
 HTML
 <div class="nav-header">
-    <a href="./Berlin-Brandenburg.html" class="nav-btn">&larr; Back to Berlin & Brandenburg Aerodrome Orthophotos</a>
+    <a href="[[go back link, existed in the original program. DO NOT CHANGE!]]" class="nav-btn">[[ORIGINAL BUTTON]]
     <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="nav-btn">🛩️ See Other Products in My Hangar &rarr;</a>
 </div>
 2. CSS Styling Changes
