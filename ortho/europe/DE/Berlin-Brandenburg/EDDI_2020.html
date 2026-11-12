@@ -37,6 +37,7 @@
             --bg-color: #0f1115;
             --card-bg: #181b21;
             --accent-color: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.15);
             --orange-color: #f97316;
             --kofi-color: #ff5e5b;
             --text-main: #e2e8f0;
@@ -69,19 +70,33 @@
             padding-bottom: 1.5rem;
         }
 
-        .breadcrumb {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
+        /* Flexbox Navigation Header Bar */
+        .nav-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 2rem; 
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
-        .breadcrumb a {
+        .nav-btn {
+            background-color: var(--card-bg);
             color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
             text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        .nav-btn:hover {
+            border-color: var(--accent-color);
+            background-color: var(--accent-glow);
+            text-decoration: none;
         }
 
         h1 {
@@ -417,10 +432,10 @@
 
     <div class="container">
         <header>
-            <nav class="breadcrumb">
-                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/Berlin-Brandenburg/Berlin-Brandenburg.html">← Back to Berlin & Brandenburg Aerodrome Orthophotos</a>
-                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="hangar-btn">🛩️ See Other Products in My Hangar &rarr;</a>
-            </nav>
+            <div class="nav-header">
+                <a href="./Berlin-Brandenburg.html" class="nav-btn">&larr; Back to Berlin & Brandenburg Aerodrome Orthophotos</a>
+                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="nav-btn">🛩️ See Other Products in My Hangar &rarr;</a>
+            </div>
             <h1>EDDI 2020 Reactivation Orthophoto</h1>
             <p class="subtitle">Berlin Tempelhof Airport (EDDI) High-Resolution Imagery & Historical Restoration Dataset</p>
         </header>
