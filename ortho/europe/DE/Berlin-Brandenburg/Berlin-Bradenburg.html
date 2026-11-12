@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>
+
+    <!-- Replace the URL with the exact homepage URL of that sub-site -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "X-Plane Product of OKB-1 Creative Design Bureau",
+        "alternateName": "X-Plane-of-OKB-1_CDB",
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE1.html"
+      }
+    </script>
+
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../../favicon_data.js'; // Use '../favicon_data.js' if inside a sub-folder
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+
+    
+    <title>Germany Orthophoto Archive (Page 1) | OKB-1 Design Bureau</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent-color: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --orange-color: #f97316;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.6; padding: 3rem 1rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .back-link { color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+
+        header { text-align: center; margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p.subtitle { color: var(--accent-color); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem; }
+        header p.bio { color: var(--text-secondary); font-size: 0.95rem; max-width: 720px; margin: 0 auto; }
+
+        /* Product Cards List */
+        .product-grid { display: grid; gap: 2rem; margin-bottom: 3rem; }
+        .product-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; }
+        
+        .preview-dropzone { width: 100%; height: 260px; background-color: #080c14; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+        
+        /* Interactive Carousel Styles */
+        .carousel-track { width: 100%; height: 100%; display: flex; transition: transform 0.3s ease-in-out; }
+        .carousel-slide { min-width: 100%; height: 100%; position: relative; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(11, 15, 25, 0.75);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .carousel-nav-btn:hover { background: var(--accent-color); color: #0b0f19; border-color: var(--accent-color); }
+        .carousel-nav-btn.prev { left: 10px; }
+        .carousel-nav-btn.next { right: 10px; }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(11, 15, 25, 0.85);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            z-index: 5;
+        }
+
+        .dropzone-text { text-align: center; color: var(--text-secondary); font-size: 0.85rem; padding: 1rem; pointer-events: none; border: 2px dashed rgba(148, 163, 184, 0.2); border-radius: 8px; width: 85%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: absolute; top: 10%; left: 7.5%; }
+
+        .product-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color); }
+        .badge { display: inline-block; background-color: var(--accent-glow); color: var(--accent-color); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; border: 1px solid rgba(14, 165, 233, 0.3); text-transform: uppercase; }
+        .badge-free { background-color: rgba(34, 197, 94, 0.15); color: #22c55e; border-color: rgba(34, 197, 94, 0.3); }
+
+        .product-body { padding: 1.5rem 2rem; }
+        .btn-group { display: flex; gap: 0.75rem; }
+        .btn { flex: 1; display: inline-block; padding: 0.65rem 1rem; border-radius: 6px; font-weight: 700; text-decoration: none; text-align: center; font-size: 0.9rem; }
+        .btn-primary { background-color: var(--orange-color); color: #0b0f19; }
+        .btn-secondary { background-color: var(--accent-color); color: #0b0f19; }
+
+        /* Pagination Controls */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 2rem; margin-bottom: 4rem; }
+        .page-link { color: var(--text-secondary); background: var(--card-bg); border: 1px solid var(--border-color); padding: 0.5rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .page-link:hover { border-color: var(--accent-color); color: var(--text-primary); }
+        .page-link.active { background: var(--accent-color); color: #0b0f19; border-color: var(--accent-color); font-weight: 700; }
+        .page-link.disabled { opacity: 0.3; pointer-events: none; }
+
+        footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-header">
+        <a href="../../europe_ortho.html" class="back-link">&larr; Back to European Nations</a>
+    </div>
+
+    <header>
+        <p class="subtitle">Germany Open-Source Hub 🇩🇪</p>
+        <h1>German Aerodrome Orthophotos</h1>
+        <p class="bio">Page 1 of 25 curated aerodrome orthophoto packages for X-Plane 12.</p>
+    </header>
+
+    <main>
+        <div class="product-grid">
+
+            <!-- Item 1: EDDT -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddt-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddt-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddt-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddt-track">
+                        <div class="carousel-slide"><img src="images/eddt_preview1.jpg" alt="EDDT Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="eddt-text">
+                        <span>EDDT Berlin Tegel</span>3D Orthophoto Airport Package
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
+                    <h2>1. EDDT - Berlin Tegel (2019 3D Ortho)</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="DE1/EDDT_2019.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/nvjrh" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: EDDI -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddi-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddi-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddi-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddi-track">
+                        <div class="carousel-slide"><img src="images/eddi_preview1.jpg" alt="EDDI Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="eddi-text">
+                        <span>EDDI Tempelhof</span>2D Tarmac Orthophoto Package
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
+                    <h2>2. EDDI - Berlin Tempelhof (2020 2D Tarmac)</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="DE1/EDDI_2020.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/kgstul" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: EDDB -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="eddb-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="eddb-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="eddb-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="eddb-track">
+                        <div class="carousel-slide"><img src="images/eddb_preview1.jpg" alt="EDDB Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="eddb-text"><span>EDDB Brandenburg</span>2020 Regional Orthophoto Package</div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
+                    <h2>3. EDDB - Berlin Brandenburg (2020 Ortho)</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="DE1/EDDB_2020.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/alulg" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: EDDM -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="images/eddm_preview1.jpg" alt="EDDM Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text"><span>EDDM Munich</span>2024 Survey Orthophoto Package</div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-free">Free / Pay-What-You-Want</span>
+                    <h2>4. EDDM - Munich (2024 Survey)</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="EDDM.html" class="btn btn-secondary">Airport Specs</a>
+                        <a href="YOUR_PAYHIP_LINK" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pagination Controls Bar -->
+        <div class="pagination">
+            <a href="#" class="page-link disabled">&laquo; Prev</a>
+            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE.html" class="page-link active">1</a>
+            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE.html" class="page-link">2</a>
+            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE.html" class="page-link">3</a>
+            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE.html" class="page-link">Next &raquo;</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+<!-- Clean Reusable Module Architecture -->
+<script type="module">
+    import { image_container as eddtData } from './DE1/EDDT_2019_images_data.js';
+    import { image_container as eddiData } from './DE1/EDDI_2020_images_data.js';
+    import { image_container as eddbData } from './DE1/EDDB_2020_Orthophoto.js';
+
+    // Universal Carousel Factory Function
+    function buildCarousel(prefix, imageData) {
+        if (!imageData || imageData.length === 0) return;
+
+        const track = document.getElementById(`${prefix}-track`);
+        const fallbackText = document.getElementById(`${prefix}-text`);
+        const prevBtn = document.getElementById(`${prefix}-prev`);
+        const nextBtn = document.getElementById(`${prefix}-next`);
+        const counter = document.getElementById(`${prefix}-counter`);
+
+        if (!track) return;
+
+        // Reset track & hide overlay text
+        track.innerHTML = '';
+        if (fallbackText) fallbackText.style.display = 'none';
+
+        // Render slides
+        imageData.forEach((item, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.name || `${prefix.toUpperCase()} Asset ${idx + 1}`;
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+
+        let currentIdx = 0;
+        const total = imageData.length;
+
+        const update = () => {
+            track.style.transform = `translateX(-${currentIdx * 100}%)`;
+            if (counter) counter.textContent = `${currentIdx + 1} / ${total}`;
+        };
+
+        if (total > 1 && prevBtn && nextBtn) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+            if (counter) counter.style.display = 'block';
+
+            prevBtn.onclick = () => {
+                currentIdx = (currentIdx === 0) ? total - 1 : currentIdx - 1;
+                update();
+            };
+
+            nextBtn.onclick = () => {
+                currentIdx = (currentIdx === total - 1) ? 0 : currentIdx + 1;
+                update();
+            };
+        }
+
+        update();
+    }
+
+    // Initialize all aerodrome carousels seamlessly
+    buildCarousel('eddt', eddtData);
+    buildCarousel('eddi', eddiData);
+    buildCarousel('eddb', eddbData);
+</script>
+
+<!-- Inside DE1.html -->
+<link rel="canonical" href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/DE.html" />
+
+</body>
+</html>
