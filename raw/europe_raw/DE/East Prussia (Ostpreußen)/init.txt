@@ -1,1 +1,1 @@
-init.txx
+init.txt
