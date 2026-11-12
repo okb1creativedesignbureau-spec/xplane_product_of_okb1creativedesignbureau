@@ -1,3 +1,4 @@
+"""
 New Replacement: Replaced <nav class="breadcrumb"> with a dedicated flex container <div class="nav-header"> and used relative paths for the back link:
 
 HTML
@@ -42,3 +43,4 @@ CSS
     background-color: var(--accent-glow);
     text-decoration: none;
 }
+"""
