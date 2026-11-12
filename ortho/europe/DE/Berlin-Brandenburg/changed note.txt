@@ -1,0 +1,44 @@
+New Replacement: Replaced <nav class="breadcrumb"> with a dedicated flex container <div class="nav-header"> and used relative paths for the back link:
+
+HTML
+<div class="nav-header">
+    <a href="./Berlin-Brandenburg.html" class="nav-btn">&larr; Back to Berlin & Brandenburg Aerodrome Orthophotos</a>
+    <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="nav-btn">🛩️ See Other Products in My Hangar &rarr;</a>
+</div>
+2. CSS Styling Changes
+Removed .breadcrumb CSS rules (which were stripping borders and shrinking the links).
+
+Added .nav-header (Flexbox Container):
+
+CSS
+.nav-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 2rem; 
+    flex-wrap: wrap;
+    gap: 1rem; /* Stops the links from clinging together */
+}
+Added .nav-btn Class: Applied solid borders, background cards, padding, hover states, and glow effects to both top buttons:
+
+CSS
+.nav-btn {
+    background-color: var(--card-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-btn:hover {
+    border-color: var(--accent-color);
+    background-color: var(--accent-glow);
+    text-decoration: none;
+}
