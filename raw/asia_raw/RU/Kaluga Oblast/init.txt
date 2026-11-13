@@ -1,1 +1,1 @@
-inti.txtt
+inti.txt
