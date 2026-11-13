@@ -25,7 +25,7 @@
         "@type": "WebSite",
         "name": "X-Plane Product of OKB-1 Creative Design Bureau",
         "alternateName": "X-Plane-of-OKB-1_CDB",
-        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/Berlin-Brandenburg/sxf_2009.html"
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/DE/Berlin-Brandenburg/sxf_2009.html"
       }
     </script>
 
@@ -139,7 +139,7 @@
             padding-left: 0.75rem;
         }
 
-        /* Gallery Grid */
+        /* Non-Carousel Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -408,7 +408,7 @@
             </div>
         </section>
 
-        <!-- Screenshot Previews Section -->
+        <!-- Screenshot Previews Section (Non-Carousel Layout) -->
         <section>
             <h2 class="section-title">Orthophoto Tile Gallery & Survey Previews</h2>
             
@@ -450,7 +450,7 @@
                 <li><strong>Tile Grid Spacing:</strong> 500 meters × 500 meters per individual raster segment.</li>
                 <li><strong>Pixel Density:</strong> Rendered at native 104 DPI at a 1:500 spatial scale.</li>
                 <li><strong>Compression Standard:</strong> Lossless LZW TIFF compression preserving full color and edge sharpness without artifacts.</li>
-                <li><strong>Simulator Drag-and-Drop Note:</strong> Contains raw GIS data. X-Plane 12 developers can convert these tiles directly into `.pol` or `.dsf` terrain underlays using WED (WorldEditor) or Ortho4XP raster pipelines.</li>
+                <li><strong>Simulator Drag-and-Drop Note:</strong> Contains raw GIS data. X-Plane 12 developers can convert these tiles directly into <code>.pol</code> or <code>.dsf</code> terrain underlays using WED (WorldEditor) or Ortho4XP raster pipelines.</li>
             </ul>
 
             <h2>📄 Official Dataset Manifest & License Notice</h2>
@@ -562,9 +562,9 @@ Licence: https://www.govdata.de/dl-de/by-2-0
         </footer>
     </div>
 
-    <!-- Dynamic Image Grid Script -->
+    <!-- Dynamic Image Grid Script (Wired to EDDB_2009.js) -->
     <script type="module">
-        import { image_container } from './sxf_2009_Orthophoto.js';
+        import { image_container } from './EDDB_2009.js';
 
         const gallery = document.getElementById('gallery');
 
@@ -591,7 +591,7 @@ Licence: https://www.govdata.de/dl-de/by-2-0
                 gallery.appendChild(card);
             });
         } else {
-            gallery.innerHTML = '<div id="loading-state">No GeoTIFF preview images found in container module.</div>';
+            gallery.innerHTML = '<div id="loading-state">No GeoTIFF preview images found in EDDB_2009.js module.</div>';
         }
     </script>
 </body>
