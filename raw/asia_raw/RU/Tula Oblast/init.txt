@@ -1,1 +1,1 @@
-iniit.tt
+init,txt
