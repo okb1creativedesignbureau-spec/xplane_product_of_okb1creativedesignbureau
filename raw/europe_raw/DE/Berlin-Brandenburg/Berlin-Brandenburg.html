@@ -146,12 +146,14 @@
         .product-header h2 { font-size: 1.1rem; line-height: 1.35; margin-top: 0.25rem; }
         .badge { display: inline-block; background-color: var(--accent-glow); color: var(--accent-color); padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; margin-bottom: 0.4rem; border: 1px solid rgba(14, 165, 233, 0.3); text-transform: uppercase; }
         .badge-bw { background-color: rgba(148, 163, 184, 0.15); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.3); }
+        .badge-progress { background-color: rgba(249, 115, 22, 0.15); color: var(--orange-color); border-color: rgba(249, 115, 22, 0.3); }
 
         .product-body { padding: 1.25rem 1.5rem; }
         .btn-group { display: flex; gap: 0.5rem; }
         .btn { flex: 1; display: inline-block; padding: 0.55rem 0.75rem; border-radius: 6px; font-weight: 700; text-decoration: none; text-align: center; font-size: 0.825rem; }
         .btn-primary { background-color: var(--orange-color); color: #0b0f19; }
         .btn-secondary { background-color: var(--accent-color); color: #0b0f19; }
+        .btn-disabled { background-color: #1e293b; color: var(--text-secondary); pointer-events: none; opacity: 0.6; }
 
         footer { text-align: center; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
     </style>
@@ -180,22 +182,16 @@
             <!-- Item 1: Flugplatz Staaken 1928 -->
             <div class="product-card">
                 <div class="preview-dropzone">
-                    <button class="carousel-nav-btn prev" id="staaken28-prev" style="display: none;">&#10094;</button>
-                    <button class="carousel-nav-btn next" id="staaken28-next" style="display: none;">&#10095;</button>
-                    <div class="carousel-counter" id="staaken28-counter" style="display: none;">1 / 1</div>
-                    <div class="carousel-track" id="staaken28-track">
-                        <div class="carousel-slide"><img src="images/staaken_1928_preview.jpg" alt="Flugplatz Staaken 1928 Preview" onerror="this.parentElement.style.display='none'"></div>
-                    </div>
-                    <div class="dropzone-text" id="staaken28-text"><span>Flugplatz Staaken</span>1928 GeoTIFF Raster</div>
+                    <div class="dropzone-text"><span>Flugplatz Staaken</span>1928 Raster (In Progress)</div>
                 </div>
                 <div class="product-header">
-                    <span class="badge badge-bw">Raw GeoTIFF (B&W)</span>
+                    <span class="badge badge-progress">In Progress</span>
                     <h2>Flugplatz Staaken 1928</h2>
                 </div>
                 <div class="product-body">
                     <div class="btn-group">
-                        <a href="./staaken_1928.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                        <span class="btn btn-disabled">Coming Soon</span>
+                        <span class="btn btn-disabled">Processing</span>
                     </div>
                 </div>
             </div>
@@ -207,7 +203,7 @@
                     <button class="carousel-nav-btn next" id="staaken53-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="staaken53-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="staaken53-track">
-                        <div class="carousel-slide"><img src="images/staaken_1953_preview.jpg" alt="Flugplatz Staaken 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/DE-0449_1953_preview.jpg" alt="Flugplatz Staaken 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="staaken53-text"><span>Flugplatz Staaken</span>1953 GeoTIFF Raster</div>
                 </div>
@@ -230,7 +226,7 @@
                     <button class="carousel-nav-btn next" id="schonwalde53-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="schonwalde53-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="schonwalde53-track">
-                        <div class="carousel-slide"><img src="images/schonwalde_1953_preview.jpg" alt="Flugplatz Schönwalde 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/DE-0012_1953_preview.jpg" alt="Flugplatz Schönwalde 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="schonwalde53-text"><span>Flugplatz Schönwalde</span>1953 GeoTIFF Raster</div>
                 </div>
@@ -253,7 +249,7 @@
                     <button class="carousel-nav-btn next" id="templin09-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="templin09-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="templin09-track">
-                        <div class="carousel-slide"><img src="images/templin_2009_preview.jpg" alt="Templin-Groß Dölln Airfield 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/DE-0879_2009_preview.jpg" alt="Templin-Groß Dölln Airfield 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="templin09-text"><span>Templin-Groß Dölln</span>2009 GeoTIFF Raster</div>
                 </div>
@@ -276,7 +272,7 @@
                     <button class="carousel-nav-btn next" id="finow09-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="finow09-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="finow09-track">
-                        <div class="carousel-slide"><img src="images/finow_2009_preview.jpg" alt="Eberswalde-Finow Airport 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/EDAV_2009_preview.jpg" alt="Eberswalde-Finow Airport 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="finow09-text"><span>Eberswalde-Finow</span>2009 GeoTIFF Raster</div>
                 </div>
@@ -299,7 +295,7 @@
                     <button class="carousel-nav-btn next" id="sxf09-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="sxf09-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="sxf09-track">
-                        <div class="carousel-slide"><img src="images/sxf_2009_preview.jpg" alt="Berlin Schönefeld Airport 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/EDDB_2009_preview.jpg" alt="Berlin Schönefeld Airport 2009 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="sxf09-text"><span>Berlin Schönefeld</span>2009 GeoTIFF Raster</div>
                 </div>
@@ -322,7 +318,7 @@
                     <button class="carousel-nav-btn next" id="txl04-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="txl04-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="txl04-track">
-                        <div class="carousel-slide"><img src="images/txl_2004_preview.jpg" alt="Berlin Tegel Airport 2004 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/EDDT_2004_preview.jpg" alt="Berlin Tegel Airport 2004 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="txl04-text"><span>Berlin Tegel</span>2004 GeoTIFF Raster</div>
                 </div>
@@ -345,7 +341,7 @@
                     <button class="carousel-nav-btn next" id="thf04-next" style="display: none;">&#10095;</button>
                     <div class="carousel-counter" id="thf04-counter" style="display: none;">1 / 1</div>
                     <div class="carousel-track" id="thf04-track">
-                        <div class="carousel-slide"><img src="images/thf_2004_preview.jpg" alt="Berlin Tempelhof Airport 2004 Preview" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="carousel-slide"><img src="images/EDDI_2004_preview.jpg" alt="Berlin Tempelhof Airport 2004 Preview" onerror="this.parentElement.style.display='none'"></div>
                     </div>
                     <div class="dropzone-text" id="thf04-text"><span>Berlin Tempelhof</span>2004 GeoTIFF Raster</div>
                 </div>
@@ -375,9 +371,13 @@
 
 <!-- Local Module Imports for Berlin-Brandenburg Directory -->
 <script type="module">
-    import { image_container as eddtData } from './EDDT_2019_images_data.js';
-    import { image_container as eddiData } from './EDDI_2020_images_data.js';
-    import { image_container as eddbData } from './EDDB_2020_Orthophoto.js';
+    import { image_container as schonwaldeData } from './DE-0012_1953.js';
+    import { image_container as staaken53Data } from './DE-0449_1953.js';
+    import { image_container as templinData } from './DE-0879_2009.js';
+    import { image_container as finowData } from './EDAV_2009.js';
+    import { image_container as eddbData } from './EDDB_2009.js';
+    import { image_container as eddiData } from './EDDI_2004.js';
+    import { image_container as eddtData } from './EDDT_2004.js';
 
     // Universal Carousel Factory Function
     function buildCarousel(prefix, imageData) {
@@ -432,8 +432,13 @@
     }
 
     // Initialize available carousels
-    buildCarousel('txl04', eddtData);
+    buildCarousel('staaken53', staaken53Data);
+    buildCarousel('schonwalde53', schonwaldeData);
+    buildCarousel('templin09', templinData);
+    buildCarousel('finow09', finowData);
+    buildCarousel('sxf09', eddbData);
     buildCarousel('thf04', eddiData);
+    buildCarousel('txl04', eddtData);
 </script>
 
 <link rel="canonical" href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/Berlin-Brandenburg/Berlin-Brandenburg.html" />
