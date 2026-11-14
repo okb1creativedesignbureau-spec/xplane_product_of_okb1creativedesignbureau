@@ -12,7 +12,7 @@
         "@type": "WebSite",
         "name": "X-Plane Product of OKB-1 Creative Design Bureau",
         "alternateName": "X-Plane-of-OKB-1_CDB",
-        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/Berlin-Brandenburg/Berlin-Brandenburg.html"
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/DE/Berlin-Brandenburg/Berlin-Brandenburg.html"
       }
     </script>
     <meta name="application-name" content="X-Plane Product of OKB-1 Creative Design Bureau">
@@ -182,21 +182,73 @@
             <!-- Item 1: Flugplatz Staaken 1928 -->
             <div class="product-card">
                 <div class="preview-dropzone">
-                    <div class="dropzone-text"><span>Flugplatz Staaken</span>1928 Raster (In Progress)</div>
+                    <button class="carousel-nav-btn prev" id="staaken28-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="staaken28-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="staaken28-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="staaken28-track">
+                        <div class="carousel-slide"><img src="images/DE-0449_1928_preview.jpg" alt="Flugplatz Staaken 1928 Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="staaken28-text"><span>Flugplatz Staaken</span>1928 GeoTIFF Raster</div>
                 </div>
                 <div class="product-header">
-                    <span class="badge badge-progress">In Progress</span>
+                    <span class="badge badge-bw">Raw GeoTIFF (B&W)</span>
                     <h2>Flugplatz Staaken 1928</h2>
                 </div>
                 <div class="product-body">
                     <div class="btn-group">
-                        <span class="btn btn-disabled">Coming Soon</span>
-                        <span class="btn btn-disabled">Processing</span>
+                        <a href="./staaken_1928.html" class="btn btn-secondary">Specs & Data</a>
+                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 2: Flugplatz Staaken 1953 -->
+            <!-- Item 2: Flugplatz Adlershof 1928 -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="adlershof28-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="adlershof28-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="adlershof28-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="adlershof28-track">
+                        <div class="carousel-slide"><img src="images/DE-0013_1928_preview.jpg" alt="Flugplatz Adlershof 1928 Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="adlershof28-text"><span>Flugplatz Adlershof</span>1928 GeoTIFF Raster</div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-bw">Raw GeoTIFF (B&W)</span>
+                    <h2>Flugplatz Adlershof 1928</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="./DE-0013_1928.html" class="btn btn-secondary">Specs & Data</a>
+                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Flugplatz Adlershof 1953 -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="adlershof53-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="adlershof53-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="adlershof53-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="adlershof53-track">
+                        <div class="carousel-slide"><img src="images/DE-0013_1953_preview.jpg" alt="Flugplatz Adlershof 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="adlershof53-text"><span>Flugplatz Adlershof</span>1953 GeoTIFF Raster</div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-bw">Raw GeoTIFF (B&W)</span>
+                    <h2>Flugplatz Adlershof 1953</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="./DE-0013_1953.html" class="btn btn-secondary">Specs & Data</a>
+                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: Flugplatz Staaken 1953 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="staaken53-prev" style="display: none;">&#10094;</button>
@@ -219,7 +271,7 @@
                 </div>
             </div>
 
-            <!-- Item 3: Flugplatz Schönwalde 1953 -->
+            <!-- Item 5: Flugplatz Schönwalde 1953 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="schonwalde53-prev" style="display: none;">&#10094;</button>
@@ -242,7 +294,30 @@
                 </div>
             </div>
 
-            <!-- Item 4: Templin-Groß Dölln Airfield 2009 -->
+            <!-- Item 6: RAF Gatow Airfield 1953 -->
+            <div class="product-card">
+                <div class="preview-dropzone">
+                    <button class="carousel-nav-btn prev" id="gatow53-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="gatow53-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="gatow53-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="gatow53-track">
+                        <div class="carousel-slide"><img src="images/EDBG_1953_preview.jpg" alt="RAF Gatow Airfield 1953 Preview" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <div class="dropzone-text" id="gatow53-text"><span>RAF Gatow (EDBG)</span>1953 GeoTIFF Raster</div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-bw">Raw GeoTIFF (B&W)</span>
+                    <h2>RAF Gatow Airfield 1953</h2>
+                </div>
+                <div class="product-body">
+                    <div class="btn-group">
+                        <a href="./EDBG_1953.html" class="btn btn-secondary">Specs & Data</a>
+                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 7: Templin-Groß Dölln Airfield 2009 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="templin09-prev" style="display: none;">&#10094;</button>
@@ -260,12 +335,12 @@
                 <div class="product-body">
                     <div class="btn-group">
                         <a href="./templin_2009.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/icwier" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 5: Eberswalde-Finow Airport 2009 -->
+            <!-- Item 8: Eberswalde-Finow Airport 2009 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="finow09-prev" style="display: none;">&#10094;</button>
@@ -283,12 +358,12 @@
                 <div class="product-body">
                     <div class="btn-group">
                         <a href="./finow_2009.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/czrtxm" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 6: Berlin Schönefeld Airport 2009 -->
+            <!-- Item 9: Berlin Schönefeld Airport 2009 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="sxf09-prev" style="display: none;">&#10094;</button>
@@ -306,12 +381,12 @@
                 <div class="product-body">
                     <div class="btn-group">
                         <a href="./sxf_2009.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com" class="btn btn-primary" target="_blank">Download</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/prkgl" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 7: Berlin Tegel Airport 2004 -->
+            <!-- Item 10: Berlin Tegel Airport 2004 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="txl04-prev" style="display: none;">&#10094;</button>
@@ -329,12 +404,12 @@
                 <div class="product-body">
                     <div class="btn-group">
                         <a href="./EDDT_2004.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com/l/nvjrh" class="btn btn-primary" target="_blank">Download</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/imcsxe" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 8: Berlin Tempelhof Airport 2004 -->
+            <!-- Item 11: Berlin Tempelhof Airport 2004 -->
             <div class="product-card">
                 <div class="preview-dropzone">
                     <button class="carousel-nav-btn prev" id="thf04-prev" style="display: none;">&#10094;</button>
@@ -352,7 +427,7 @@
                 <div class="product-body">
                     <div class="btn-group">
                         <a href="./EDDI_2004.html" class="btn btn-secondary">Specs & Data</a>
-                        <a href="https://creativedesigns840.gumroad.com/l/kgstul" class="btn btn-primary" target="_blank">Download</a>
+                        <a href="https://creativedesigns840.gumroad.com/l/pisji" class="btn btn-primary" target="_blank">Download</a>
                     </div>
                 </div>
             </div>
@@ -371,13 +446,17 @@
 
 <!-- Local Module Imports for Berlin-Brandenburg Directory -->
 <script type="module">
-    import { image_container as schonwaldeData } from './DE-0012_1953.js';
+    import { image_container as staaken28Data } from './DE-0449_1928.js';
+    import { image_container as adlershof28Data } from './DE-0013_1928.js';
+    import { image_container as adlershof53Data } from './DE-0013_1953.js';
     import { image_container as staaken53Data } from './DE-0449_1953.js';
+    import { image_container as schonwaldeData } from './DE-0012_1953.js';
+    import { image_container as gatow53Data } from './EDBG_1953.js';
     import { image_container as templinData } from './DE-0879_2009.js';
     import { image_container as finowData } from './EDAV_2009.js';
     import { image_container as eddbData } from './EDDB_2009.js';
-    import { image_container as eddiData } from './EDDI_2004.js';
     import { image_container as eddtData } from './EDDT_2004.js';
+    import { image_container as eddiData } from './EDDI_2004.js';
 
     // Universal Carousel Factory Function
     function buildCarousel(prefix, imageData) {
@@ -431,17 +510,21 @@
         update();
     }
 
-    // Initialize available carousels
+    // Initialize all carousels
+    buildCarousel('staaken28', staaken28Data);
+    buildCarousel('adlershof28', adlershof28Data);
+    buildCarousel('adlershof53', adlershof53Data);
     buildCarousel('staaken53', staaken53Data);
     buildCarousel('schonwalde53', schonwaldeData);
+    buildCarousel('gatow53', gatow53Data);
     buildCarousel('templin09', templinData);
     buildCarousel('finow09', finowData);
     buildCarousel('sxf09', eddbData);
-    buildCarousel('thf04', eddiData);
     buildCarousel('txl04', eddtData);
+    buildCarousel('thf04', eddiData);
 </script>
 
-<link rel="canonical" href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/ortho/europe/DE/Berlin-Brandenburg/Berlin-Brandenburg.html" />
+<link rel="canonical" href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/DE/Berlin-Brandenburg/Berlin-Brandenburg.html" />
 
 </body>
 </html>
