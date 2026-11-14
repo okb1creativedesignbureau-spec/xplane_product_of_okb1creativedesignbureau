@@ -545,4 +545,41 @@ Licence: https://www.govdata.de/dl-de/zero-2-0
         </article>
 
         <footer>
-            <p>Distributed under non-commercial open
+            <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
+        </footer>
+    </div>
+
+    <!-- Dynamic Image Grid Script (Wired to EDBG_1928.js) -->
+    <script type="module">
+        import { image_container } from './EDBG_1928.js';
+
+        const gallery = document.getElementById('gallery');
+
+        if (image_container && image_container.length > 0) {
+            gallery.innerHTML = ''; // Clear loading state
+
+            image_container.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+
+                const imageName = item.name || `EDBG_1928 GeoTIFF Tile #${index + 1}`;
+                const imageUrl = item.url;
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img src="${imageUrl}" alt="${imageName}" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${imageName}</div>
+                        <span class="snippet-label">Snippet Image</span>
+                    </div>
+                `;
+
+                gallery.appendChild(card);
+            });
+        } else {
+            gallery.innerHTML = '<div id="loading-state">No GeoTIFF preview images found in EDBG_1928.js module.</div>';
+        }
+    </script>
+</body>
+</html>
