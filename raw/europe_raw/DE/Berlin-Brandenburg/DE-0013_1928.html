@@ -1,1 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archival Geospatial Dataset: Motorflugplatz Johannisthal-Adlershof (DE-0013 1928) Raw GeoTIFF | OKB-1 Design Bureau</title>
+    <!-- Explicit Favicon for Search Crawlers -->
+    <link rel="icon" type="image/png" href="../../../../../favicon.png">
+    <script type="module" src="/xplane_product_of_okb1creativedesignbureau/seo-config.js"></script>
 
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../../../favicon_data.js';
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "X-Plane Product of OKB-1 Creative Design Bureau",
+        "alternateName": "X-Plane-of-OKB-1_CDB",
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/raw/europe_raw/DE/Berlin-Brandenburg/DE-0013_1928.html"
+      }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #181b21;
+            --accent-color: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --orange-color: #f97316;
+            --kofi-color: #ff5e5b;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #262b36;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        /* Flexbox Navigation Header Bar */
+        .nav-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 2rem; 
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .nav-btn {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .nav-btn:hover {
+            border-color: var(--accent-color);
+            background-color: var(--accent-glow);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .meta-item span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.75rem;
+        }
+
+        /* Non-Carousel Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #050608;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .snippet-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            user-select: none;
+        }
+
+        /* Primary Dual CTA Bar Below Screenshots */
+        .primary-dual-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin: 2rem 0 3.5rem 0;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-dual {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1.1rem 1.75rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-dual-gumroad {
+            background-color: var(--orange-color);
+            color: #0f1115;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-dual-gumroad:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .btn-dual-hangar {
+            background-color: var(--accent-color);
+            color: #0f1115;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn-dual-hangar:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* Article / Blog Styling */
+        .article-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            font-size: 1.025rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Manifest Document Block */
+        .manifest-container {
+            background-color: #080a0e;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.45;
+            overflow-x: auto;
+        }
+
+        .hangar-callout-box {
+            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .hangar-callout-box h3 {
+            color: var(--text-main);
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .hangar-callout-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 2rem;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        #loading-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="nav-header">
+                <a href="./Berlin-Brandenburg.html" class="nav-btn">&larr; Back to Berlin & Brandenburg Aerodrome Orthophotos</a>
+                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="nav-btn">🛩️ See Other Products in My Hangar &rarr;</a>
+            </div>
+            <h1>Archival Geospatial Dataset: Motorflugplatz Johannisthal-Adlershof (DE-0013 1928) Raw GeoTIFF</h1>
+            <p class="subtitle">High-resolution 1:500 georeferenced monochrome survey tiles capturing Germany's first commercial airfield, hangars, and experimental aviation grounds during the 1928 Weimar era.</p>
+        </header>
+
+        <section class="meta-grid">
+            <div class="meta-item">
+                <strong>Identifier / Location</strong>
+                <span>DE-0013 / Johannisthal-Adlershof, Berlin</span>
+            </div>
+            <div class="meta-item">
+                <strong>Survey Epoch</strong>
+                <span>1928 Baseline (GDI Berlin Luftbild 1928)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Primary Format</strong>
+                <span>Coordinate-Sensitive GeoTIFF (B&W)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Publisher / Pipeline</strong>
+                <span>OKB-1 Design Bureau</span>
+            </div>
+        </section>
+
+        <!-- Screenshot Previews Section (Non-Carousel Layout) -->
+        <section>
+            <h2 class="section-title">Orthophoto Tile Gallery & Survey Previews</h2>
+            
+            <div id="gallery" class="gallery-grid">
+                <div id="loading-state">Loading GeoTIFF preview dataset...</div>
+            </div>
+        </section>
+
+        <!-- LARGE DUAL CTA BAR DIRECTLY UNDER SCREENSHOTS -->
+        <div class="primary-dual-cta">
+            <a href="https://creativedesigns840.gumroad.com" target="_blank" rel="noopener" class="btn-dual btn-dual-gumroad">
+                💾 Download Raw GeoTIFF Package on Gumroad
+            </a>
+            <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="btn-dual btn-dual-hangar">
+                🛩️ See Other Products in My Hangar &rarr;
+            </a>
+        </div>
+
+        <!-- Article / Story Documentation Content -->
+        <article class="article-content">
+            <h2>✈️ Preserving the Cradle of German Aviation: Johannisthal-Adlershof (1928)</h2>
+            <p>Opened in September 1909 as <em>Motorflugplatz Johannisthal-Adlershof</em>, this historic airfield in southeastern Berlin was Germany's very first commercial airport and the nerve center of early European aviation pioneers, including Anthony Fokker, Rumpler, Albatros, and the German Experimental Institute for Aviation (DVL).</p>
+            
+            <p>This archival dataset provides raw, uncompressed 1:500 scale georeferenced monochrome raster coverage compiled directly from the 1928 GDI Berlin aerial survey. Engineered specifically for historical researchers, GIS analysts, and flight simulation scenery developers, these coordinate-tagged LZW GeoTIFF tiles retain precise spatial positioning data for accurate overlay and terrain integration in QGIS, ArcGIS, Blender, and WorldEditor (WED).</p>
+
+            <!-- MID-ARTICLE HANGAR PROMOTION -->
+            <div class="hangar-callout-box">
+                <h3>🛩️ Looking for More Flight Simulation & GIS Datasets?</h3>
+                <p>Browse our complete catalog of historical airfield reconstructions, PBR ground polygon assets, and regional orthophoto hubs.</p>
+                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="nav-btn btn-dual-hangar" style="display: inline-block; padding: 0.85rem 1.75rem; font-size: 1rem;">
+                    Explore OKB-1 Full Hangar Catalog &rarr;
+                </a>
+            </div>
+
+            <h2>🛠️ Technical Specifications & Integration Guide</h2>
+            <p>Unlike standard compressed JPEG or PNG images, every tile inside this archive contains embedded georeferencing metadata tags. When imported into spatial editing software or game development engines, the tiles automatically map to their precise real-world geographic coordinates without manual scaling.</p>
+
+            <ul>
+                <li><strong>Tile Grid Spacing:</strong> 500 meters × 500 meters per individual raster segment.</li>
+                <li><strong>Pixel Density:</strong> Rendered at native 104 DPI at a 1:500 spatial scale.</li>
+                <li><strong>Compression Standard:</strong> Lossless LZW TIFF compression preserving full historical grayscale contrast and edge sharpness without artifacts.</li>
+                <li><strong>Simulator Drag-and-Drop Note:</strong> Contains raw GIS data. X-Plane 12 developers can convert these tiles directly into <code>.pol</code> or <code>.dsf</code> terrain underlays using WED (WorldEditor) or Ortho4XP raster pipelines.</li>
+            </ul>
+
+            <h2>📄 Official Dataset Manifest & License Notice</h2>
+            <p>The complete distribution statement and attribution manifest provided with this package is reproduced below:</p>
+
+            <div class="manifest-container">===============================================================================
+HISTORICAL GEOSPATIAL ORTHOPHOTO PACKAGE: DE-0013 (1928)
+===============================================================================
+
+OVERVIEW
+-------------------------------------------------------------------------------
+This package contains georeferenced, coordinate-sensitive LZW-compressed 
+GeoTIFF orthophoto tiles covering area DE-0013 for the historical year 1928. 
+These assets are specifically engineered for use in flight simulation platforms 
+(such as X-Plane 12) to maintain precise 1:500 spatial accuracy for open-source 
+research, geospatial study, historical reconstruction, and game development.
+
+
+1. SOURCE DATA & LICENSING NOTICE
+-------------------------------------------------------------------------------
+- Source Provider: GDI Berlin / Senatsverwaltung fuer Stadtentwicklung, 
+  Bauen und Wohnen
+- Source WMS Endpoint: http://gdi.berlin.de/services/wms/luftbild_1928_04
+- Underlying Data License: The raw historical aerial survey raster data is 
+  published under the Datenlizenz Deutschland - Zero - Version 2.0 (dl-de/zero-2-0)
+  (available at https://www.govdata.de/dl-de/zero-2-0). 
+  Users are encouraged to consult and respect the original provider's published data licensing terms
+
+
+2. DERIVATIVE WORK & PROCESSING STATEMENT
+-------------------------------------------------------------------------------
+- Processor / Studio: OKB-1 Creative Design Bureau
+- Intended Use: Open-source research, geospatial study, historical 
+  reconstruction, and game development.
+- Processing Specifications:
+  * Data Format: Coordinate-sensitive, LZW-compressed GeoTIFF tiles with 
+    embedded metadata tags.
+  * Spatial Dimensions: 500 m x 500 m per tile.
+  * Scale / Resolution: 1:500 scale rendered at 104 DPI native pixel density.
+  * Geographical Scope: DE-0013 (1928 Survey Era).
+
+
+3. TERMS OF DISTRIBUTION, ATTRIBUTION & INTELLECTUAL PROPERTY
+-------------------------------------------------------------------------------
+Distribution Policy:
+This package is freely distributed by OKB-1 Creative Design Bureau to support 
+open-source research, geospatial study, historical reconstruction, aviation 
+simulation, and game development. No purchase, subscription, or licensing fee 
+is required to obtain or use this package.
+
+Derivative Work Recognition & Attribution:
+The specific processed GeoTIFF package represents the independent processing, 
+compilation, geospatial tiling, metadata integration, and distribution work 
+undertaken by OKB-1 Creative Design Bureau.
+
+Users who redistribute, republish, host, or incorporate this specific bundled 
+package into publicly distributed projects are requested to preserve the 
+original package attribution:
+
+  "Processed and compiled by OKB-1 Creative Design Bureau, using historical 
+   source imagery provided by GDI Berlin."
+
+Removal or falsification of the original processing provenance, or 
+misrepresentation of OKB-1's contributions as another party's work, is not 
+authorized.
+
+Responsible Usage:
+This package is provided for legitimate research, educational, historical 
+reconstruction, geospatial analysis, aviation simulation, and development 
+purposes. OKB-1 Creative Design Bureau does not endorse or authorize the use 
+of its original packaging, documentation, or studio identity to misrepresent 
+data provenance, facilitate unlawful activities, or falsely imply institutional 
+endorsement. Users remain responsible for ensuring that their applications 
+and activities comply with applicable laws and regulations.
+
+Original Source Data License:
+The underlying historical aerial imagery is provided by GDI Berlin / 
+Senatsverwaltung fuer Stadtentwicklung, Bauen und Wohnen under Datenlizenz 
+Deutschland - Zero - Version 2.0 (DL-DE Zero 2.0). The original source 
+license remains applicable to the underlying source data and is not replaced 
+or restricted by this package's distribution notice.
+
+Source: http://gdi.berlin.de/services/wms/luftbild_1928_04
+Licence: https://www.govdata.de/dl-de/zero-2-0
+===============================================================================</div>
+
+            <!-- BOTTOM HANGAR PROMOTION BOX -->
+            <div class="hangar-callout-box">
+                <h3>🛩️ Discover More Flight Sim Projects</h3>
+                <p>Browse through our complete collection of custom scenery releases, WED tools, and regional orthophoto hubs.</p>
+                <a href="https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/index.html" class="btn-dual btn-dual-hangar" style="display: inline-block; width: auto; padding: 0.85rem 1.75rem;">
+                    &larr; See Other Products in My Hangar
+                </a>
+            </div>
+
+            <ul class="footer-links">
+                <li>👉 Support OKB-1 Projects & Downloads on <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener">Ko-fi</a></li>
+                <li>👉 Buy the Developer a Coffee on <a href="https://creativedesigns840.gumroad.com/coffee" target="_blank" rel="noopener">Gumroad</a></li>
+            </ul>
+        </article>
+
+        <footer>
+            <p>Distributed under non-commercial open catalog model. Developed by OKB-1 Creative Design Bureau.</p>
+        </footer>
+    </div>
+
+    <!-- Dynamic Image Grid Script (Wired to DE-0013_1928.js) -->
+    <script type="module">
+        import { image_container } from './DE-0013_1928.js';
+
+        const gallery = document.getElementById('gallery');
+
+        if (image_container && image_container.length > 0) {
+            gallery.innerHTML = ''; // Clear loading state
+
+            image_container.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+
+                const imageName = item.name || `DE-0013 1928 GeoTIFF Tile #${index + 1}`;
+                const imageUrl = item.url;
+
+                card.innerHTML = `
+                    <div class="img-container">
+                        <img src="${imageUrl}" alt="${imageName}" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${imageName}</div>
+                        <span class="snippet-label">Snippet Image</span>
+                    </div>
+                `;
+
+                gallery.appendChild(card);
+            });
+        } else {
+            gallery.innerHTML = '<div id="loading-state">No GeoTIFF preview images found in DE-0013_1928.js module.</div>';
+        }
+    </script>
+</body>
+</html>
