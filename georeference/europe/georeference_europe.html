@@ -33,7 +33,7 @@
         :root {
             --bg-color: #06090f;
             --panel-bg: #0b121e;
-            --grid-line: rgba(14, 165, 233, 0.12);
+            --grid-line: rgba(14, 165, 233, 0.11);
             --accent-cyan: #0ea5e9;
             --accent-green: #22c55e;
             --accent-amber: #f59e0b;
@@ -58,7 +58,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
         }
 
@@ -151,9 +151,9 @@
         /* NORAD Tactical Map Screen */
         .norad-frame {
             background-color: var(--panel-bg);
-            border: 1px solid rgba(14, 165, 233, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.45);
             border-radius: 8px;
-            box-shadow: 0 0 35px rgba(14, 165, 233, 0.12), inset 0 0 40px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 0 35px rgba(14, 165, 233, 0.14), inset 0 0 40px rgba(0, 0, 0, 0.8);
             overflow: hidden;
             position: relative;
             margin-bottom: 2rem;
@@ -164,7 +164,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.65rem 1.25rem;
-            background: rgba(6, 9, 15, 0.85);
+            background: rgba(6, 9, 15, 0.9);
             font-size: 0.75rem;
             color: var(--accent-cyan);
             letter-spacing: 1px;
@@ -182,7 +182,7 @@
         .map-viewport {
             position: relative;
             width: 100%;
-            background: radial-gradient(circle at 48% 52%, #0e192b 0%, #05080e 100%);
+            background: radial-gradient(circle at 49% 46%, #0d1a2e 0%, #04070d 100%);
             overflow: hidden;
         }
 
@@ -207,66 +207,112 @@
             display: block;
         }
 
-        /* Interactive Cold War Sectors */
-        .sector-group {
-            transition: all 0.25s ease;
+        /* Cartographic Nation Styles */
+        .nation-group {
+            transition: all 0.2s ease;
         }
 
+        /* NATO / Western Bloc (Subtle Cyan-Blue Vector) */
+        .bloc-nato {
+            cursor: not-allowed;
+        }
+        .bloc-nato .land {
+            fill: rgba(14, 165, 233, 0.08);
+            stroke: rgba(56, 189, 248, 0.42);
+            stroke-width: 1.1;
+            stroke-linejoin: round;
+            transition: all 0.2s ease;
+        }
+        .bloc-nato:hover .land {
+            fill: rgba(14, 165, 233, 0.18);
+            stroke: #38bdf8;
+        }
+
+        /* Non-Aligned / Neutral States (Slate Vector) */
+        .bloc-neutral {
+            cursor: not-allowed;
+        }
+        .bloc-neutral .land {
+            fill: rgba(148, 163, 184, 0.06);
+            stroke: rgba(148, 163, 184, 0.35);
+            stroke-width: 1.05;
+            stroke-linejoin: round;
+            transition: all 0.2s ease;
+        }
+        .bloc-neutral:hover .land {
+            fill: rgba(148, 163, 184, 0.15);
+            stroke: #cbd5e1;
+        }
+
+        /* Warsaw Pact Standby States (Subtle Amber-Red Vector) */
+        .bloc-pact-wip {
+            cursor: not-allowed;
+        }
+        .bloc-pact-wip .land {
+            fill: rgba(245, 158, 11, 0.07);
+            stroke: rgba(251, 146, 60, 0.42);
+            stroke-width: 1.1;
+            stroke-linejoin: round;
+            transition: all 0.2s ease;
+        }
+        .bloc-pact-wip:hover .land {
+            fill: rgba(245, 158, 11, 0.18);
+            stroke: #fbbf24;
+        }
+
+        /* ACTIVE SECTOR: EAST GERMANY (DDR) */
         .sector-active {
             cursor: pointer;
         }
-
-        .sector-active .landmass {
-            fill: rgba(34, 197, 94, 0.24);
+        .sector-active .land {
+            fill: rgba(34, 197, 94, 0.28);
             stroke: #22c55e;
-            stroke-width: 2;
+            stroke-width: 1.9;
+            stroke-linejoin: round;
             filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.65));
             transition: all 0.25s ease;
         }
-
-        .sector-active:hover .landmass {
-            fill: rgba(34, 197, 94, 0.45);
+        .sector-active:hover .land {
+            fill: rgba(34, 197, 94, 0.5);
             stroke: #86efac;
-            stroke-width: 2.6;
-            filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.95));
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.95));
         }
 
-        .sector-wip {
-            cursor: not-allowed;
-        }
-
-        .sector-wip .landmass {
-            fill: rgba(14, 165, 233, 0.06);
-            stroke: rgba(14, 165, 233, 0.32);
-            stroke-width: 1.2;
-            stroke-dasharray: 4 3;
-            transition: all 0.25s ease;
-        }
-
-        .sector-wip:hover .landmass {
-            fill: rgba(245, 158, 11, 0.12);
-            stroke: var(--accent-amber);
-        }
-
-        .sector-label {
+        .map-label {
             font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 10.5px;
+            font-size: 8.5px;
             font-weight: 700;
-            letter-spacing: 0.8px;
-            pointer-events: none;
-        }
-
-        .sector-sub {
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 8px;
+            fill: #94a3b8;
             letter-spacing: 0.6px;
             pointer-events: none;
+            text-anchor: middle;
+        }
+
+        .map-label-sm {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 7px;
+            font-weight: 700;
+            fill: #64748b;
+            letter-spacing: 0.5px;
+            pointer-events: none;
+            text-anchor: middle;
+        }
+
+        .sea-label {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 9px;
+            font-style: italic;
+            fill: rgba(14, 165, 233, 0.38);
+            letter-spacing: 1.5px;
+            pointer-events: none;
+            text-anchor: middle;
         }
 
         /* Legend Strip inside HUD */
         .legend-row {
             display: flex;
-            gap: 1.25rem;
+            gap: 1.1rem;
             align-items: center;
             font-size: 0.72rem;
             flex-wrap: wrap;
@@ -278,9 +324,10 @@
             gap: 0.4rem;
         }
 
-        .swatch-green { width: 10px; height: 10px; background: rgba(34, 197, 94, 0.4); border: 1px solid #22c55e; display: inline-block; }
+        .swatch-green { width: 10px; height: 10px; background: rgba(34, 197, 94, 0.45); border: 1px solid #22c55e; display: inline-block; }
         .swatch-red { width: 14px; height: 2px; background: #ef4444; display: inline-block; }
-        .swatch-cyan { width: 10px; height: 10px; background: rgba(14, 165, 233, 0.1); border: 1px dashed #0ea5e9; display: inline-block; }
+        .swatch-nato { width: 10px; height: 10px; background: rgba(14, 165, 233, 0.14); border: 1px solid rgba(56, 189, 248, 0.55); display: inline-block; }
+        .swatch-pact { width: 10px; height: 10px; background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(251, 146, 60, 0.55); display: inline-block; }
 
         /* Quick Sector Selector Grid */
         .sector-strip {
@@ -367,150 +414,277 @@
         <p class="bio">Select an active Cold War national sector to access full-state georeferenced USGS archival aerial &amp; declassified satellite GeoTIFF mosaics.</p>
     </header>
 
-    <!-- NORAD TACTICAL EUROPE PROJECTION -->
+    <!-- NORAD TACTICAL CARTOGRAPHIC EUROPE PROJECTION -->
     <div class="norad-frame">
         <div class="hud-top-bar">
-            <span>SECTOR: CENTRAL &amp; EASTERN EUROPE [EUR-01]</span>
+            <span>CARTOGRAPHIC PROJECTION: EUR-01 [1949–1989 BORDERS]</span>
             <span id="cursor-coords">LAT: --.----°N | LON: ---.----°E</span>
             <span>DATUM: WGS84 / ETRS89</span>
         </div>
 
         <div class="map-viewport">
-            <svg id="europe-svg" class="europe-radar" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
-                <!-- Latitude / Longitude Graticule (Approx 36°N–62°N, 10°W–34°E) -->
-                <g stroke="rgba(14, 165, 233, 0.14)" stroke-width="0.8">
-                    <line x1="0" y1="90" x2="1000" y2="90" stroke-dasharray="3 3" />
-                    <line x1="0" y1="180" x2="1000" y2="180" />
-                    <line x1="0" y1="270" x2="1000" y2="270" stroke="rgba(14, 165, 233, 0.3)" stroke-width="1.1" />
-                    <line x1="0" y1="360" x2="1000" y2="360" />
-                    <line x1="0" y1="450" x2="1000" y2="450" stroke-dasharray="3 3" />
+            <svg id="europe-svg" class="europe-radar" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+                <!-- Latitude / Longitude Graticule -->
+                <g stroke="rgba(14, 165, 233, 0.12)" stroke-width="0.8">
+                    <line x1="0" y1="100" x2="1000" y2="100" stroke-dasharray="3 3" />
+                    <line x1="0" y1="200" x2="1000" y2="200" />
+                    <line x1="0" y1="310" x2="1000" y2="310" stroke="rgba(14, 165, 233, 0.28)" stroke-width="1" />
+                    <line x1="0" y1="420" x2="1000" y2="420" />
+                    <line x1="0" y1="520" x2="1000" y2="520" stroke-dasharray="3 3" />
 
-                    <line x1="166" y1="0" x2="166" y2="540" />
-                    <line x1="333" y1="0" x2="333" y2="540" />
-                    <line x1="500" y1="0" x2="500" y2="540" stroke="rgba(14, 165, 233, 0.3)" stroke-width="1.1" />
-                    <line x1="666" y1="0" x2="666" y2="540" />
-                    <line x1="833" y1="0" x2="833" y2="540" />
+                    <line x1="166" y1="0" x2="166" y2="620" />
+                    <line x1="333" y1="0" x2="333" y2="620" />
+                    <line x1="500" y1="0" x2="500" y2="620" stroke="rgba(14, 165, 233, 0.28)" stroke-width="1" />
+                    <line x1="666" y1="0" x2="666" y2="620" />
+                    <line x1="833" y1="0" x2="833" y2="620" />
                 </g>
 
-                <text x="12" y="265" fill="rgba(14,165,233,0.45)" font-size="9">50°00'N PARALLEL</text>
-                <text x="506" y="16" fill="rgba(14,165,233,0.45)" font-size="9">012°00'E MERIDIAN</text>
-
-                <!-- UNITED KINGDOM (WIP) -->
-                <g class="sector-group sector-wip" data-sector="UNITED KINGDOM [NATO-UK // STANDBY]">
-                    <polygon class="landmass" points="165,135 205,125 225,185 245,235 175,248 160,210 182,180" />
-                    <polygon class="landmass" points="120,175 152,172 150,212 118,212" />
-                    <text x="172" y="205" fill="#94a3b8" class="sector-label">UK</text>
-                    <text x="166" y="217" fill="#f59e0b" class="sector-sub">[WIP]</text>
+                <!-- Tactical Scale Bar (Top Left like Britannica Reference) -->
+                <g stroke="#38bdf8" stroke-width="1" fill="#38bdf8" font-size="8">
+                    <line x1="24" y1="26" x2="174" y2="26" />
+                    <line x1="24" y1="21" x2="24" y2="31" />
+                    <line x1="99" y1="22" x2="99" y2="26" />
+                    <line x1="174" y1="21" x2="174" y2="31" />
+                    <line x1="117" y1="26" x2="117" y2="31" />
+                    <text x="24" y="17" stroke="none">0</text>
+                    <text x="92" y="17" stroke="none">250</text>
+                    <text x="166" y="17" stroke="none">500 mi</text>
+                    <text x="24" y="40" stroke="none">0</text>
+                    <text x="64" y="40" stroke="none">250</text>
+                    <text x="108" y="40" stroke="none">500 km</text>
                 </g>
 
-                <!-- NORDIC SECTOR / SCANDINAVIA (WIP) -->
-                <g class="sector-group sector-wip" data-sector="NORDIC SECTOR [DENMARK / SWEDEN / NORWAY // STANDBY]">
-                    <polygon class="landmass" points="415,25 545,20 585,75 535,145 455,140 420,95" />
-                    <!-- Denmark -->
-                    <polygon class="landmass" points="412,152 442,150 445,182 415,184" />
-                    <text x="465" y="88" fill="#94a3b8" class="sector-label">NORDIC SECTOR</text>
-                    <text x="478" y="101" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                <!-- Marine & Sea Labels -->
+                <text x="95" y="210" class="sea-label">ATLANTIC</text>
+                <text x="95" y="223" class="sea-label">OCEAN</text>
+                <text x="365" y="135" class="sea-label">North Sea</text>
+                <text x="558" y="155" class="sea-label" transform="rotate(-38 558 155)">Baltic Sea</text>
+                <text x="805" y="445" class="sea-label">Black Sea</text>
+                <text x="415" y="545" class="sea-label" transform="rotate(14 415 545)">Mediterranean Sea</text>
+
+                <!-- ==================== NEUTRAL / NON-ALIGNED STATES ==================== -->
+
+                <!-- IRELAND -->
+                <g class="nation-group bloc-neutral" data-sector="REPUBLIC OF IRELAND [NEUTRAL // STANDBY]">
+                    <path class="land" d="M 192,165 L 222,155 L 232,168 L 226,192 L 214,205 L 185,208 L 178,195 L 184,178 Z" />
+                    <text x="204" y="187" class="map-label-sm">IRELAND</text>
                 </g>
 
-                <!-- FRANCE & BENELUX (WIP) -->
-                <g class="sector-group sector-wip" data-sector="FRANCE & BENELUX [NATO-WEST // STANDBY]">
-                    <polygon class="landmass" points="195,275 315,250 355,265 362,325 340,395 240,405 215,345" />
-                    <text x="255" y="330" fill="#94a3b8" class="sector-label">FRANCE / BENELUX</text>
-                    <text x="275" y="343" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                <!-- SWEDEN -->
+                <g class="nation-group bloc-neutral" data-sector="KINGDOM OF SWEDEN [NEUTRAL // STANDBY]">
+                    <path class="land" d="M 520,10 L 575,10 L 582,35 L 565,58 L 548,88 L 545,122 L 525,148 L 502,152 L 495,125 L 486,102 L 498,65 Z" />
+                    <text x="528" y="95" class="map-label">SWEDEN</text>
                 </g>
 
-                <!-- WEST GERMANY / BRD (WIP) -->
-                <g class="sector-group sector-wip" data-sector="WEST GERMANY (BRD) [NATO-CENTAG/NORTHAG // STANDBY]">
-                    <polygon class="landmass" points="362,205 435,200 448,238 438,275 458,312 452,355 375,358 362,315 355,265" />
-                    <text x="372" y="275" fill="#94a3b8" class="sector-label">WEST GERMANY</text>
-                    <text x="385" y="288" fill="#94a3b8" class="sector-sub">(BRD)</text>
-                    <text x="382" y="301" fill="#f59e0b" class="sector-sub">[WIP]</text>
+                <!-- FINLAND -->
+                <g class="nation-group bloc-neutral" data-sector="REPUBLIC OF FINLAND [NEUTRAL // STANDBY]">
+                    <path class="land" d="M 582,10 L 675,10 L 692,45 L 685,85 L 652,108 L 605,112 L 598,85 L 612,55 L 582,35 Z" />
+                    <text x="642" y="68" class="map-label">FINLAND</text>
                 </g>
 
-                <!-- EAST GERMANY / DDR (ACTIVE CLICKABLE LINK) -->
+                <!-- SPAIN -->
+                <g class="nation-group bloc-neutral" data-sector="SPAIN [STANDBY]">
+                    <path class="land" d="M 118,378 L 165,375 L 215,388 L 258,402 L 278,412 L 245,445 L 232,475 L 195,495 L 152,492 L 135,472 L 145,425 L 122,405 Z" />
+                    <text x="195" y="442" class="map-label">SPAIN</text>
+                </g>
+
+                <!-- SWITZERLAND -->
+                <g class="nation-group bloc-neutral" data-sector="SWITZERLAND [NEUTRAL // STANDBY]">
+                    <path class="land" d="M 365,345 L 392,340 L 412,346 L 416,358 L 392,366 L 368,362 Z" />
+                    <text x="390" y="356" class="map-label-sm">SWITZ.</text>
+                </g>
+
+                <!-- AUSTRIA -->
+                <g class="nation-group bloc-neutral" data-sector="REPUBLIC OF AUSTRIA [NEUTRAL // STANDBY]">
+                    <path class="land" d="M 416,346 L 452,338 L 498,332 L 515,342 L 512,362 L 478,368 L 442,362 L 416,358 Z" />
+                    <text x="476" y="353" class="map-label-sm">AUSTRIA</text>
+                </g>
+
+                <!-- YUGOSLAVIA -->
+                <g class="nation-group bloc-neutral" data-sector="SFR YUGOSLAVIA [NON-ALIGNED // STANDBY]">
+                    <path class="land" d="M 478,368 L 512,362 L 548,365 L 588,382 L 605,408 L 598,438 L 575,452 L 545,432 L 502,405 L 475,385 Z" />
+                    <text x="545" y="405" class="map-label">YUGOSLAVIA</text>
+                </g>
+
+                <!-- NORTH AFRICA COASTLINE (Context) -->
+                <g class="nation-group bloc-neutral" data-sector="NORTH AFRICA [OUT OF THEATER]">
+                    <path class="land" d="M 95,542 L 145,512 L 215,510 L 295,518 L 365,512 L 385,535 L 382,568 L 425,585 L 485,595 L 545,605 L 545,620 L 95,620 Z" />
+                    <text x="235" y="575" class="map-label" style="font-size: 11px; fill: #64748b;">AFRICA</text>
+                </g>
+
+                <!-- ==================== NATO / WESTERN BLOC ==================== -->
+
+                <!-- UNITED KINGDOM (incl. Northern Ireland) -->
+                <g class="nation-group bloc-nato" data-sector="UNITED KINGDOM [NATO-UK // STANDBY]">
+                    <path class="land" d="M 248,108 L 274,104 L 278,128 L 268,142 L 286,165 L 298,195 L 285,212 L 242,216 L 238,202 L 256,192 L 252,175 L 262,158 L 245,142 Z" />
+                    <path class="land" d="M 218,156 L 234,154 L 234,168 L 218,168 Z" />
+                    <text x="272" y="176" class="map-label-sm">UNITED</text>
+                    <text x="272" y="185" class="map-label-sm">KINGDOM</text>
+                </g>
+
+                <!-- NORWAY -->
+                <g class="nation-group bloc-nato" data-sector="KINGDOM OF NORWAY [NATO-NORTH // STANDBY]">
+                    <path class="land" d="M 520,10 L 498,65 L 486,102 L 495,125 L 468,128 L 448,112 L 445,82 L 468,45 L 495,15 Z" />
+                    <text x="474" y="75" class="map-label-sm">NORWAY</text>
+                </g>
+
+                <!-- DENMARK -->
+                <g class="nation-group bloc-nato" data-sector="KINGDOM OF DENMARK [NATO-BALTAP // STANDBY]">
+                    <path class="land" d="M 432,162 L 456,158 L 462,182 L 456,196 L 434,196 L 430,178 Z" />
+                    <path class="land" d="M 466,178 L 478,176 L 480,192 L 466,192 Z" />
+                    <text x="448" y="152" class="map-label-sm">DENMARK</text>
+                </g>
+
+                <!-- PORTUGAL -->
+                <g class="nation-group bloc-nato" data-sector="PORTUGAL [NATO // STANDBY]">
+                    <path class="land" d="M 118,378 L 138,380 L 145,425 L 135,472 L 116,468 L 112,422 Z" />
+                    <text x="92" y="432" class="map-label-sm">PORTUGAL</text>
+                </g>
+
+                <!-- FRANCE -->
+                <g class="nation-group bloc-nato" data-sector="FRENCH REPUBLIC [NATO // STANDBY]">
+                    <path class="land" d="M 262,258 L 315,248 L 338,255 L 368,285 L 382,315 L 365,345 L 368,362 L 365,388 L 332,402 L 298,395 L 278,412 L 258,402 L 272,362 L 265,315 L 235,295 L 238,278 L 265,275 Z" />
+                    <text x="316" y="330" class="map-label">FRANCE</text>
+                </g>
+
+                <!-- NETHERLANDS -->
+                <g class="nation-group bloc-nato" data-sector="NETHERLANDS [NATO-NORTHAG // STANDBY]">
+                    <path class="land" d="M 358,225 L 386,218 L 392,242 L 378,254 L 352,252 Z" />
+                    <text x="372" y="213" class="map-label-sm">NETHERLANDS</text>
+                </g>
+
+                <!-- BELGIUM & LUXEMBOURG -->
+                <g class="nation-group bloc-nato" data-sector="BELGIUM & LUXEMBOURG [NATO-NORTHAG // STANDBY]">
+                    <path class="land" d="M 345,252 L 378,254 L 384,274 L 368,285 L 338,265 Z" />
+                    <text x="358" y="268" class="map-label-sm">BELGIUM</text>
+                </g>
+
+                <!-- WEST GERMANY (BRD) -->
+                <g class="nation-group bloc-nato" data-sector="WEST GERMANY (BRD) [NATO-CENTAG/NORTHAG // STANDBY]">
+                    <path class="land" d="M 434,196 L 456,196 L 464,208 L 454,228 L 456,255 L 464,278 L 478,292 L 465,312 L 452,338 L 416,346 L 392,340 L 388,318 L 382,315 L 368,285 L 384,274 L 378,254 L 392,242 L 386,218 L 418,215 Z" />
+                    <text x="418" y="282" class="map-label">WEST</text>
+                    <text x="418" y="293" class="map-label">GERMANY</text>
+                    <text x="418" y="303" class="map-label-sm">(BRD)</text>
+                </g>
+
+                <!-- ITALY (incl. Sardinia & Sicily) -->
+                <g class="nation-group bloc-nato" data-sector="ITALIAN REPUBLIC [NATO-SOUTH // STANDBY]">
+                    <path class="land" d="M 368,362 L 392,366 L 416,358 L 442,362 L 462,374 L 452,392 L 475,418 L 508,438 L 522,452 L 508,458 L 488,448 L 482,478 L 468,482 L 462,455 L 425,418 L 392,388 L 365,388 Z" />
+                    <!-- Sardinia -->
+                    <path class="land" d="M 382,432 L 396,430 L 398,462 L 382,464 Z" />
+                    <!-- Sicily -->
+                    <path class="land" d="M 442,484 L 468,482 L 462,498 L 440,494 Z" />
+                    <text x="444" y="424" class="map-label">ITALY</text>
+                </g>
+
+                <!-- GREECE -->
+                <g class="nation-group bloc-nato" data-sector="HELLENIC REPUBLIC (GREECE) [NATO-SOUTH // STANDBY]">
+                    <path class="land" d="M 588,465 L 635,455 L 652,462 L 628,482 L 622,508 L 605,525 L 592,508 L 585,485 Z" />
+                    <!-- Crete -->
+                    <path class="land" d="M 615,542 L 648,544 L 646,551 L 614,549 Z" />
+                    <text x="612" y="492" class="map-label-sm">GREECE</text>
+                </g>
+
+                <!-- TURKEY -->
+                <g class="nation-group bloc-nato" data-sector="REPUBLIC OF TURKEY [NATO-SOUTHEAST // STANDBY]">
+                    <path class="land" d="M 652,462 L 685,452 L 735,462 L 825,460 L 905,462 L 915,508 L 845,518 L 745,518 L 675,515 L 662,482 Z" />
+                    <text x="795" y="492" class="map-label">TURKEY</text>
+                </g>
+
+                <!-- ==================== WARSAW PACT (STANDBY) ==================== -->
+
+                <!-- POLAND -->
+                <g class="nation-group bloc-pact-wip" data-sector="POLISH PEOPLE'S REPUBLIC (PRL) [WARSAW PACT // STANDBY]">
+                    <path class="land" d="M 526,204 L 568,195 L 625,196 L 638,235 L 642,268 L 625,288 L 575,282 L 532,272 L 522,248 Z" />
+                    <text x="582" y="244" class="map-label">POLAND</text>
+                </g>
+
+                <!-- CZECHOSLOVAKIA -->
+                <g class="nation-group bloc-pact-wip" data-sector="CZECHOSLOVAK SOCIALIST REPUBLIC (ČSSR) [WARSAW PACT // STANDBY]">
+                    <path class="land" d="M 465,312 L 478,292 L 518,284 L 532,272 L 575,282 L 625,288 L 632,306 L 592,318 L 542,322 L 515,342 L 498,332 Z" />
+                    <text x="546" y="306" class="map-label-sm" transform="rotate(6 546 306)">CZECHOSLOVAKIA</text>
+                </g>
+
+                <!-- HUNGARY -->
+                <g class="nation-group bloc-pact-wip" data-sector="HUNGARIAN PEOPLE'S REPUBLIC [WARSAW PACT // STANDBY]">
+                    <path class="land" d="M 515,342 L 542,322 L 592,318 L 605,335 L 588,368 L 548,365 L 512,362 Z" />
+                    <text x="556" y="346" class="map-label-sm">HUNGARY</text>
+                </g>
+
+                <!-- ROMANIA -->
+                <g class="nation-group bloc-pact-wip" data-sector="SOCIALIST REPUBLIC OF ROMANIA [WARSAW PACT // STANDBY]">
+                    <path class="land" d="M 605,335 L 652,325 L 682,348 L 688,388 L 668,402 L 605,408 L 588,382 L 588,368 Z" />
+                    <text x="638" y="372" class="map-label">ROMANIA</text>
+                </g>
+
+                <!-- BULGARIA -->
+                <g class="nation-group bloc-pact-wip" data-sector="PEOPLE'S REPUBLIC OF BULGARIA [WARSAW PACT // STANDBY]">
+                    <path class="land" d="M 605,408 L 668,402 L 682,412 L 672,448 L 635,455 L 598,438 Z" />
+                    <text x="642" y="432" class="map-label-sm">BULGARIA</text>
+                </g>
+
+                <!-- ALBANIA -->
+                <g class="nation-group bloc-pact-wip" data-sector="PEOPLE'S SOCIALIST REPUBLIC OF ALBANIA [STANDBY]">
+                    <path class="land" d="M 575,452 L 588,442 L 594,468 L 586,482 L 574,472 Z" />
+                    <text x="562" y="492" class="map-label-sm">ALBANIA</text>
+                </g>
+
+                <!-- SOVIET UNION (USSR) -->
+                <g class="nation-group bloc-pact-wip" data-sector="UNION OF SOVIET SOCIALIST REPUBLICS (USSR) [STANDBY]">
+                    <path class="land" d="M 675,10 L 990,10 L 990,462 L 905,462 L 875,425 L 825,392 L 775,388 L 735,412 L 705,405 L 688,388 L 682,348 L 652,325 L 632,306 L 625,288 L 642,268 L 638,235 L 625,196 L 605,196 L 608,162 L 632,142 L 615,125 L 605,112 L 652,108 L 685,85 L 692,45 Z" />
+                    <text x="815" y="215" class="map-label" style="font-size: 11px;">SOVIET</text>
+                    <text x="815" y="228" class="map-label" style="font-size: 11px;">UNION</text>
+                    <text x="815" y="240" class="map-label-sm">(USSR)</text>
+                </g>
+
+                <!-- ==================== ACTIVE SECTOR: EAST GERMANY (DDR) ==================== -->
                 <a href="./ddr/georeference_ddr.html" aria-label="Enter East Germany (DDR) Georeferenced GIS Sector">
-                    <g class="sector-group sector-active" data-sector="EAST GERMANY (DDR) [ONLINE - SAXONY & REGIONAL GEOTIFFS]">
+                    <g class="nation-group sector-active" data-sector="EAST GERMANY (DDR) [ONLINE - CLICK TO ACCESS SAXONY & DDR GEOTIFFS]">
                         <!-- Tactical Radar Ring centered on Berlin / Saxony -->
-                        <circle cx="492" cy="242" r="54" fill="none" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1" stroke-dasharray="3 3" />
-                        <circle cx="492" cy="242" r="30" fill="none" stroke="rgba(34, 197, 94, 0.55)" stroke-width="1" />
+                        <circle cx="496" cy="246" r="52" fill="none" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1" stroke-dasharray="3 3" />
+                        <circle cx="496" cy="246" r="28" fill="none" stroke="rgba(34, 197, 94, 0.55)" stroke-width="1" />
 
-                        <!-- DDR Territory (Mecklenburg, Brandenburg, Saxony-Anhalt, Thuringia, Saxony) -->
-                        <polygon class="landmass" points="435,200 528,195 542,248 538,288 492,298 458,312 438,275 448,238" />
+                        <!-- Accurate DDR State Silhouette (Mecklenburg coast, Oder-Neisse border, Erzgebirge/Saxony, Harz/Elbe) -->
+                        <path class="land" d="M 464,208 L 492,196 L 526,204 L 522,248 L 532,272 L 518,284 L 478,292 L 464,278 L 456,255 L 454,228 Z" />
 
-                        <!-- Berlin Air Corridors (Hamburg, Hanover, Frankfurt to West Berlin) -->
-                        <line x1="418" y1="215" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
-                        <line x1="408" y1="242" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
-                        <line x1="395" y1="295" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
+                        <!-- Berlin Air Corridors (Hamburg, Hanover, Frankfurt -> Berlin) -->
+                        <line x1="444" y1="212" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
+                        <line x1="436" y1="238" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
+                        <line x1="422" y1="286" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
 
-                        <!-- Berlin & Dresden/Saxony Waypoints -->
-                        <circle cx="495" cy="232" r="3.5" fill="#22c55e" />
-                        <text x="502" y="230" fill="#86efac" font-size="8.5" font-weight="700">BERLIN</text>
+                        <!-- Berlin & Saxony Target Markers -->
+                        <circle cx="504" cy="236" r="3" fill="#22c55e" stroke="#06090f" stroke-width="0.8" />
+                        <text x="504" y="229" fill="#86efac" font-size="7.5" font-weight="700" text-anchor="middle">BERLIN</text>
 
-                        <circle cx="506" cy="276" r="3.5" fill="#22c55e" />
-                        <text x="502" y="288" fill="#86efac" font-size="8.5" font-weight="700">SAXONY</text>
+                        <circle cx="506" cy="274" r="3" fill="#22c55e" stroke="#06090f" stroke-width="0.8" />
+                        <text x="502" y="284" fill="#86efac" font-size="7.5" font-weight="700" text-anchor="middle">SAXONY</text>
 
-                        <!-- Callout HUD Box -->
-                        <rect x="442" y="138" width="184" height="34" rx="3" fill="rgba(6, 9, 15, 0.92)" stroke="#22c55e" stroke-width="1.2" />
-                        <text x="452" y="153" fill="#22c55e" class="sector-label">EAST GERMANY (DDR)</text>
-                        <text x="452" y="165" fill="#86efac" class="sector-sub">ACTIVE // SAXONY &amp; DDR MOSAICS</text>
-                        <line x1="495" y1="172" x2="495" y2="196" stroke="#22c55e" stroke-width="1" />
+                        <!-- Tactical Callout HUD Box -->
+                        <rect x="448" y="102" width="182" height="34" rx="3" fill="rgba(6, 9, 15, 0.92)" stroke="#22c55e" stroke-width="1.2" />
+                        <text x="539" y="116" fill="#22c55e" font-size="10" font-weight="700" text-anchor="middle">EAST GERMANY (DDR)</text>
+                        <text x="539" y="128" fill="#86efac" font-size="8" text-anchor="middle">ACTIVE // CLICK FOR GEOTIFFS</text>
+                        <line x1="496" y1="136" x2="496" y2="198" stroke="#22c55e" stroke-width="1" />
                     </g>
                 </a>
 
-                <!-- POLAND / PRL (WIP) -->
-                <g class="sector-group sector-wip" data-sector="POLISH PEOPLE'S REPUBLIC (PRL) [WARSAW PACT // STANDBY]">
-                    <polygon class="landmass" points="528,195 675,188 692,265 665,295 585,288 538,288 542,248" />
-                    <text x="585" y="240" fill="#94a3b8" class="sector-label">POLAND (PRL)</text>
-                    <text x="595" y="253" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
-                </g>
-
-                <!-- CZECHOSLOVAKIA / CSSR (WIP) -->
-                <g class="sector-group sector-wip" data-sector="CZECHOSLOVAKIA (ČSSR) [WARSAW PACT // STANDBY]">
-                    <polygon class="landmass" points="458,312 492,298 538,288 585,288 648,305 638,335 555,338 485,335" />
-                    <text x="505" y="318" fill="#94a3b8" class="sector-label">CZECHOSLOVAKIA</text>
-                    <text x="530" y="330" fill="#f59e0b" class="sector-sub">(ČSSR) [WIP]</text>
-                </g>
-
-                <!-- AUSTRIA & HUNGARY (WIP) -->
-                <g class="sector-group sector-wip" data-sector="AUSTRIA (NEUTRAL) & HUNGARY (HPR) [STANDBY]">
-                    <polygon class="landmass" points="452,355 485,335 555,338 638,335 645,385 555,395 462,385" />
-                    <text x="502" y="368" fill="#94a3b8" class="sector-label">AUSTRIA / HUNGARY</text>
-                    <text x="528" y="381" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
-                </g>
-
-                <!-- USSR WESTERN MILITARY DISTRICTS (WIP) -->
-                <g class="sector-group sector-wip" data-sector="USSR WESTERN DISTRICTS [BALTIC / BYELORUSSIAN / UKRAINIAN // STANDBY]">
-                    <polygon class="landmass" points="675,110 895,95 920,340 725,355 665,295 692,265 675,188" />
-                    <text x="755" y="220" fill="#94a3b8" class="sector-label">USSR (WESTERN MD)</text>
-                    <text x="775" y="234" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
-                </g>
-
-                <!-- BALKANS & ITALY (WIP) -->
-                <g class="sector-group sector-wip" data-sector="ITALY & BALKAN PENINSULA [STANDBY]">
-                    <polygon class="landmass" points="415,385 485,385 525,465 495,485 435,425" />
-                    <polygon class="landmass" points="545,395 715,385 695,485 595,495 555,445" />
-                    <text x="595" y="445" fill="#94a3b8" class="sector-label">BALKANS / MED</text>
-                    <text x="608" y="458" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
-                </g>
-
                 <!-- IRON CURTAIN / INNER GERMAN BORDER LINE (1949–1989) -->
                 <polyline 
-                    points="433,195 438,238 438,275 458,312 485,335 555,338 555,395 645,385" 
+                    points="464,208 454,228 456,255 464,278 478,292 465,312 498,332 515,342 512,362 548,365 588,382 605,408 598,438 635,455 672,448" 
                     fill="none" 
                     stroke="#ef4444" 
-                    stroke-width="2" 
-                    stroke-dasharray="6 4" 
+                    stroke-width="1.8" 
+                    stroke-dasharray="5 3" 
                 />
-                <text x="342" y="192" fill="#ef4444" font-size="8.5" font-weight="700">INNER GERMAN BORDER</text>
             </svg>
         </div>
 
         <div class="hud-bottom-bar">
-            <span id="sector-readout">TARGET DESIGNATOR: HOVER OVER EUROPEAN SECTOR</span>
+            <span id="sector-readout">TARGET DESIGNATOR: HOVER OVER EUROPEAN NATION</span>
             <div class="legend-row">
-                <span class="legend-item"><span class="swatch-green"></span> ACTIVE ARCHIVE</span>
-                <span class="legend-item"><span class="swatch-red"></span> IRON CURTAIN (1949–89)</span>
-                <span class="legend-item"><span class="swatch-cyan"></span> STANDBY / WIP</span>
+                <span class="legend-item"><span class="swatch-green"></span> ACTIVE (DDR)</span>
+                <span class="legend-item"><span class="swatch-red"></span> IRON CURTAIN</span>
+                <span class="legend-item"><span class="swatch-nato"></span> NATO / WEST</span>
+                <span class="legend-item"><span class="swatch-pact"></span> WARSAW PACT</span>
             </div>
         </div>
     </div>
@@ -539,7 +713,7 @@
         </div>
         <div class="sector-chip wip">
             <span class="chip-status standby">&#9675; STANDBY // WIP</span>
-            <span class="chip-name">USSR (Western MD)</span>
+            <span class="chip-name">Soviet Union (USSR)</span>
             <span class="chip-meta">In Preparation</span>
         </div>
         <div class="sector-chip wip">
@@ -567,9 +741,9 @@
         const xNorm = (e.clientX - rect.left) / rect.width;
         const yNorm = (e.clientY - rect.top) / rect.height;
 
-        // Mapped to European Theater bounds (~10°W to 34°E, 36°N to 62°N)
-        const lon = (-10 + (xNorm * 44)).toFixed(4);
-        const lat = (62 - (yNorm * 26)).toFixed(4);
+        // Mapped to Britannica European Theater bounds (~11°W to 38°E, 34°N to 64°N)
+        const lon = (-11 + (xNorm * 49)).toFixed(4);
+        const lat = (64 - (yNorm * 30)).toFixed(4);
 
         const latDir = lat >= 0 ? 'N' : 'S';
         const lonDir = lon >= 0 ? 'E' : 'W';
@@ -577,12 +751,12 @@
         coordsDisplay.textContent = `LAT: ${Math.abs(lat).toFixed(4)}°${latDir} | LON: ${Math.abs(lon).toFixed(4)}°${lonDir}`;
     });
 
-    document.querySelectorAll('.sector-group').forEach(group => {
+    document.querySelectorAll('.nation-group').forEach(group => {
         group.addEventListener('mouseenter', () => {
             sectorReadout.textContent = `TARGET DESIGNATOR: ${group.dataset.sector}`;
         });
         group.addEventListener('mouseleave', () => {
-            sectorReadout.textContent = 'TARGET DESIGNATOR: HOVER OVER EUROPEAN SECTOR';
+            sectorReadout.textContent = 'TARGET DESIGNATOR: HOVER OVER EUROPEAN NATION';
         });
     });
 </script>
