@@ -411,7 +411,7 @@
     <header>
         <p class="subtitle">EUROPEAN THEATER SECTOR COMMAND</p>
         <h1>Cold War Era Europe — Georeferenced GIS</h1>
-        <p class="bio">Select an active Cold War national sector to access full-state georeferenced USGS archival aerial &amp; declassified satellite GeoTIFF mosaics.</p>
+        <p class="bio">Select an active Cold War national sector to access georeferenced USGS archival aerial &amp; declassified satellite GeoTIFF mosaics.</p>
     </header>
 
     <!-- NORAD TACTICAL CARTOGRAPHIC EUROPE PROJECTION -->
@@ -439,7 +439,7 @@
                     <line x1="833" y1="0" x2="833" y2="620" />
                 </g>
 
-                <!-- Tactical Scale Bar (Top Left like Britannica Reference) -->
+                <!-- Tactical Scale Bar -->
                 <g stroke="#38bdf8" stroke-width="1" fill="#38bdf8" font-size="8">
                     <line x1="24" y1="26" x2="174" y2="26" />
                     <line x1="24" y1="21" x2="24" y2="31" />
@@ -514,7 +514,7 @@
 
                 <!-- ==================== NATO / WESTERN BLOC ==================== -->
 
-                <!-- UNITED KINGDOM (incl. Northern Ireland) -->
+                <!-- UNITED KINGDOM -->
                 <g class="nation-group bloc-nato" data-sector="UNITED KINGDOM [NATO-UK // STANDBY]">
                     <path class="land" d="M 248,108 L 274,104 L 278,128 L 268,142 L 286,165 L 298,195 L 285,212 L 242,216 L 238,202 L 256,192 L 252,175 L 262,158 L 245,142 Z" />
                     <path class="land" d="M 218,156 L 234,154 L 234,168 L 218,168 Z" />
@@ -567,12 +567,10 @@
                     <text x="418" y="303" class="map-label-sm">(BRD)</text>
                 </g>
 
-                <!-- ITALY (incl. Sardinia & Sicily) -->
+                <!-- ITALY -->
                 <g class="nation-group bloc-nato" data-sector="ITALIAN REPUBLIC [NATO-SOUTH // STANDBY]">
                     <path class="land" d="M 368,362 L 392,366 L 416,358 L 442,362 L 462,374 L 452,392 L 475,418 L 508,438 L 522,452 L 508,458 L 488,448 L 482,478 L 468,482 L 462,455 L 425,418 L 392,388 L 365,388 Z" />
-                    <!-- Sardinia -->
                     <path class="land" d="M 382,432 L 396,430 L 398,462 L 382,464 Z" />
-                    <!-- Sicily -->
                     <path class="land" d="M 442,484 L 468,482 L 462,498 L 440,494 Z" />
                     <text x="444" y="424" class="map-label">ITALY</text>
                 </g>
@@ -580,7 +578,6 @@
                 <!-- GREECE -->
                 <g class="nation-group bloc-nato" data-sector="HELLENIC REPUBLIC (GREECE) [NATO-SOUTH // STANDBY]">
                     <path class="land" d="M 588,465 L 635,455 L 652,462 L 628,482 L 622,508 L 605,525 L 592,508 L 585,485 Z" />
-                    <!-- Crete -->
                     <path class="land" d="M 615,542 L 648,544 L 646,551 L 614,549 Z" />
                     <text x="612" y="492" class="map-label-sm">GREECE</text>
                 </g>
@@ -639,31 +636,22 @@
 
                 <!-- ==================== ACTIVE SECTOR: EAST GERMANY (DDR) ==================== -->
                 <a href="./ddr/georeference_ddr.html" aria-label="Enter East Germany (DDR) Georeferenced GIS Sector">
-                    <g class="nation-group sector-active" data-sector="EAST GERMANY (DDR) [ONLINE - CLICK TO ACCESS SAXONY & DDR GEOTIFFS]">
-                        <!-- Tactical Radar Ring centered on Berlin / Saxony -->
-                        <circle cx="496" cy="246" r="52" fill="none" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1" stroke-dasharray="3 3" />
-                        <circle cx="496" cy="246" r="28" fill="none" stroke="rgba(34, 197, 94, 0.55)" stroke-width="1" />
+                    <g class="nation-group sector-active" data-sector="EAST GERMANY (DDR) [ONLINE - CLICK TO ACCESS DDR GEOTIFFS]">
+                        <!-- Tactical Radar Ring centered on DDR -->
+                        <circle cx="494" cy="246" r="50" fill="none" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1" stroke-dasharray="3 3" />
+                        <circle cx="494" cy="246" r="26" fill="none" stroke="rgba(34, 197, 94, 0.55)" stroke-width="1" />
 
-                        <!-- Accurate DDR State Silhouette (Mecklenburg coast, Oder-Neisse border, Erzgebirge/Saxony, Harz/Elbe) -->
+                        <!-- DDR Territory -->
                         <path class="land" d="M 464,208 L 492,196 L 526,204 L 522,248 L 532,272 L 518,284 L 478,292 L 464,278 L 456,255 L 454,228 Z" />
 
-                        <!-- Berlin Air Corridors (Hamburg, Hanover, Frankfurt -> Berlin) -->
-                        <line x1="444" y1="212" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
-                        <line x1="436" y1="238" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
-                        <line x1="422" y1="286" x2="504" y2="236" stroke="rgba(134, 239, 172, 0.6)" stroke-width="0.9" stroke-dasharray="2 2" />
-
-                        <!-- Berlin & Saxony Target Markers -->
-                        <circle cx="504" cy="236" r="3" fill="#22c55e" stroke="#06090f" stroke-width="0.8" />
-                        <text x="504" y="229" fill="#86efac" font-size="7.5" font-weight="700" text-anchor="middle">BERLIN</text>
-
-                        <circle cx="506" cy="274" r="3" fill="#22c55e" stroke="#06090f" stroke-width="0.8" />
-                        <text x="502" y="284" fill="#86efac" font-size="7.5" font-weight="700" text-anchor="middle">SAXONY</text>
+                        <!-- Country Label Only -->
+                        <text x="493" y="250" fill="#86efac" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.8">DDR</text>
 
                         <!-- Tactical Callout HUD Box -->
                         <rect x="448" y="102" width="182" height="34" rx="3" fill="rgba(6, 9, 15, 0.92)" stroke="#22c55e" stroke-width="1.2" />
                         <text x="539" y="116" fill="#22c55e" font-size="10" font-weight="700" text-anchor="middle">EAST GERMANY (DDR)</text>
                         <text x="539" y="128" fill="#86efac" font-size="8" text-anchor="middle">ACTIVE // CLICK FOR GEOTIFFS</text>
-                        <line x1="496" y1="136" x2="496" y2="198" stroke="#22c55e" stroke-width="1" />
+                        <line x1="494" y1="136" x2="494" y2="198" stroke="#22c55e" stroke-width="1" />
                     </g>
                 </a>
 
@@ -694,7 +682,7 @@
         <a href="./ddr/georeference_ddr.html" class="sector-chip active">
             <span class="chip-status online">&#9679; ONLINE // ACTIVE</span>
             <span class="chip-name">East Germany (DDR)</span>
-            <span class="chip-meta">Saxony &amp; Regional GeoTIFFs</span>
+            <span class="chip-meta">City &amp; Orbital Swath GeoTIFFs</span>
         </a>
         <div class="sector-chip wip">
             <span class="chip-status standby">&#9675; STANDBY // WIP</span>
