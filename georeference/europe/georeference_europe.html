@@ -1,1 +1,591 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../../seo-config.js"></script>
+
+    <!-- Schema Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "X-Plane Product of OKB-1 Creative Design Bureau",
+        "alternateName": "X-Plane-of-OKB-1_CDB",
+        "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/georeference/europe/georeference_europe.html"
+      }
+    </script>
+    <meta name="application-name" content="X-Plane Product of OKB-1 Creative Design Bureau">
+
+    <!-- MODULAR FAVICON INJECTOR -->
+    <script type="module">
+        import { faviconData } from '../../favicon_data.js';
+        
+        const dynamicFavicon = document.createElement('link');
+        dynamicFavicon.rel = 'icon';
+        dynamicFavicon.type = 'image/png';
+        dynamicFavicon.href = faviconData;
+        document.head.appendChild(dynamicFavicon);
+    </script>
+    
+    <title>NORAD EUR-01 Cold War Theater | Georeferenced GIS | OKB-1 Creative Design Bureau</title>
+    <style>
+        :root {
+            --bg-color: #06090f;
+            --panel-bg: #0b121e;
+            --grid-line: rgba(14, 165, 233, 0.12);
+            --accent-cyan: #0ea5e9;
+            --accent-green: #22c55e;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --text-primary: #e2e8f0;
+            --text-muted: #64748b;
+            --border-color: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 2rem 1rem;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Top Command Bar */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .back-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            background: rgba(14, 165, 233, 0.08);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background: var(--accent-cyan);
+            color: #06090f;
+        }
+
+        .sys-status {
+            font-size: 0.78rem;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header p.subtitle {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        header h1 {
+            font-size: 1.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        header p.bio {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* NORAD Tactical Map Screen */
+        .norad-frame {
+            background-color: var(--panel-bg);
+            border: 1px solid rgba(14, 165, 233, 0.4);
+            border-radius: 8px;
+            box-shadow: 0 0 35px rgba(14, 165, 233, 0.12), inset 0 0 40px rgba(0, 0, 0, 0.75);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .hud-top-bar, .hud-bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.65rem 1.25rem;
+            background: rgba(6, 9, 15, 0.85);
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .hud-bottom-bar {
+            border-bottom: none;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .map-viewport {
+            position: relative;
+            width: 100%;
+            background: radial-gradient(circle at 48% 52%, #0e192b 0%, #05080e 100%);
+            overflow: hidden;
+        }
+
+        /* Subtle CRT Scanline Overlay */
+        .map-viewport::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.18) 0px,
+                rgba(0, 0, 0, 0.18) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+        }
+
+        svg.europe-radar {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Interactive Cold War Sectors */
+        .sector-group {
+            transition: all 0.25s ease;
+        }
+
+        .sector-active {
+            cursor: pointer;
+        }
+
+        .sector-active .landmass {
+            fill: rgba(34, 197, 94, 0.24);
+            stroke: #22c55e;
+            stroke-width: 2;
+            filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.65));
+            transition: all 0.25s ease;
+        }
+
+        .sector-active:hover .landmass {
+            fill: rgba(34, 197, 94, 0.45);
+            stroke: #86efac;
+            stroke-width: 2.6;
+            filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.95));
+        }
+
+        .sector-wip {
+            cursor: not-allowed;
+        }
+
+        .sector-wip .landmass {
+            fill: rgba(14, 165, 233, 0.06);
+            stroke: rgba(14, 165, 233, 0.32);
+            stroke-width: 1.2;
+            stroke-dasharray: 4 3;
+            transition: all 0.25s ease;
+        }
+
+        .sector-wip:hover .landmass {
+            fill: rgba(245, 158, 11, 0.12);
+            stroke: var(--accent-amber);
+        }
+
+        .sector-label {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            pointer-events: none;
+        }
+
+        .sector-sub {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 8px;
+            letter-spacing: 0.6px;
+            pointer-events: none;
+        }
+
+        /* Legend Strip inside HUD */
+        .legend-row {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            font-size: 0.72rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .swatch-green { width: 10px; height: 10px; background: rgba(34, 197, 94, 0.4); border: 1px solid #22c55e; display: inline-block; }
+        .swatch-red { width: 14px; height: 2px; background: #ef4444; display: inline-block; }
+        .swatch-cyan { width: 10px; height: 10px; background: rgba(14, 165, 233, 0.1); border: 1px dashed #0ea5e9; display: inline-block; }
+
+        /* Quick Sector Selector Grid */
+        .sector-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .sector-chip {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.85rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .sector-chip.active {
+            border-color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .sector-chip.active:hover {
+            background: rgba(34, 197, 94, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .sector-chip.wip {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chip-status {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chip-status.online { color: var(--accent-green); }
+        .chip-status.standby { color: var(--accent-amber); }
+
+        .chip-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .chip-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-header">
+        <div class="nav-links">
+            <a href="../georeference.html" class="back-link">&larr; GLOBAL THEATER</a>
+            <a href="../../index.html" class="back-link">&larr; MAIN HANGAR</a>
+        </div>
+        <div class="sys-status">
+            <span class="pulse-dot"></span>
+            <span>THEATER EUR-01 // COLD WAR EPOCH [1949–1989]</span>
+        </div>
+    </div>
+
+    <header>
+        <p class="subtitle">EUROPEAN THEATER SECTOR COMMAND</p>
+        <h1>Cold War Era Europe — Georeferenced GIS</h1>
+        <p class="bio">Select an active Cold War national sector to access full-state georeferenced USGS archival aerial &amp; declassified satellite GeoTIFF mosaics.</p>
+    </header>
+
+    <!-- NORAD TACTICAL EUROPE PROJECTION -->
+    <div class="norad-frame">
+        <div class="hud-top-bar">
+            <span>SECTOR: CENTRAL &amp; EASTERN EUROPE [EUR-01]</span>
+            <span id="cursor-coords">LAT: --.----°N | LON: ---.----°E</span>
+            <span>DATUM: WGS84 / ETRS89</span>
+        </div>
+
+        <div class="map-viewport">
+            <svg id="europe-svg" class="europe-radar" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
+                <!-- Latitude / Longitude Graticule (Approx 36°N–62°N, 10°W–34°E) -->
+                <g stroke="rgba(14, 165, 233, 0.14)" stroke-width="0.8">
+                    <line x1="0" y1="90" x2="1000" y2="90" stroke-dasharray="3 3" />
+                    <line x1="0" y1="180" x2="1000" y2="180" />
+                    <line x1="0" y1="270" x2="1000" y2="270" stroke="rgba(14, 165, 233, 0.3)" stroke-width="1.1" />
+                    <line x1="0" y1="360" x2="1000" y2="360" />
+                    <line x1="0" y1="450" x2="1000" y2="450" stroke-dasharray="3 3" />
+
+                    <line x1="166" y1="0" x2="166" y2="540" />
+                    <line x1="333" y1="0" x2="333" y2="540" />
+                    <line x1="500" y1="0" x2="500" y2="540" stroke="rgba(14, 165, 233, 0.3)" stroke-width="1.1" />
+                    <line x1="666" y1="0" x2="666" y2="540" />
+                    <line x1="833" y1="0" x2="833" y2="540" />
+                </g>
+
+                <text x="12" y="265" fill="rgba(14,165,233,0.45)" font-size="9">50°00'N PARALLEL</text>
+                <text x="506" y="16" fill="rgba(14,165,233,0.45)" font-size="9">012°00'E MERIDIAN</text>
+
+                <!-- UNITED KINGDOM (WIP) -->
+                <g class="sector-group sector-wip" data-sector="UNITED KINGDOM [NATO-UK // STANDBY]">
+                    <polygon class="landmass" points="165,135 205,125 225,185 245,235 175,248 160,210 182,180" />
+                    <polygon class="landmass" points="120,175 152,172 150,212 118,212" />
+                    <text x="172" y="205" fill="#94a3b8" class="sector-label">UK</text>
+                    <text x="166" y="217" fill="#f59e0b" class="sector-sub">[WIP]</text>
+                </g>
+
+                <!-- NORDIC SECTOR / SCANDINAVIA (WIP) -->
+                <g class="sector-group sector-wip" data-sector="NORDIC SECTOR [DENMARK / SWEDEN / NORWAY // STANDBY]">
+                    <polygon class="landmass" points="415,25 545,20 585,75 535,145 455,140 420,95" />
+                    <!-- Denmark -->
+                    <polygon class="landmass" points="412,152 442,150 445,182 415,184" />
+                    <text x="465" y="88" fill="#94a3b8" class="sector-label">NORDIC SECTOR</text>
+                    <text x="478" y="101" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- FRANCE & BENELUX (WIP) -->
+                <g class="sector-group sector-wip" data-sector="FRANCE & BENELUX [NATO-WEST // STANDBY]">
+                    <polygon class="landmass" points="195,275 315,250 355,265 362,325 340,395 240,405 215,345" />
+                    <text x="255" y="330" fill="#94a3b8" class="sector-label">FRANCE / BENELUX</text>
+                    <text x="275" y="343" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- WEST GERMANY / BRD (WIP) -->
+                <g class="sector-group sector-wip" data-sector="WEST GERMANY (BRD) [NATO-CENTAG/NORTHAG // STANDBY]">
+                    <polygon class="landmass" points="362,205 435,200 448,238 438,275 458,312 452,355 375,358 362,315 355,265" />
+                    <text x="372" y="275" fill="#94a3b8" class="sector-label">WEST GERMANY</text>
+                    <text x="385" y="288" fill="#94a3b8" class="sector-sub">(BRD)</text>
+                    <text x="382" y="301" fill="#f59e0b" class="sector-sub">[WIP]</text>
+                </g>
+
+                <!-- EAST GERMANY / DDR (ACTIVE CLICKABLE LINK) -->
+                <a href="./ddr/georeference_ddr.html" aria-label="Enter East Germany (DDR) Georeferenced GIS Sector">
+                    <g class="sector-group sector-active" data-sector="EAST GERMANY (DDR) [ONLINE - SAXONY & REGIONAL GEOTIFFS]">
+                        <!-- Tactical Radar Ring centered on Berlin / Saxony -->
+                        <circle cx="492" cy="242" r="54" fill="none" stroke="rgba(34, 197, 94, 0.35)" stroke-width="1" stroke-dasharray="3 3" />
+                        <circle cx="492" cy="242" r="30" fill="none" stroke="rgba(34, 197, 94, 0.55)" stroke-width="1" />
+
+                        <!-- DDR Territory (Mecklenburg, Brandenburg, Saxony-Anhalt, Thuringia, Saxony) -->
+                        <polygon class="landmass" points="435,200 528,195 542,248 538,288 492,298 458,312 438,275 448,238" />
+
+                        <!-- Berlin Air Corridors (Hamburg, Hanover, Frankfurt to West Berlin) -->
+                        <line x1="418" y1="215" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
+                        <line x1="408" y1="242" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
+                        <line x1="395" y1="295" x2="495" y2="232" stroke="rgba(134, 239, 172, 0.55)" stroke-width="1" stroke-dasharray="2 2" />
+
+                        <!-- Berlin & Dresden/Saxony Waypoints -->
+                        <circle cx="495" cy="232" r="3.5" fill="#22c55e" />
+                        <text x="502" y="230" fill="#86efac" font-size="8.5" font-weight="700">BERLIN</text>
+
+                        <circle cx="506" cy="276" r="3.5" fill="#22c55e" />
+                        <text x="502" y="288" fill="#86efac" font-size="8.5" font-weight="700">SAXONY</text>
+
+                        <!-- Callout HUD Box -->
+                        <rect x="442" y="138" width="184" height="34" rx="3" fill="rgba(6, 9, 15, 0.92)" stroke="#22c55e" stroke-width="1.2" />
+                        <text x="452" y="153" fill="#22c55e" class="sector-label">EAST GERMANY (DDR)</text>
+                        <text x="452" y="165" fill="#86efac" class="sector-sub">ACTIVE // SAXONY &amp; DDR MOSAICS</text>
+                        <line x1="495" y1="172" x2="495" y2="196" stroke="#22c55e" stroke-width="1" />
+                    </g>
+                </a>
+
+                <!-- POLAND / PRL (WIP) -->
+                <g class="sector-group sector-wip" data-sector="POLISH PEOPLE'S REPUBLIC (PRL) [WARSAW PACT // STANDBY]">
+                    <polygon class="landmass" points="528,195 675,188 692,265 665,295 585,288 538,288 542,248" />
+                    <text x="585" y="240" fill="#94a3b8" class="sector-label">POLAND (PRL)</text>
+                    <text x="595" y="253" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- CZECHOSLOVAKIA / CSSR (WIP) -->
+                <g class="sector-group sector-wip" data-sector="CZECHOSLOVAKIA (ČSSR) [WARSAW PACT // STANDBY]">
+                    <polygon class="landmass" points="458,312 492,298 538,288 585,288 648,305 638,335 555,338 485,335" />
+                    <text x="505" y="318" fill="#94a3b8" class="sector-label">CZECHOSLOVAKIA</text>
+                    <text x="530" y="330" fill="#f59e0b" class="sector-sub">(ČSSR) [WIP]</text>
+                </g>
+
+                <!-- AUSTRIA & HUNGARY (WIP) -->
+                <g class="sector-group sector-wip" data-sector="AUSTRIA (NEUTRAL) & HUNGARY (HPR) [STANDBY]">
+                    <polygon class="landmass" points="452,355 485,335 555,338 638,335 645,385 555,395 462,385" />
+                    <text x="502" y="368" fill="#94a3b8" class="sector-label">AUSTRIA / HUNGARY</text>
+                    <text x="528" y="381" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- USSR WESTERN MILITARY DISTRICTS (WIP) -->
+                <g class="sector-group sector-wip" data-sector="USSR WESTERN DISTRICTS [BALTIC / BYELORUSSIAN / UKRAINIAN // STANDBY]">
+                    <polygon class="landmass" points="675,110 895,95 920,340 725,355 665,295 692,265 675,188" />
+                    <text x="755" y="220" fill="#94a3b8" class="sector-label">USSR (WESTERN MD)</text>
+                    <text x="775" y="234" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- BALKANS & ITALY (WIP) -->
+                <g class="sector-group sector-wip" data-sector="ITALY & BALKAN PENINSULA [STANDBY]">
+                    <polygon class="landmass" points="415,385 485,385 525,465 495,485 435,425" />
+                    <polygon class="landmass" points="545,395 715,385 695,485 595,495 555,445" />
+                    <text x="595" y="445" fill="#94a3b8" class="sector-label">BALKANS / MED</text>
+                    <text x="608" y="458" fill="#f59e0b" class="sector-sub">[SECTOR WIP]</text>
+                </g>
+
+                <!-- IRON CURTAIN / INNER GERMAN BORDER LINE (1949–1989) -->
+                <polyline 
+                    points="433,195 438,238 438,275 458,312 485,335 555,338 555,395 645,385" 
+                    fill="none" 
+                    stroke="#ef4444" 
+                    stroke-width="2" 
+                    stroke-dasharray="6 4" 
+                />
+                <text x="342" y="192" fill="#ef4444" font-size="8.5" font-weight="700">INNER GERMAN BORDER</text>
+            </svg>
+        </div>
+
+        <div class="hud-bottom-bar">
+            <span id="sector-readout">TARGET DESIGNATOR: HOVER OVER EUROPEAN SECTOR</span>
+            <div class="legend-row">
+                <span class="legend-item"><span class="swatch-green"></span> ACTIVE ARCHIVE</span>
+                <span class="legend-item"><span class="swatch-red"></span> IRON CURTAIN (1949–89)</span>
+                <span class="legend-item"><span class="swatch-cyan"></span> STANDBY / WIP</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TACTICAL QUICK-ACCESS EUROPEAN SECTOR STRIP -->
+    <div class="sector-strip">
+        <a href="./ddr/georeference_ddr.html" class="sector-chip active">
+            <span class="chip-status online">&#9679; ONLINE // ACTIVE</span>
+            <span class="chip-name">East Germany (DDR)</span>
+            <span class="chip-meta">Saxony &amp; Regional GeoTIFFs</span>
+        </a>
+        <div class="sector-chip wip">
+            <span class="chip-status standby">&#9675; STANDBY // WIP</span>
+            <span class="chip-name">West Germany (BRD)</span>
+            <span class="chip-meta">In Preparation</span>
+        </div>
+        <div class="sector-chip wip">
+            <span class="chip-status standby">&#9675; STANDBY // WIP</span>
+            <span class="chip-name">Czechoslovakia (ČSSR)</span>
+            <span class="chip-meta">In Preparation</span>
+        </div>
+        <div class="sector-chip wip">
+            <span class="chip-status standby">&#9675; STANDBY // WIP</span>
+            <span class="chip-name">Poland (PRL)</span>
+            <span class="chip-meta">In Preparation</span>
+        </div>
+        <div class="sector-chip wip">
+            <span class="chip-status standby">&#9675; STANDBY // WIP</span>
+            <span class="chip-name">USSR (Western MD)</span>
+            <span class="chip-meta">In Preparation</span>
+        </div>
+        <div class="sector-chip wip">
+            <span class="chip-status standby">&#9675; STANDBY // WIP</span>
+            <span class="chip-name">United Kingdom &amp; France</span>
+            <span class="chip-meta">In Preparation</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Live European Lat/Lon Telemetry Readout on SVG Hover
+    const svg = document.getElementById('europe-svg');
+    const coordsDisplay = document.getElementById('cursor-coords');
+    const sectorReadout = document.getElementById('sector-readout');
+
+    svg.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const xNorm = (e.clientX - rect.left) / rect.width;
+        const yNorm = (e.clientY - rect.top) / rect.height;
+
+        // Mapped to European Theater bounds (~10°W to 34°E, 36°N to 62°N)
+        const lon = (-10 + (xNorm * 44)).toFixed(4);
+        const lat = (62 - (yNorm * 26)).toFixed(4);
+
+        const latDir = lat >= 0 ? 'N' : 'S';
+        const lonDir = lon >= 0 ? 'E' : 'W';
+
+        coordsDisplay.textContent = `LAT: ${Math.abs(lat).toFixed(4)}°${latDir} | LON: ${Math.abs(lon).toFixed(4)}°${lonDir}`;
+    });
+
+    document.querySelectorAll('.sector-group').forEach(group => {
+        group.addEventListener('mouseenter', () => {
+            sectorReadout.textContent = `TARGET DESIGNATOR: ${group.dataset.sector}`;
+        });
+        group.addEventListener('mouseleave', () => {
+            sectorReadout.textContent = 'TARGET DESIGNATOR: HOVER OVER EUROPEAN SECTOR';
+        });
+    });
+</script>
+
+</body>
+</html>
