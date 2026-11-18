@@ -580,7 +580,7 @@
                 <div class="product-body">
                     <p>Full-state and wide-area spatial rasters rectified with ground control points for immediate QGIS, GIS research, and scenery development workflows.</p>
                     <div class="btn-group">
-                        <a href="./georef-ortho/georef-ortho.html" class="btn btn-primary">Explore Georeferenced GIS</a>
+                        <a href="./georeference/georeference.html" class="btn btn-primary">Explore Georeferenced GIS</a>
                     </div>
                 </div>
             </div>
@@ -775,7 +775,7 @@
         .then((mod) => initCarousel('raw-ortho', mod.image_container))
         .catch(() => initCarousel('raw-ortho', orthoData));
 
-    import('./georef-ortho_roll.js')
+    import('./georeference.js')
         .then((mod) => initCarousel('georef-ortho', mod.image_container))
         .catch(() => initCarousel('georef-ortho', orthoData));
 </script>
