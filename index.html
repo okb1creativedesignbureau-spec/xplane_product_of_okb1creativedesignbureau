@@ -249,6 +249,12 @@
             border-color: rgba(34, 197, 94, 0.3);
         }
 
+        .badge-gis {
+            background-color: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
         .product-header h2 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
@@ -326,8 +332,6 @@
             padding-top: 2rem;
         }
 
-        
-
         /* YouTube & Support Outpost Buttons */
         .btn-youtube {
             background-color: #ff0000;
@@ -369,8 +373,6 @@
             max-width: 650px;
             margin: 0 auto 1.5rem auto;
         }
-
-        
     </style>
 </head>
 <body>
@@ -526,17 +528,16 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tier 6: Raw Orthophotos Open Source for Free-->
+            <!-- Tier 6: Raw Open Source Orthophotos -->
             <div class="product-card">
                 <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                    <button class="carousel-nav-btn prev" id="ortho-prev" style="display: none;">&#10094;</button>
-                    <button class="carousel-nav-btn next" id="ortho-next" style="display: none;">&#10095;</button>
-                    <div class="carousel-counter" id="ortho-counter" style="display: none;">1 / 1</div>
-                    <div class="carousel-track" id="ortho-track"></div>
+                    <button class="carousel-nav-btn prev" id="raw-ortho-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="raw-ortho-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="raw-ortho-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="raw-ortho-track"></div>
                     <img src="" alt="Free Orthophotos Preview" style="display: none;">
-                    <div class="dropzone-text" id="ortho-text">
+                    <div class="dropzone-text" id="raw-ortho-text">
                         <span>loading images</span>
                         loading images
                     </div>
@@ -552,6 +553,34 @@
                     <p>Carefully processed geospatial imagery data for geospatial researcher, aviation historian, scenery developer and flightsim enthusiast assembly and simulator scenery making.</p>
                     <div class="btn-group">
                         <a href="./raw/raw_ortho.html" class="btn btn-primary">Download Free Ortho</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 7: Georeferenced Historical Regional Orthophotos -->
+            <div class="product-card">
+                <div class="preview-dropzone" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
+                    <button class="carousel-nav-btn prev" id="georef-ortho-prev" style="display: none;">&#10094;</button>
+                    <button class="carousel-nav-btn next" id="georef-ortho-next" style="display: none;">&#10095;</button>
+                    <div class="carousel-counter" id="georef-ortho-counter" style="display: none;">1 / 1</div>
+                    <div class="carousel-track" id="georef-ortho-track"></div>
+                    <img src="" alt="Georeferenced Historical Regional Orthophotos Preview" style="display: none;">
+                    <div class="dropzone-text" id="georef-ortho-text">
+                        <span>loading images</span>
+                        loading images
+                    </div>
+                </div>
+                <div class="product-header">
+                    <span class="badge badge-gis">Georeferenced GIS</span>
+                    <h2>7. Georeferenced Historical Regional Orthophotos</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        Manually georeferenced full-region historical aerial and satellite GeoTIFF mosaics derived from geo-agnostic USGS archival imagery (e.g., Saxony and Cold War regional coverages).
+                    </p>
+                </div>
+                <div class="product-body">
+                    <p>Full-state and wide-area spatial rasters rectified with ground control points for immediate QGIS, GIS research, and scenery development workflows.</p>
+                    <div class="btn-group">
+                        <a href="./georef-ortho/georef-ortho.html" class="btn btn-primary">Explore Georeferenced GIS</a>
                     </div>
                 </div>
             </div>
@@ -622,26 +651,22 @@
         </div>
     </main>
 
-
-
     <!-- Flight Deck, YouTube & Coffee Support Section -->
-        <section class="creator-banner">
-            <span class="badge">Flight Deck & Dev Logs</span>
-            <h3>From the Cockpit to the CAD Bench</h3>
-            <p>
-                Behind the scenes of OKB-1: Just a casual flight simmer and engineer hand-flying vintage airliners, testing scenery boundary layers, and documenting flight simulation physics.
-            </p>
-            <div class="btn-group" style="max-width: 600px; margin: 0 auto;">
-                <a href="https://youtube.com/@bandungenginered025?si=xtlL2P1WB0XvQfj7" target="_blank" rel="noopener" class="btn btn-youtube">
-                    🎥 Watch Flight Sim Footage on YouTube
-                </a>
-                <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener" class="btn btn-kofi-casual">
-                    ☕ Buy Me a Coffee on Ko-fi
-                </a>
-            </div>
-        </section>
-
-    
+    <section class="creator-banner">
+        <span class="badge">Flight Deck & Dev Logs</span>
+        <h3>From the Cockpit to the CAD Bench</h3>
+        <p>
+            Behind the scenes of OKB-1: Just a casual flight simmer and engineer hand-flying vintage airliners, testing scenery boundary layers, and documenting flight simulation physics.
+        </p>
+        <div class="btn-group" style="max-width: 600px; margin: 0 auto;">
+            <a href="https://youtube.com/@bandungenginered025?si=xtlL2P1WB0XvQfj7" target="_blank" rel="noopener" class="btn btn-youtube">
+                🎥 Watch Flight Sim Footage on YouTube
+            </a>
+            <a href="https://ko-fi.com/okb1creativedesignbureau" target="_blank" rel="noopener" class="btn btn-kofi-casual">
+                ☕ Buy Me a Coffee on Ko-fi
+            </a>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; <span id="copyright-year"></span> OKB-1 Creative Design Bureau. All rights reserved.</p>
@@ -744,6 +769,15 @@
     initCarousel('indonesia', indonesiaData);
     initCarousel('pbr', pbrData);
     initCarousel('ortho', orthoData);
+
+    // Optional rolls for Tiers 6 & 7 (falls back to orthoData until dedicated roll files exist)
+    import('./raw_ortho_roll.js')
+        .then((mod) => initCarousel('raw-ortho', mod.image_container))
+        .catch(() => initCarousel('raw-ortho', orthoData));
+
+    import('./georef-ortho_roll.js')
+        .then((mod) => initCarousel('georef-ortho', mod.image_container))
+        .catch(() => initCarousel('georef-ortho', orthoData));
 </script>
 
 </body>
