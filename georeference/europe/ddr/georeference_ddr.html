@@ -167,12 +167,18 @@
         .mission-banner {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 0.9rem 1.5rem;
+            align-items: flex-start;
+            padding: 1rem 1.5rem;
             background: rgba(6, 9, 15, 0.92);
             border-bottom: 1px solid var(--border-color);
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        .mission-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
 
         .mission-title-wrap {
@@ -198,7 +204,26 @@
         }
 
         .mission-coverage {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .mission-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .entity-id {
             font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            letter-spacing: 0.5px;
+        }
+
+        .capture-date {
+            font-size: 0.75rem;
             color: var(--text-muted);
         }
 
@@ -248,7 +273,6 @@
             justify-content: center;
         }
 
-        /* Subtle CRT scanlines over preview frame */
         .preview-frame::after {
             content: "";
             position: absolute;
@@ -339,6 +363,9 @@
             .option-pair {
                 grid-template-columns: 1fr;
             }
+            .mission-right {
+                text-align: left;
+            }
         }
 
         footer {
@@ -375,21 +402,29 @@
 
     <div class="mission-stack">
 
-        <!-- ==================== PASS 1: HEXAGON 1979 ==================== -->
+        <!-- ==================== PASS 1: KH-9 HEXAGON (10 APR 1979) ==================== -->
         <section class="mission-block">
             <div class="mission-banner">
-                <div class="mission-title-wrap">
-                    <span class="mission-title">HEXAGON 1979</span>
-                    <span class="mission-sensor">KH-9 // DECLASSIFIED PANORAMIC</span>
+                <div class="mission-left">
+                    <div class="mission-title-wrap">
+                        <span class="mission-title">KH-9 HEXAGON</span>
+                        <span class="mission-sensor">CAPTURED 10 APR 1979</span>
+                    </div>
+                    <span class="mission-coverage">
+                        Celle–Gifhorn–Uelzen Border (BRD) &rarr; Greater Berlin &amp; DDR &rarr; Świebodzin / Lake Lubinieckie (Poland)
+                    </span>
                 </div>
-                <span class="mission-coverage">Saxony &rarr; Berlin &rarr; Western Poland</span>
+                <div class="mission-right">
+                    <span class="entity-id">ENTITY ID: D3C1215-100217F017</span>
+                    <span class="capture-date">USGS DECLASSIFIED INTELLIGENCE SATELLITE PHOTOGRAPHY</span>
+                </div>
             </div>
 
             <div class="option-pair">
                 <!-- Left 4:3 Option: Swath Files -->
-                <a href="./hexagon_1979_swath.html" class="preview-card swath-card">
+                <a href="./D3C1215-100217F017_swath.html" class="preview-card swath-card">
                     <div class="preview-frame" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                        <img id="img-hex79-swath" src="" alt="HEXAGON 1979 Swath Preview" style="display: none;">
+                        <img id="img-hex79-swath" src="" alt="KH-9 HEXAGON D3C1215-100217F017 Swath Preview" style="display: none;">
                         <div class="preview-placeholder">
                             <span class="hud-tag">4:3 ORBITAL SWATH PREVIEW</span>
                             <span>Full Pass &amp; A–H Sub-Frames</span>
@@ -405,12 +440,12 @@
                 </a>
 
                 <!-- Right 4:3 Option: Region Specific Files -->
-                <a href="./hexagon_1979_region.html" class="preview-card region-card">
+                <a href="./D3C1215-100217F017_region.html" class="preview-card region-card">
                     <div class="preview-frame" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                        <img id="img-hex79-region" src="" alt="HEXAGON 1979 Region Specific Preview" style="display: none;">
+                        <img id="img-hex79-region" src="" alt="KH-9 HEXAGON D3C1215-100217F017 Region Specific Preview" style="display: none;">
                         <div class="preview-placeholder">
                             <span class="hud-tag">4:3 CURATED AOI PREVIEW</span>
-                            <span>City &amp; Downtown Cutouts</span>
+                            <span>Greater Berlin &amp; Sector Cutouts</span>
                         </div>
                     </div>
                     <div class="card-caption">
@@ -418,7 +453,7 @@
                             <span class="caption-title">Region Specific Files</span>
                             <span class="caption-arrow">&rarr;</span>
                         </div>
-                        <span class="caption-sub">Cropped city, downtown &amp; airfield area GeoTIFFs</span>
+                        <span class="caption-sub">Cropped Berlin, downtown &amp; regional area GeoTIFFs</span>
                     </div>
                 </a>
             </div>
@@ -427,11 +462,17 @@
         <!-- ==================== PASS 2: CORONA 1966 ==================== -->
         <section class="mission-block">
             <div class="mission-banner">
-                <div class="mission-title-wrap">
-                    <span class="mission-title">CORONA 1966</span>
-                    <span class="mission-sensor">KH-4A // DECLASSIFIED RECONNAISSANCE</span>
+                <div class="mission-left">
+                    <div class="mission-title-wrap">
+                        <span class="mission-title">KH-4A CORONA</span>
+                        <span class="mission-sensor">CAPTURED 1966</span>
+                    </div>
+                    <span class="mission-coverage">DDR Regional Orbital Reconnaissance Pass</span>
                 </div>
-                <span class="mission-coverage">DDR Regional Orbital Pass</span>
+                <div class="mission-right">
+                    <span class="entity-id">ENTITY ID: PENDING INDEX</span>
+                    <span class="capture-date">USGS DECLASSIFIED INTELLIGENCE SATELLITE PHOTOGRAPHY</span>
+                </div>
             </div>
 
             <div class="option-pair">
