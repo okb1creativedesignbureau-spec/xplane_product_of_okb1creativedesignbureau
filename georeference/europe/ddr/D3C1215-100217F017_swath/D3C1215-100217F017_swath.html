@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="../../../seo-config.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "KH-9 HEXAGON D3C1215-100217F017 Swath Products (10 Apr 1979)",
+      "url": "https://okb1creativedesignbureau-spec.github.io/xplane_product_of_okb1creativedesignbureau/georeference/europe/ddr/D3C1215-100217F017_swath/D3C1215-100217F017_swath.html"
+    }
+  </script>
+  <meta name="application-name" content="X-Plane Product of OKB-1 Creative Design Bureau">
+  <script type="module">
+    import { faviconData } from '../../../../favicon_data.js';
+    const dynamicFavicon = document.createElement('link');
+    dynamicFavicon.rel = 'icon';
+    dynamicFavicon.type = 'image/png';
+    dynamicFavicon.href = faviconData;
+    document.head.appendChild(dynamicFavicon);
+  </script>
+  <title>D3C1215-100217F017 Swath Index | DDR-01 | OKB-1 Creative Design Bureau</title>
+  <style>
+    :root {
+      --bg-color: #06090f;
+      --panel-bg: #0b121e;
+      --row-bg: #0d1624;
+      --grid-line: rgba(14, 165, 233, 0.11);
+      --accent-cyan: #0ea5e9;
+      --accent-green: #22c55e;
+      --accent-amber: #f59e0b;
+      --text-primary: #e2e8f0;
+      --text-muted: #64748b;
+      --border-color: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .nav-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .back-link {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.85rem;
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      background: rgba(14, 165, 233, 0.08);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    .back-link:hover { background: var(--accent-cyan); color: #06090f; }
+    .sys-status {
+      font-size: 0.78rem;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+    header { text-align: center; margin-bottom: 2rem; }
+    header p.subtitle {
+      color: var(--accent-amber);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    header h1 { font-size: 1.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+    header p.bio { color: var(--text-muted); font-size: 0.88rem; max-width: 840px; margin: 0 auto; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.35rem;
+      margin-bottom: 3rem;
+    }
+    .product-card {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .product-card:hover { border-color: var(--accent-amber); transform: translateY(-2px); }
+    .product-card.full-swath { border-color: rgba(14, 165, 233, 0.5); }
+    .product-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #06090f;
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+      position: relative;
+    }
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .price-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(6, 9, 15, 0.9);
+      color: var(--accent-amber);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .product-body { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+    .product-code { font-size: 0.72rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; }
+    .product-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
+    .product-desc { font-size: 0.8rem; color: var(--text-muted); }
+    .product-meta { font-size: 0.72rem; color: var(--accent-green); margin-top: auto; padding-top: 0.4rem; }
+    .product-actions {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--row-bg);
+      border-top: 1px solid var(--border-color);
+    }
+    .btn-detail {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.5rem 0.7rem;
+      border-radius: 4px;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      background: rgba(14, 165, 233, 0.08);
+    }
+    .btn-detail:hover { background: var(--accent-cyan); color: #06090f; }
+    .btn-gumroad {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.5rem 0.7rem;
+      border-radius: 4px;
+      color: #06090f;
+      background: var(--accent-amber);
+      border: 1px solid var(--accent-amber);
+    }
+    .btn-gumroad:hover { filter: brightness(1.08); }
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav-header">
+      <div class="nav-links">
+        <a href="../georeference_ddr.html" class="back-link">&larr; DDR-01 SECTOR INDEX</a>
+        <a href="../../georeference.html" class="back-link">&larr; GLOBAL THEATER</a>
+        <a href="../../../../index.html" class="back-link">&larr; MAIN HANGAR</a>
+      </div>
+      <div class="sys-status">
+        <span class="pulse-dot"></span>
+        <span>D3C1215-100217F017 // 11 SWATH PRODUCTS</span>
+      </div>
+    </div>
+
+    <header>
+      <p class="subtitle">KH-9 HEXAGON &bull; CAPTURED 10 APR 1979</p>
+      <h1>D3C1215-100217F017 Swath Catalog</h1>
+      <p class="bio">
+        Individual georeferenced swath segments (A–J) and full-swath coverage for Entity ID D3C1215-100217F017 along the BRD–DDR–Poland reconnaissance corridor.
+      </p>
+    </header>
+
+    <main class="product-grid" id="swath-product-grid"></main>
+
+    <footer>
+      <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script type="module">
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Set hasDedicatedPage: true once you create ./swath_a.html, ./swath_b.html, etc.
+    // Otherwise clicking "Product Page" routes directly to Gumroad.
+    const SWATH_PRODUCTS = [
+      {
+        code: "SWATH A",
+        suffix: "a",
+        title: "Swath A — Bad Bodenteich Sector",
+        desc: "Western border-entry KH-9 HEXAGON swath segment covering the Bad Bodenteich approach.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/tjjkf",
+        detailPage: "./swath_a.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH B",
+        suffix: "b",
+        title: "Swath B — Salzwedel-Ost / Osterburg-West",
+        desc: "Western DDR corridor swath segment spanning Salzwedel-Ost toward Osterburg-West.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/jfccit",
+        detailPage: "./swath_b.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH C",
+        suffix: "c",
+        title: "Swath C — Arneburg Sector",
+        desc: "Central-west reconnaissance swath segment along the Elbe river near Arneburg.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/nllxmp",
+        detailPage: "./swath_c.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH D",
+        suffix: "d",
+        title: "Swath D — Rathenow / Westhaveland",
+        desc: "Central reconnaissance swath segment covering Rathenow and Westhaveland.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/dzdgab",
+        detailPage: "./swath_d.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH E",
+        suffix: "e",
+        title: "Swath E — Nauen / Falkensee Sector",
+        desc: "Pre-Berlin western approach swath segment covering Nauen and Falkensee.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/ggmaga",
+        detailPage: "./swath_e.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH F",
+        suffix: "f",
+        title: "Swath F — Greater Berlin & Tegel",
+        desc: "High-interest metropolitan swath segment covering Greater Berlin and Tegel.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/yztynrj",
+        detailPage: "./swath_f.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH G",
+        suffix: "g",
+        title: "Swath G — Eastern Berlin / Schöneiche",
+        desc: "Eastern Brandenburg swath segment extending from Eastern Berlin toward Schöneiche.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/mvuwgx",
+        detailPage: "./swath_g.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH H",
+        suffix: "h",
+        title: "Swath H — Oder-Neisse Border Sector",
+        desc: "Eastern border-crossing swath segment along the Oder-Neisse frontier into western Poland.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/ulmebu",
+        detailPage: "./swath_h.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH I",
+        suffix: "i",
+        title: "Swath I — Lubusz Voivodeship / Rzepin",
+        desc: "Western Poland corridor swath segment through Lubusz Voivodeship and Rzepin.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/aydfnkt",
+        detailPage: "./swath_i.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "SWATH J",
+        suffix: "j",
+        title: "Swath J — Świebodzin Corridor Extension",
+        desc: "Eastern swath extension covering the Świebodzin corridor toward Lake Lubinieckie.",
+        price: "€15",
+        status: "Unpublished",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/lmpbpi",
+        detailPage: "./swath_j.html",
+        hasDedicatedPage: false
+      },
+      {
+        code: "FULL SWATH (ALL)",
+        suffix: "all",
+        title: "Full Swath Composite — D3C1215-100217F017",
+        desc: "Complete pass coverage across the BRD–DDR–Poland swath corridor (Entity ID D3C1215-100217F017).",
+        price: "Bundle / Pass",
+        status: "Archive Index",
+        gumroadUrl: "https://creativedesigns840.gumroad.com/l/tjjkf",
+        detailPage: "./swath_all.html",
+        hasDedicatedPage: false,
+        isFullSwath: true
+      }
+    ];
+
+    const grid = document.getElementById("swath-product-grid");
+    SWATH_PRODUCTS.forEach((item) => {
+      const thumbSrc = `../carousel_all/${encodeURIComponent(`HEXAGON KH-9_1979_USGS_DDR_${item.suffix}.jpg`)}`;
+      const pageHref = item.hasDedicatedPage ? item.detailPage : item.gumroadUrl;
+      const pageTarget = item.hasDedicatedPage ? "_self" : "_blank";
+
+      const card = document.createElement("article");
+      card.className = item.isFullSwath ? "product-card full-swath" : "product-card";
+      card.innerHTML = `
+        <div class="product-thumb">
+          <img src="${thumbSrc}" alt="${item.title}" loading="lazy">
+          <span class="price-pill">${item.price}</span>
+        </div>
+        <div class="product-body">
+          <span class="product-code">${item.code} &bull; ${item.status}</span>
+          <h2 class="product-title">${item.title}</h2>
+          <p class="product-desc">${item.desc}</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="${pageHref}" target="${pageTarget}" rel="noopener noreferrer" class="btn-detail">
+            ${item.hasDedicatedPage ? "Product Details" : "Gumroad Listing"}
+          </a>
+          <a href="${item.gumroadUrl}" target="_blank" rel="noopener noreferrer" class="btn-gumroad">
+            Get (${item.price})
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
