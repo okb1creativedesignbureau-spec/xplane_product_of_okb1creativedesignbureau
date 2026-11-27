@@ -15,7 +15,7 @@ const FRAME_PAIRS = [
     { code: "a", sectorLabel: "Bad Bodenteich Reconnaissance Sector (Frame A)" },
     { code: "b", sectorLabel: "Salzwedel-Ost - Osterburg-West Reconnaissance Sector (Frame B)" },
     { code: "c", sectorLabel: "Arneburg Reconnaissance Sector (Frame C)" },
-    { code: "d", sectorLabel: "Rathenow - Westhaveland Reconnaissance Sector (Frame D)" },
+    { code: "d", sectorLabel: "Rathenow - Westhavelland Reconnaissance Sector (Frame D)" },
     { code: "e", sectorLabel: "Nauen - Falkensee Reconnaissance Sector (Frame E)" },
     { code: "f", sectorLabel: "Greater Berlin & Tegel Reconnaissance Sector (Frame F)" },
     { code: "g", sectorLabel: "Eastern Berlin - Schöneiche bei Berlin Reconnaissance Sector (Frame G)" },
