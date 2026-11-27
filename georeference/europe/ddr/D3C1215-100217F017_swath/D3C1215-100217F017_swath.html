@@ -46,7 +46,7 @@
                         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
       background-size: 40px 40px;
     }
-    .container { max-width: 1160px; margin: 0 auto; }
+    .container { max-width: 1220px; margin: 0 auto; }
     .nav-header {
       display: flex;
       justify-content: space-between;
@@ -95,12 +95,17 @@
     }
     header h1 { font-size: 1.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
     header p.bio { color: var(--text-muted); font-size: 0.88rem; max-width: 840px; margin: 0 auto; }
+
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.35rem;
+      grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+      gap: 1.4rem;
       margin-bottom: 3rem;
     }
+    @media (max-width: 600px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
     .product-card {
       background-color: var(--panel-bg);
       border: 1px solid var(--border-color);
@@ -113,37 +118,65 @@
     }
     .product-card:hover { border-color: var(--accent-amber); transform: translateY(-2px); }
     .product-card.full-swath { border-color: rgba(14, 165, 233, 0.5); }
-    .product-thumb {
-      width: 100%;
-      aspect-ratio: 4 / 3;
+
+    /* Pure CSS Side-by-Side Dual-Frame Carousel Strip (No JS) */
+    .dual-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
       background: #06090f;
       border-bottom: 1px solid var(--border-color);
-      overflow: hidden;
-      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-cyan) #06090f;
     }
-    .product-thumb img {
+    .dual-carousel::-webkit-scrollbar { height: 5px; }
+    .dual-carousel::-webkit-scrollbar-track { background: #06090f; }
+    .dual-carousel::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 3px; }
+
+    .carousel-frame {
+      flex: 0 0 50%;
+      width: 50%;
+      aspect-ratio: 4 / 3;
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid var(--border-color);
+    }
+    .carousel-frame:last-child { border-right: none; }
+    .carousel-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.25s ease;
     }
-    .price-pill {
+    .carousel-frame:hover img { transform: scale(1.03); }
+    .frame-tag {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(6, 9, 15, 0.9);
-      color: var(--accent-amber);
-      border: 1px solid rgba(245, 158, 11, 0.45);
-      font-size: 0.75rem;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(6, 9, 15, 0.88);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
+    .frame-tag.secondary {
+      color: var(--accent-amber);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
     .product-body { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
     .product-code { font-size: 0.72rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; }
     .product-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
     .product-desc { font-size: 0.8rem; color: var(--text-muted); }
     .product-meta { font-size: 0.72rem; color: var(--accent-green); margin-top: auto; padding-top: 0.4rem; }
+
     .product-actions {
       display: flex;
       gap: 0.6rem;
@@ -157,11 +190,12 @@
       text-decoration: none;
       font-size: 0.78rem;
       font-weight: 700;
-      padding: 0.5rem 0.7rem;
+      padding: 0.55rem 0.7rem;
       border-radius: 4px;
       color: var(--accent-cyan);
       border: 1px solid rgba(14, 165, 233, 0.4);
       background: rgba(14, 165, 233, 0.08);
+      transition: all 0.2s ease;
     }
     .btn-detail:hover { background: var(--accent-cyan); color: #06090f; }
     .btn-gumroad {
@@ -170,13 +204,15 @@
       text-decoration: none;
       font-size: 0.78rem;
       font-weight: 700;
-      padding: 0.5rem 0.7rem;
+      padding: 0.55rem 0.7rem;
       border-radius: 4px;
       color: #06090f;
       background: var(--accent-amber);
       border: 1px solid var(--accent-amber);
+      transition: filter 0.2s ease;
     }
     .btn-gumroad:hover { filter: brightness(1.08); }
+
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -208,173 +244,275 @@
       </p>
     </header>
 
-    <main class="product-grid" id="swath-product-grid"></main>
-
-    <footer>
-      <p>&copy; <span id="copyright-year">2026</span> OKB-1 Creative Design Bureau. All rights reserved.</p>
-    </footer>
-  </div>
-
-  <script type="module">
-    document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-    // Set hasDedicatedPage: true once you create ./swath_a.html, ./swath_b.html, etc.
-    // Otherwise clicking "Product Page" routes directly to Gumroad.
-    const SWATH_PRODUCTS = [
-      {
-        code: "SWATH A",
-        suffix: "a",
-        title: "Swath A — Bad Bodenteich Sector",
-        desc: "Western border-entry KH-9 HEXAGON swath segment covering the Bad Bodenteich approach.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/tjjkf",
-        detailPage: "./swath_a.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH B",
-        suffix: "b",
-        title: "Swath B — Salzwedel-Ost / Osterburg-West",
-        desc: "Western DDR corridor swath segment spanning Salzwedel-Ost toward Osterburg-West.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/jfccit",
-        detailPage: "./swath_b.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH C",
-        suffix: "c",
-        title: "Swath C — Arneburg Sector",
-        desc: "Central-west reconnaissance swath segment along the Elbe river near Arneburg.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/nllxmp",
-        detailPage: "./swath_c.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH D",
-        suffix: "d",
-        title: "Swath D — Rathenow / Westhaveland",
-        desc: "Central reconnaissance swath segment covering Rathenow and Westhaveland.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/dzdgab",
-        detailPage: "./swath_d.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH E",
-        suffix: "e",
-        title: "Swath E — Nauen / Falkensee Sector",
-        desc: "Pre-Berlin western approach swath segment covering Nauen and Falkensee.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/ggmaga",
-        detailPage: "./swath_e.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH F",
-        suffix: "f",
-        title: "Swath F — Greater Berlin & Tegel",
-        desc: "High-interest metropolitan swath segment covering Greater Berlin and Tegel.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/yztynrj",
-        detailPage: "./swath_f.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH G",
-        suffix: "g",
-        title: "Swath G — Eastern Berlin / Schöneiche",
-        desc: "Eastern Brandenburg swath segment extending from Eastern Berlin toward Schöneiche.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/mvuwgx",
-        detailPage: "./swath_g.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH H",
-        suffix: "h",
-        title: "Swath H — Oder-Neisse Border Sector",
-        desc: "Eastern border-crossing swath segment along the Oder-Neisse frontier into western Poland.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/ulmebu",
-        detailPage: "./swath_h.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH I",
-        suffix: "i",
-        title: "Swath I — Lubusz Voivodeship / Rzepin",
-        desc: "Western Poland corridor swath segment through Lubusz Voivodeship and Rzepin.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/aydfnkt",
-        detailPage: "./swath_i.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "SWATH J",
-        suffix: "j",
-        title: "Swath J — Świebodzin Corridor Extension",
-        desc: "Eastern swath extension covering the Świebodzin corridor toward Lake Lubinieckie.",
-        price: "€15",
-        status: "Unpublished",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/lmpbpi",
-        detailPage: "./swath_j.html",
-        hasDedicatedPage: false
-      },
-      {
-        code: "FULL SWATH (ALL)",
-        suffix: "all",
-        title: "Full Swath Composite — D3C1215-100217F017",
-        desc: "Complete pass coverage across the BRD–DDR–Poland swath corridor (Entity ID D3C1215-100217F017).",
-        price: "Bundle / Pass",
-        status: "Archive Index",
-        gumroadUrl: "https://creativedesigns840.gumroad.com/l/tjjkf",
-        detailPage: "./swath_all.html",
-        hasDedicatedPage: false,
-        isFullSwath: true
-      }
-    ];
-
-    const grid = document.getElementById("swath-product-grid");
-    SWATH_PRODUCTS.forEach((item) => {
-      const thumbSrc = `../carousel_all/${encodeURIComponent(`HEXAGON KH-9_1979_USGS_DDR_${item.suffix}.jpg`)}`;
-      const pageHref = item.hasDedicatedPage ? item.detailPage : item.gumroadUrl;
-      const pageTarget = item.hasDedicatedPage ? "_self" : "_blank";
-
-      const card = document.createElement("article");
-      card.className = item.isFullSwath ? "product-card full-swath" : "product-card";
-      card.innerHTML = `
-        <div class="product-thumb">
-          <img src="${thumbSrc}" alt="${item.title}" loading="lazy">
-          <span class="price-pill">${item.price}</span>
+    <main class="product-grid">
+      <!-- SWATH A -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_a.jpg" alt="Swath A Primary — Bad Bodenteich Sector" loading="lazy">
+            <span class="frame-tag">Primary (A)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_a_b.jpg" alt="Swath A Secondary — Bad Bodenteich Sector" loading="lazy">
+            <span class="frame-tag secondary">Secondary (A_b)</span>
+          </div>
         </div>
         <div class="product-body">
-          <span class="product-code">${item.code} &bull; ${item.status}</span>
-          <h2 class="product-title">${item.title}</h2>
-          <p class="product-desc">${item.desc}</p>
+          <span class="product-code">SWATH A</span>
+          <h2 class="product-title">Swath A — Bad Bodenteich Sector</h2>
+          <p class="product-desc">Western border-entry KH-9 HEXAGON swath segment covering the Bad Bodenteich approach.</p>
           <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
         </div>
         <div class="product-actions">
-          <a href="${pageHref}" target="${pageTarget}" rel="noopener noreferrer" class="btn-detail">
-            ${item.hasDedicatedPage ? "Product Details" : "Gumroad Listing"}
-          </a>
-          <a href="${item.gumroadUrl}" target="_blank" rel="noopener noreferrer" class="btn-gumroad">
-            Get (${item.price})
-          </a>
+          <a href="https://creativedesigns840.gumroad.com/l/tjjkf" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/tjjkf" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
         </div>
-      `;
-      grid.appendChild(card);
-    });
-  </script>
+      </article>
+
+      <!-- SWATH B -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_b.jpg" alt="Swath B Primary — Salzwedel-Ost / Osterburg-West" loading="lazy">
+            <span class="frame-tag">Primary (B)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_b_b.jpg" alt="Swath B Secondary — Salzwedel-Ost / Osterburg-West" loading="lazy">
+            <span class="frame-tag secondary">Secondary (B_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH B</span>
+          <h2 class="product-title">Swath B — Salzwedel-Ost / Osterburg-West</h2>
+          <p class="product-desc">Western DDR corridor swath segment spanning Salzwedel-Ost toward Osterburg-West.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/jfccit" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/jfccit" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH C -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_c.jpg" alt="Swath C Primary — Arneburg Sector" loading="lazy">
+            <span class="frame-tag">Primary (C)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_c_b.jpg" alt="Swath C Secondary — Arneburg Sector" loading="lazy">
+            <span class="frame-tag secondary">Secondary (C_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH C</span>
+          <h2 class="product-title">Swath C — Arneburg Sector</h2>
+          <p class="product-desc">Central-west reconnaissance swath segment along the Elbe river near Arneburg.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/nllxmp" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/nllxmp" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH D -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_d.jpg" alt="Swath D Primary — Rathenow / Westhaveland" loading="lazy">
+            <span class="frame-tag">Primary (D)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_d_b.jpg" alt="Swath D Secondary — Rathenow / Westhaveland" loading="lazy">
+            <span class="frame-tag secondary">Secondary (D_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH D</span>
+          <h2 class="product-title">Swath D — Rathenow / Westhaveland</h2>
+          <p class="product-desc">Central reconnaissance swath segment covering Rathenow and Westhaveland.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/dzdgab" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/dzdgab" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH E -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_e.jpg" alt="Swath E Primary — Nauen / Falkensee Sector" loading="lazy">
+            <span class="frame-tag">Primary (E)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_e_b.jpg" alt="Swath E Secondary — Nauen / Falkensee Sector" loading="lazy">
+            <span class="frame-tag secondary">Secondary (E_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH E</span>
+          <h2 class="product-title">Swath E — Nauen / Falkensee Sector</h2>
+          <p class="product-desc">Pre-Berlin western approach swath segment covering Nauen and Falkensee.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/ggmaga" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/ggmaga" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH F -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_f.jpg" alt="Swath F Primary — Greater Berlin & Tegel" loading="lazy">
+            <span class="frame-tag">Primary (F)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_f_b.jpg" alt="Swath F Secondary — Greater Berlin & Tegel" loading="lazy">
+            <span class="frame-tag secondary">Secondary (F_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH F</span>
+          <h2 class="product-title">Swath F — Greater Berlin &amp; Tegel</h2>
+          <p class="product-desc">High-interest metropolitan swath segment covering Greater Berlin and Tegel.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/yztynrj" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/yztynrj" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH G -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_g.jpg" alt="Swath G Primary — Eastern Berlin / Schöneiche" loading="lazy">
+            <span class="frame-tag">Primary (G)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_g_b.jpg" alt="Swath G Secondary — Eastern Berlin / Schöneiche" loading="lazy">
+            <span class="frame-tag secondary">Secondary (G_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH G</span>
+          <h2 class="product-title">Swath G — Eastern Berlin / Schöneiche</h2>
+          <p class="product-desc">Eastern Brandenburg swath segment extending from Eastern Berlin toward Schöneiche.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/mvuwgx" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/mvuwgx" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH H -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_h.jpg" alt="Swath H Primary — Oder-Neisse Border Sector" loading="lazy">
+            <span class="frame-tag">Primary (H)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_h_b.jpg" alt="Swath H Secondary — Oder-Neisse Border Sector" loading="lazy">
+            <span class="frame-tag secondary">Secondary (H_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH H</span>
+          <h2 class="product-title">Swath H — Oder-Neisse Border Sector</h2>
+          <p class="product-desc">Eastern border-crossing swath segment along the Oder-Neisse frontier into western Poland.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/ulmebu" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/ulmebu" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH I -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_i.jpg" alt="Swath I Primary — Lubusz Voivodeship / Rzepin" loading="lazy">
+            <span class="frame-tag">Primary (I)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_i_b.jpg" alt="Swath I Secondary — Lubusz Voivodeship / Rzepin" loading="lazy">
+            <span class="frame-tag secondary">Secondary (I_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH I</span>
+          <h2 class="product-title">Swath I — Lubusz Voivodeship / Rzepin</h2>
+          <p class="product-desc">Western Poland corridor swath segment through Lubusz Voivodeship and Rzepin.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/aydfnkt" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/aydfnkt" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- SWATH J -->
+      <article class="product-card">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_j.jpg" alt="Swath J Primary — Świebodzin Corridor Extension" loading="lazy">
+            <span class="frame-tag">Primary (J)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_j_b.jpg" alt="Swath J Secondary — Świebodzin Corridor Extension" loading="lazy">
+            <span class="frame-tag secondary">Secondary (J_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">SWATH J</span>
+          <h2 class="product-title">Swath J — Świebodzin Corridor Extension</h2>
+          <p class="product-desc">Eastern swath extension covering the Świebodzin corridor toward Lake Lubinieckie.</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/lmpbpi" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/lmpbpi" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+
+      <!-- FULL SWATH COMPOSITE (ALL) -->
+      <article class="product-card full-swath">
+        <div class="dual-carousel">
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_all.jpg" alt="Full Swath Composite Primary — D3C1215-100217F017" loading="lazy">
+            <span class="frame-tag">Primary (ALL)</span>
+          </div>
+          <div class="carousel-frame">
+            <img src="../carousel_all/HEXAGON%20KH-9_1979_USGS_DDR_all_b.jpg" alt="Full Swath Composite Secondary — D3C1215-100217F017" loading="lazy">
+            <span class="frame-tag secondary">Secondary (ALL_b)</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <span class="product-code">FULL SWATH (ALL)</span>
+          <h2 class="product-title">Full Swath Composite — D3C1215-100217F017</h2>
+          <p class="product-desc">Complete pass coverage across the BRD–DDR–Poland swath corridor (Entity ID D3C1215-100217F017).</p>
+          <span class="product-meta">KH-9 HEXAGON &bull; 10 APR 1979</span>
+        </div>
+        <div class="product-actions">
+          <a href="https://creativedesigns840.gumroad.com/l/tjjkf" target="_blank" rel="noopener noreferrer" class="btn-detail">More About Product</a>
+          <a href="https://creativedesigns840.gumroad.com/l/tjjkf" target="_blank" rel="noopener noreferrer" class="btn-gumroad">Get It Now</a>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 OKB-1 Creative Design Bureau. All rights reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
