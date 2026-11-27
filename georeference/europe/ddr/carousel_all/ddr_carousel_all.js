@@ -25,8 +25,9 @@ const FRAME_PAIRS = [
 ];
 
 const buildFrameEntry = (fileSuffix, displayCode, sectorLabel, isVariantB = false) => {
-    const filename = `HEXAGON KH-9_1979_USGS_DDR_${fileSuffix}.jpg`;
-    const encodedUrl = `./${encodeURIComponent(filename).replace(/%20/g, "%20")}`;
+    // Update this string to match your new clean filename format:
+    const filename = `HEXAGON_KH-9_1979_USGS_DDR_${fileSuffix}.jpg`;
+    const encodedUrl = `./${encodeURIComponent(filename)}`;
     const variantText = isVariantB ? "Secondary Rectified Variant" : "Primary Rectified Frame";
 
     return {
