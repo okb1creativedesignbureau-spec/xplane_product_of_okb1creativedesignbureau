@@ -24,8 +24,9 @@ const FRAME_PAIRS = [
     { code: "j", sectorLabel: "Eastern Swath Extension / Lake Lubinieckie Sector (Frame J)" }
 ];
 
-const buildFrameEntry = (fileSuffix, displayCode, sectorLabel, isVariantB = false) => {
-    const filename = `HEXAGON KH-9_1979_USGS_DDR_${fileSuffix}.jpg`;
+const buildFrameEntry = (fileSuffix, displayCode, sectorLabel, isVariantB = false, useSpaceSeparator = false) => {
+    const separator = useSpaceSeparator ? "_ " : "_";
+    const filename = `HEXAGON KH-9_1979_USGS_DDR${separator}${fileSuffix}.jpg`;
     const encodedUrl = `./${encodeURIComponent(filename)}`;
     const variantText = isVariantB ? "Secondary Rectified Variant" : "Primary Rectified Frame";
 
@@ -64,20 +65,24 @@ const buildFrameEntry = (fileSuffix, displayCode, sectorLabel, isVariantB = fals
 
 export const ddr_swath_carousel = [
     ...FRAME_PAIRS.flatMap(({ code, sectorLabel }) => [
-        buildFrameEntry(code, `Frame ${code.toUpperCase()}`, sectorLabel, false),
-        buildFrameEntry(`${code}_b`, `Frame ${code.toUpperCase()}_b`, sectorLabel, true)
+        // Primary frames: no space after _DDR_
+        buildFrameEntry(code, `Frame ${code.toUpperCase()}`, sectorLabel, false, false),
+        // Secondary (_b) frames: keeps old "_ " space separator
+        buildFrameEntry(`${code}_b`, `Frame ${code.toUpperCase()}_b`, sectorLabel, true, true)
     ]),
     buildFrameEntry(
         "all",
         "Full Swath Composite (ALL)",
         "Celle-Gifhorn-Uelzen to Berlin & Swiebodzin / Lake Lubinieckie",
+        false,
         false
     ),
     buildFrameEntry(
         "all_b",
         "Full Swath Composite Variant (ALL_b)",
         "Celle-Gifhorn-Uelzen to Berlin & Swiebodzin / Lake Lubinieckie",
-        true
+        true,
+        false
     )
 ];
 
