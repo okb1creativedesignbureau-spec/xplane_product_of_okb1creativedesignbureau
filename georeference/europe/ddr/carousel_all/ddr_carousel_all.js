@@ -12,16 +12,16 @@ export const ddr_swath_meta = {
 };
 
 const FRAME_PAIRS = [
-    { code: "a", sectorLabel: "Western / Border Entry Sector (Frame A)" },
-    { code: "b", sectorLabel: "Inner Corridor / Western DDR Sector (Frame B)" },
-    { code: "c", sectorLabel: "Central-West Reconnaissance Sector (Frame C)" },
-    { code: "d", sectorLabel: "Central Reconnaissance Sector (Frame D)" },
-    { code: "e", sectorLabel: "Pre-Berlin Approach Sector (Frame E)" },
-    { code: "f", sectorLabel: "Greater Berlin & Tegel Sector (Frame F)" },
-    { code: "g", sectorLabel: "Eastern Brandenburg / Oder Sector (Frame G)" },
+    { code: "a", sectorLabel: "Bad Bodenteich Reconnaissance Sector (Frame A)" },
+    { code: "b", sectorLabel: "Salzwedel-Ost - Osterburg-West Reconnaissance Sector (Frame B)" },
+    { code: "c", sectorLabel: "Arneburg Reconnaissance Sector (Frame C)" },
+    { code: "d", sectorLabel: "Rathenow - Westhaveland Reconnaissance Sector (Frame D)" },
+    { code: "e", sectorLabel: "Nauen - Falkensee Reconnaissance Sector (Frame E)" },
+    { code: "f", sectorLabel: "Greater Berlin & Tegel Reconnaissance Sector (Frame F)" },
+    { code: "g", sectorLabel: "Eastern Berlin - Schöneiche bei Berlin Reconnaissance Sector (Frame G)" },
     { code: "h", sectorLabel: "Oder-Neisse Border / Western Poland Sector (Frame H)" },
-    { code: "i", sectorLabel: "Lubusz Voivodeship / Swiebodzin Corridor (Frame I)" },
-    { code: "j", sectorLabel: "Eastern Swath Extension / Lake Lubinieckie Sector (Frame J)" }
+    { code: "i", sectorLabel: "Lubusz Voivodeship / Rzepin Corridor (Frame I)" },
+    { code: "j", sectorLabel: "Eastern Swath Extension / Swiebodzin Corridor Sector (Frame J)" }
 ];
 
 const buildFrameEntry = (fileSuffix, displayCode, sectorLabel, isVariantB = false) => {
