@@ -285,13 +285,94 @@
                 transparent 3px
             );
             pointer-events: none;
+            z-index: 2;
         }
 
-        .preview-frame img {
+        /* Carousel Track & Controls (Left 4:3 Preview) */
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img,
+        .preview-frame > img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(6, 9, 15, 0.82);
+            color: var(--text-primary);
+            border: 1px solid rgba(245, 158, 11, 0.55);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            z-index: 5;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent-amber);
+            color: #06090f;
+            border-color: var(--accent-amber);
+        }
+
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        .carousel-hud-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .carousel-label {
+            background: rgba(6, 9, 15, 0.88);
+            color: var(--accent-amber);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .carousel-counter {
+            background: rgba(6, 9, 15, 0.88);
+            color: var(--text-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
         }
 
         .preview-placeholder {
@@ -421,13 +502,19 @@
             </div>
 
             <div class="option-pair">
-                <!-- Left 4:3 Option: Swath Files -->
+                <!-- Left 4:3 Option: Swath Files (22-Frame Interactive Carousel from ./carousel_all/) -->
                 <a href="./D3C1215-100217F017_swath.html" class="preview-card swath-card">
                     <div class="preview-frame" ondragover="allowDrop(event)" ondrop="handleDrop(event, this)">
-                        <img id="img-hex79-swath" src="" alt="KH-9 HEXAGON D3C1215-100217F017 Swath Preview" style="display: none;">
-                        <div class="preview-placeholder">
+                        <button type="button" class="carousel-btn prev" id="hex79-swath-prev" aria-label="Previous swath frame" style="display: none;">&#10094;</button>
+                        <button type="button" class="carousel-btn next" id="hex79-swath-next" aria-label="Next swath frame" style="display: none;">&#10095;</button>
+                        <div class="carousel-track" id="hex79-swath-track"></div>
+                        <div class="carousel-hud-badge" id="hex79-swath-hud" style="display: none;">
+                            <span class="carousel-label" id="hex79-swath-label">Frame A</span>
+                            <span class="carousel-counter" id="hex79-swath-counter">1 / 22</span>
+                        </div>
+                        <div class="preview-placeholder" id="hex79-swath-placeholder">
                             <span class="hud-tag">4:3 ORBITAL SWATH PREVIEW</span>
-                            <span>Full Pass &amp; A–H Sub-Frames</span>
+                            <span>Full Pass &amp; A–J Sub-Frames</span>
                         </div>
                     </div>
                     <div class="card-caption">
@@ -435,7 +522,7 @@
                             <span class="caption-title">Swath Files</span>
                             <span class="caption-arrow">&rarr;</span>
                         </div>
-                        <span class="caption-sub">Complete orbital pass &amp; A–H film strip GeoTIFFs</span>
+                        <span class="caption-sub">Complete orbital pass &amp; A–J film strip GeoTIFFs</span>
                     </div>
                 </a>
 
@@ -538,8 +625,12 @@
                 reader.onload = function(e) {
                     const img = frame.querySelector('img');
                     const placeholder = frame.querySelector('.preview-placeholder');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
+                    const track = frame.querySelector('.carousel-track');
+                    if (track) track.style.display = 'none';
+                    if (img) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    }
                     if (placeholder) placeholder.style.display = 'none';
                 };
                 reader.readAsDataURL(file);
@@ -548,7 +639,88 @@
     }
 </script>
 
-<!-- Optional Base64 JS Preview Loader (auto-loads if ./ddr_previews.js exists) -->
+<!-- Left 4:3 Swath Carousel + Google Image SEO Schema Injector -->
+<script type="module">
+    import { ddr_swath_carousel, ddr_image_gallery_jsonld } from './carousel_all/ddr_carousel_all.js';
+
+    // Inject structured ImageObject list into <head> for Google Search & Image indexing
+    if (ddr_image_gallery_jsonld) {
+        const ldScript = document.createElement('script');
+        ldScript.type = 'application/ld+json';
+        ldScript.textContent = JSON.stringify(ddr_image_gallery_jsonld);
+        document.head.appendChild(ldScript);
+    }
+
+    function setupSwathCarousel(prefix, slides) {
+        if (!slides || slides.length === 0) return;
+
+        const track = document.getElementById(`${prefix}-track`);
+        const placeholder = document.getElementById(`${prefix}-placeholder`);
+        const prevBtn = document.getElementById(`${prefix}-prev`);
+        const nextBtn = document.getElementById(`${prefix}-next`);
+        const hud = document.getElementById(`${prefix}-hud`);
+        const label = document.getElementById(`${prefix}-label`);
+        const counter = document.getElementById(`${prefix}-counter`);
+
+        if (!track) return;
+
+        track.innerHTML = '';
+        if (placeholder) placeholder.style.display = 'none';
+
+        slides.forEach((slideItem, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+
+            const img = document.createElement('img');
+            // Resolve relative to ./carousel_all/
+            img.src = slideItem.url.startsWith('./')
+                ? `./carousel_all/${slideItem.url.slice(2)}`
+                : slideItem.url;
+            img.alt = slideItem.alt || slideItem.name || `KH-9 HEXAGON Swath Frame ${index + 1}`;
+            img.title = slideItem.title || slideItem.name || '';
+            img.loading = index === 0 ? 'eager' : 'lazy';
+
+            slide.appendChild(img);
+            track.appendChild(slide);
+        });
+
+        let currentIndex = 0;
+        const total = slides.length;
+
+        const updateSlide = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            if (label) label.textContent = slides[currentIndex].name || `Frame ${currentIndex + 1}`;
+            if (counter) counter.textContent = `${currentIndex + 1} / ${total}`;
+        };
+
+        if (hud) hud.style.display = 'flex';
+
+        if (total > 1 && prevBtn && nextBtn) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                currentIndex = (currentIndex === 0) ? total - 1 : currentIndex - 1;
+                updateSlide();
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                currentIndex = (currentIndex === total - 1) ? 0 : currentIndex + 1;
+                updateSlide();
+            });
+        }
+
+        updateSlide();
+    }
+
+    setupSwathCarousel('hex79-swath', ddr_swath_carousel);
+</script>
+
+<!-- Optional Base64 JS Preview Loader for remaining cards (auto-loads if ./ddr_previews.js exists) -->
 <script type="module">
     import('./ddr_previews.js')
         .then((mod) => {
